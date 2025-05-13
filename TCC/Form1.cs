@@ -6,5 +6,11 @@ namespace TCC
         {
             InitializeComponent();
         }
+
+        private void btnEntrar_Click(object sender, EventArgs e)
+        {
+            panelFlutuante.Visible = true;
+            panelFlutuante.BringToFront();
+        }
     }
 }
