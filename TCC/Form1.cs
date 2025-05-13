@@ -12,5 +12,7 @@ namespace TCC
             panelFlutuante.Visible = true;
             panelFlutuante.BringToFront();
         }
+
+        
     }
 }
