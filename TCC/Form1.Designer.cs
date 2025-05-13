@@ -33,27 +33,27 @@
             label2 = new Label();
             btnCriarConta = new Button();
             btnEntrar = new Button();
-            panel1 = new Panel();
+            panelOverlay = new Panel();
             panelFlutuante.SuspendLayout();
-            panel1.SuspendLayout();
+            panelOverlay.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(217, 46);
+            label1.Font = new Font("Baskerville Old Face", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(196, 39);
             label1.Name = "label1";
-            label1.Size = new Size(97, 25);
+            label1.Size = new Size(555, 82);
             label1.TabIndex = 0;
-            label1.Text = "Bem vindo";
-            
+            label1.Text = "Gerência o estoque da sua empresa\r\n                com facilidade";
             // 
             // panelFlutuante
             // 
             panelFlutuante.BackColor = Color.WhiteSmoke;
             panelFlutuante.BorderStyle = BorderStyle.FixedSingle;
             panelFlutuante.Controls.Add(label2);
-            panelFlutuante.Location = new Point(286, 219);
+            panelFlutuante.Location = new Point(12, 12);
             panelFlutuante.Name = "panelFlutuante";
             panelFlutuante.Size = new Size(309, 192);
             panelFlutuante.TabIndex = 1;
@@ -70,33 +70,39 @@
             // 
             // btnCriarConta
             // 
-            btnCriarConta.Location = new Point(217, 126);
+            btnCriarConta.BackColor = Color.FromArgb(0, 0, 192);
+            btnCriarConta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCriarConta.ForeColor = Color.Transparent;
+            btnCriarConta.Location = new Point(576, 298);
             btnCriarConta.Name = "btnCriarConta";
-            btnCriarConta.Size = new Size(112, 34);
+            btnCriarConta.Size = new Size(138, 65);
             btnCriarConta.TabIndex = 3;
             btnCriarConta.Text = "Criar Conta";
-            btnCriarConta.UseVisualStyleBackColor = true;
+            btnCriarConta.UseVisualStyleBackColor = false;
             // 
             // btnEntrar
             // 
-            btnEntrar.Location = new Point(40, 67);
+            btnEntrar.BackColor = Color.LimeGreen;
+            btnEntrar.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEntrar.ForeColor = Color.Transparent;
+            btnEntrar.Location = new Point(256, 298);
             btnEntrar.Name = "btnEntrar";
-            btnEntrar.Size = new Size(112, 34);
+            btnEntrar.Size = new Size(141, 65);
             btnEntrar.TabIndex = 2;
             btnEntrar.Text = "Entrar";
-            btnEntrar.UseVisualStyleBackColor = true;
+            btnEntrar.UseVisualStyleBackColor = false;
             btnEntrar.Click += btnEntrar_Click;
             // 
-            // panel1
+            // panelOverlay
             // 
-            panel1.Controls.Add(btnEntrar);
-            panel1.Controls.Add(panelFlutuante);
-            panel1.Controls.Add(btnCriarConta);
-            panel1.Controls.Add(label1);
-            panel1.Location = new Point(12, 12);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(930, 568);
-            panel1.TabIndex = 4;
+            panelOverlay.Controls.Add(panelFlutuante);
+            panelOverlay.Dock = DockStyle.Fill;
+            panelOverlay.Location = new Point(0, 0);
+            panelOverlay.Name = "panelOverlay";
+            panelOverlay.Size = new Size(954, 592);
+            panelOverlay.TabIndex = 4;
+            panelOverlay.Visible = false;
+            panelOverlay.MouseClick += panelOverlay_MouseClick;
             // 
             // Form1
             // 
@@ -104,14 +110,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(954, 592);
-            Controls.Add(panel1);
+            Controls.Add(label1);
+            Controls.Add(panelOverlay);
+            Controls.Add(btnEntrar);
+            Controls.Add(btnCriarConta);
             Name = "Form1";
             Text = "Form1";
             panelFlutuante.ResumeLayout(false);
             panelFlutuante.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelOverlay.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -121,6 +130,6 @@
         private Button btnEntrar;
         private Button btnCriarConta;
         private Label label2;
-        private Panel panel1;
+        private Panel panelOverlay;
     }
 }
