@@ -1,0 +1,14 @@
+# Arquivos de usuário e IDE
+.vs/
+*.user
+*.suo
+
+# Build
+bin/
+obj/
+
+# Logs
+*.log
+
+# Configurações locais
+*.local.json
