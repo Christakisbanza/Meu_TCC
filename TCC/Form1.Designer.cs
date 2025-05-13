@@ -28,45 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            txtInicial = new Label();
             panelFlutuante = new Panel();
-            label2 = new Label();
             btnCriarConta = new Button();
             btnEntrar = new Button();
             panelOverlay = new Panel();
-            panelFlutuante.SuspendLayout();
             panelOverlay.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // txtInicial
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Baskerville Old Face", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(196, 39);
-            label1.Name = "label1";
-            label1.Size = new Size(555, 82);
-            label1.TabIndex = 0;
-            label1.Text = "Gerência o estoque da sua empresa\r\n                com facilidade";
+            txtInicial.AutoSize = true;
+            txtInicial.Font = new Font("Baskerville Old Face", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtInicial.Location = new Point(196, 39);
+            txtInicial.Name = "txtInicial";
+            txtInicial.Size = new Size(555, 82);
+            txtInicial.TabIndex = 0;
+            txtInicial.Text = "Gerência o estoque da sua empresa\r\n                com facilidade";
             // 
             // panelFlutuante
             // 
             panelFlutuante.BackColor = Color.WhiteSmoke;
             panelFlutuante.BorderStyle = BorderStyle.FixedSingle;
-            panelFlutuante.Controls.Add(label2);
-            panelFlutuante.Location = new Point(12, 12);
+            panelFlutuante.Location = new Point(196, 141);
             panelFlutuante.Name = "panelFlutuante";
-            panelFlutuante.Size = new Size(309, 192);
+            panelFlutuante.Size = new Size(555, 300);
             panelFlutuante.TabIndex = 1;
             panelFlutuante.Visible = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(27, 26);
-            label2.Name = "label2";
-            label2.Size = new Size(59, 25);
-            label2.TabIndex = 0;
-            label2.Text = "label2";
             // 
             // btnCriarConta
             // 
@@ -110,14 +98,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(954, 592);
-            Controls.Add(label1);
+            Controls.Add(txtInicial);
             Controls.Add(panelOverlay);
             Controls.Add(btnEntrar);
             Controls.Add(btnCriarConta);
             Name = "Form1";
             Text = "Form1";
-            panelFlutuante.ResumeLayout(false);
-            panelFlutuante.PerformLayout();
             panelOverlay.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -125,11 +111,10 @@
 
         #endregion
 
-        private Label label1;
+        private Label txtInicial;
         private Panel panelFlutuante;
         private Button btnEntrar;
         private Button btnCriarConta;
-        private Label label2;
         private Panel panelOverlay;
     }
 }
