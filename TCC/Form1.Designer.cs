@@ -52,7 +52,7 @@
             panelFlutuante.BorderStyle = BorderStyle.FixedSingle;
             panelFlutuante.Location = new Point(196, 141);
             panelFlutuante.Name = "panelFlutuante";
-            panelFlutuante.Size = new Size(555, 300);
+            panelFlutuante.Size = new Size(555, 407);
             panelFlutuante.TabIndex = 1;
             panelFlutuante.Visible = false;
             // 

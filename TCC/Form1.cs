@@ -11,10 +11,15 @@ namespace TCC
         {
             panelOverlay.Visible = true;
             panelFlutuante.Visible = true;
-            
-            int centerX = (this.ClientSize.Width - panelFlutuante.Width) / 2;
-            int centerY = (this.ClientSize.Height - panelFlutuante.Height) / 2;
-            panelFlutuante.Location = new Point(centerX, centerY);
+           
+
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.Size = new Size(100, 100);
+            pictureBox.Location = new Point(220, 10);
+            pictureBox.Image = Properties.Resources.usuario; 
+
+            panelFlutuante.Controls.Add(pictureBox);
 
             Label novaLabel = new Label();
             novaLabel.Text = "Entrar com uma conta existente";
