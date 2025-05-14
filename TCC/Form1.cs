@@ -2,6 +2,12 @@ namespace TCC
 {
     public partial class Form1 : Form
     {
+        [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(
+            int nLeftRect, int nTopRect, int nRightRect, int nBottomRect,
+            int nWidthEllipse, int nHeightEllipse);
+       
+
         public Form1()
         {
             InitializeComponent();
@@ -21,33 +27,35 @@ namespace TCC
 
             
 
-            TextBox textBox = new TextBox();
-            textBox.Size = new Size(200, 25);
-            textBox.Location = new Point(180, 150);
+            TextBox txtEmail = new TextBox();
+            txtEmail.Size = new Size(250, 35);
+            txtEmail.Location = new Point(150, 150);
+            txtEmail.Multiline = true;
+            txtEmail.BorderStyle = BorderStyle.None;
             string placeholder = "Digite seu e-mail";
-            textBox.Text = placeholder;
-            textBox.ForeColor = Color.Gray;
-            textBox.Enter += (sender, e) =>
+            txtEmail.Text = placeholder;
+            txtEmail.ForeColor = Color.Gray;
+            txtEmail.Enter += (sender, e) =>
             {
-                if (textBox.Text == placeholder)
+                if (txtEmail.Text == placeholder)
                 {
-                    textBox.Text = "";
-                    textBox.ForeColor = Color.Black;
+                    txtEmail.Text = "";
+                    txtEmail.ForeColor = Color.Black;
                 }
             };
-            textBox.Leave += (sender, e) =>
+            txtEmail.Leave += (sender, e) =>
             {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
+                if (string.IsNullOrWhiteSpace(txtEmail.Text))
                 {
-                    textBox.Text = placeholder;
-                    textBox.ForeColor = Color.Gray;
+                    txtEmail.Text = placeholder;
+                    txtEmail.ForeColor = Color.Gray;
                 }
             };
-
+            txtEmail.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, txtEmail.Width, txtEmail.Height, 12, 12));
 
 
             panelFlutuante.Controls.Add(pictureBox);
-            panelFlutuante.Controls.Add(textBox);
+            panelFlutuante.Controls.Add(txtEmail);
 
 
 
