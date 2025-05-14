@@ -54,8 +54,37 @@ namespace TCC
             txtEmail.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, txtEmail.Width, txtEmail.Height, 12, 12));
 
 
+
+            TextBox txtSenha = new TextBox();
+            txtSenha.Size = new Size(250, 35);
+            txtSenha.Location = new Point(150, 220);
+            txtSenha.Multiline = true;
+            txtSenha.BorderStyle = BorderStyle.None;
+            string placeholderSenha = "Digite sua senha";
+            txtSenha.Text = placeholderSenha;
+            txtSenha.ForeColor = Color.Gray;
+            txtSenha.Enter += (sender, e) =>
+            {
+                if (txtSenha.Text == placeholderSenha)
+                {
+                    txtSenha.Text = "";
+                    txtSenha.ForeColor = Color.Black;
+                }
+            };
+            txtSenha.Leave += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtSenha.Text))
+                {
+                    txtSenha.Text = placeholderSenha;
+                    txtSenha.ForeColor = Color.Gray;
+                }
+            };
+            txtSenha.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, txtSenha.Width, txtSenha.Height, 12, 12));
+
+
             panelFlutuante.Controls.Add(pictureBox);
             panelFlutuante.Controls.Add(txtEmail);
+            panelFlutuante.Controls.Add(txtSenha);
 
 
 
