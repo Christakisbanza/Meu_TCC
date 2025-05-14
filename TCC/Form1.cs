@@ -81,10 +81,22 @@ namespace TCC
             };
             txtSenha.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, txtSenha.Width, txtSenha.Height, 12, 12));
 
+            Button btnEntrar = new Button();
+            btnEntrar.Size = new Size(255, 50);
+            btnEntrar.Location = new Point(150, 300);
+            btnEntrar.Text = "Entrar";
+            btnEntrar.ForeColor = Color.Black;
+            btnEntrar.Font = new Font(btnEntrar.Font, FontStyle.Bold);
+            btnEntrar.Click += (s, e) =>
+            {
+                MessageBox.Show("Botão entrar clicado !");
+            };
+
 
             panelFlutuante.Controls.Add(pictureBox);
             panelFlutuante.Controls.Add(txtEmail);
             panelFlutuante.Controls.Add(txtSenha);
+            panelFlutuante.Controls.Add(btnEntrar);
 
 
 
