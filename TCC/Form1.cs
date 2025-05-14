@@ -19,14 +19,37 @@ namespace TCC
             pictureBox.Location = new Point(220, 10);
             pictureBox.Image = Properties.Resources.usuario; 
 
+            
+
+            TextBox textBox = new TextBox();
+            textBox.Size = new Size(200, 25);
+            textBox.Location = new Point(180, 150);
+            string placeholder = "Digite seu e-mail";
+            textBox.Text = placeholder;
+            textBox.ForeColor = Color.Gray;
+            textBox.Enter += (sender, e) =>
+            {
+                if (textBox.Text == placeholder)
+                {
+                    textBox.Text = "";
+                    textBox.ForeColor = Color.Black;
+                }
+            };
+            textBox.Leave += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = placeholder;
+                    textBox.ForeColor = Color.Gray;
+                }
+            };
+
+
+
             panelFlutuante.Controls.Add(pictureBox);
+            panelFlutuante.Controls.Add(textBox);
 
-            Label novaLabel = new Label();
-            novaLabel.Text = "Entrar com uma conta existente";
-            novaLabel.Location = new Point(10, 10); // Posição da Label dentro do painel
-            novaLabel.Size = new Size(100, 100); // Tamanho da Label
 
-            panelFlutuante.Controls.Add(novaLabel);
 
             panelFlutuante.BringToFront();
         }
