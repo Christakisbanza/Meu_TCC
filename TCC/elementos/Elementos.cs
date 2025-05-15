@@ -62,6 +62,32 @@ namespace TCC.elementos
         }
 
 
+        public static Panel CriarPanel()
+        {
+            Panel meuPanel = new Panel();
+            meuPanel.Size = new Size(300, 300);  
+            meuPanel.Location = new Point(50, 50);
+            meuPanel.AutoScroll = true;
+            meuPanel.Visible = true;
+            return meuPanel; 
+        }
+
+       
+        public static void CriarLbl(string texto, int x, int y, Panel panelFlutuante)
+        {
+          
+            Label novoLabel = new Label();
+
+            novoLabel.Text = texto;
+            novoLabel.Location = new Point(x, y); 
+            novoLabel.AutoSize = true; 
+            novoLabel.ForeColor = Color.Black;
+            novoLabel.Font = new Font(novoLabel.Font.FontFamily, 17, FontStyle.Bold);
+
+
+            panelFlutuante.Controls.Add(novoLabel);
+        }
+
 
 
 

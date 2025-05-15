@@ -21,17 +21,13 @@ namespace TCC
             pictureBox.Size = new Size(100, 100);
             pictureBox.Location = new Point(220, 15);
             pictureBox.Image = Properties.Resources.usuario;
+            panelFlutuante.Controls.Add(pictureBox);
 
 
-            
             Elementos.CriarTxtBox("Digite seu e-mail", 150, 160, panelFlutuante);
             Elementos.CriarTxtBox("Digite sua senha", 150, 230, panelFlutuante);
 
             Elementos.CriarBtn("Entrar",150,310,255,50,panelFlutuante,() => Msg());
-
-
-            panelFlutuante.Controls.Add(pictureBox);
-            
 
 
             panelFlutuante.BringToFront();
@@ -39,13 +35,15 @@ namespace TCC
 
         public void Msg()
         {
-            MessageBox.Show("Clicou !");
+            MessageBox.Show("Clicou");
         }
 
         private void btnCriarConta_Click(object sender, EventArgs e)
         {
             panelOverlay.Visible = true;
             panelFlutuante.Visible = true;
+
+            Elementos.CriarLbl("Crie sua conta", 170, 15, panelFlutuante);
         }
 
         
