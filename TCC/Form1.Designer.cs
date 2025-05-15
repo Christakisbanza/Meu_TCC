@@ -40,7 +40,7 @@
             // 
             txtInicial.AutoSize = true;
             txtInicial.Font = new Font("Baskerville Old Face", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtInicial.Location = new Point(196, 39);
+            txtInicial.Location = new Point(200, 99);
             txtInicial.Name = "txtInicial";
             txtInicial.Size = new Size(555, 82);
             txtInicial.TabIndex = 0;
@@ -50,9 +50,9 @@
             // 
             panelFlutuante.BackColor = SystemColors.ActiveBorder;
             panelFlutuante.BorderStyle = BorderStyle.FixedSingle;
-            panelFlutuante.Location = new Point(196, 141);
+            panelFlutuante.Location = new Point(196, 65);
             panelFlutuante.Name = "panelFlutuante";
-            panelFlutuante.Size = new Size(555, 407);
+            panelFlutuante.Size = new Size(555, 483);
             panelFlutuante.TabIndex = 1;
             panelFlutuante.Visible = false;
             // 
@@ -61,19 +61,20 @@
             btnCriarConta.BackColor = Color.FromArgb(0, 0, 192);
             btnCriarConta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCriarConta.ForeColor = Color.Transparent;
-            btnCriarConta.Location = new Point(576, 298);
+            btnCriarConta.Location = new Point(617, 298);
             btnCriarConta.Name = "btnCriarConta";
             btnCriarConta.Size = new Size(138, 65);
             btnCriarConta.TabIndex = 3;
             btnCriarConta.Text = "Criar Conta";
             btnCriarConta.UseVisualStyleBackColor = false;
+            btnCriarConta.Click += btnCriarConta_Click;
             // 
             // btnEntrar
             // 
             btnEntrar.BackColor = Color.LimeGreen;
             btnEntrar.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEntrar.ForeColor = Color.Transparent;
-            btnEntrar.Location = new Point(256, 298);
+            btnEntrar.Location = new Point(200, 298);
             btnEntrar.Name = "btnEntrar";
             btnEntrar.Size = new Size(141, 65);
             btnEntrar.TabIndex = 2;
@@ -98,8 +99,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(954, 592);
-            Controls.Add(txtInicial);
             Controls.Add(panelOverlay);
+            Controls.Add(txtInicial);
             Controls.Add(btnEntrar);
             Controls.Add(btnCriarConta);
             Name = "Form1";
