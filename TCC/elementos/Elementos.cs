@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +16,8 @@ namespace TCC.elementos
             int nWidthEllipse, int nHeightEllipse);
 
         
-        public static void CriarBtn(string placeholder, int x, int y, Panel panelFlutuante)
+        public static void CriarTxtBox(string placeholder, int x, int y, Panel panelFlutuante)
         {
-
             TextBox textBox = new TextBox();
             textBox.Size = new Size(250, 35);
             textBox.Location = new Point(x, y);
@@ -44,5 +45,26 @@ namespace TCC.elementos
             
             panelFlutuante.Controls.Add(textBox);
         }
+
+        public static void CriarBtn(string txt, int x, int y, int width, int height, Panel panelFlutuante, Action eventoClick)
+        {
+            Button btn = new Button();
+            btn.Size = new Size(width, height);
+            btn.Location = new Point(x, y);
+            btn.Text = txt;
+            btn.ForeColor = Color.Black;
+            btn.Font = new Font(btn.Font, FontStyle.Bold);
+            btn.Click += (s, e) =>
+            {
+                eventoClick();
+            };
+            panelFlutuante.Controls.Add(btn);
+        }
+
+
+
+
+
+
     }
 }

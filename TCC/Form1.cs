@@ -5,8 +5,6 @@ namespace TCC
     public partial class Form1 : Form
     {
         
-
-
         public Form1()
         {
             InitializeComponent();
@@ -26,27 +24,22 @@ namespace TCC
 
 
             
-            Elementos.CriarBtn("Digite seu e-mail", 150, 160, panelFlutuante);
-            Elementos.CriarBtn("Digite sua senha", 150, 230, panelFlutuante);
+            Elementos.CriarTxtBox("Digite seu e-mail", 150, 160, panelFlutuante);
+            Elementos.CriarTxtBox("Digite sua senha", 150, 230, panelFlutuante);
 
-
-            Button btnEntrar = new Button();
-            btnEntrar.Size = new Size(255, 50);
-            btnEntrar.Location = new Point(150, 310);
-            btnEntrar.Text = "Entrar";
-            btnEntrar.ForeColor = Color.Black;
-            btnEntrar.Font = new Font(btnEntrar.Font, FontStyle.Bold);
-            btnEntrar.Click += (s, e) =>
-            {
-                MessageBox.Show("Botão entrar clicado !");
-            };
+            Elementos.CriarBtn("Entrar",150,310,255,50,panelFlutuante,() => Msg());
 
 
             panelFlutuante.Controls.Add(pictureBox);
-            panelFlutuante.Controls.Add(btnEntrar);
+            
 
 
             panelFlutuante.BringToFront();
+        }
+
+        public void Msg()
+        {
+            MessageBox.Show("Clicou !");
         }
 
         private void btnCriarConta_Click(object sender, EventArgs e)
