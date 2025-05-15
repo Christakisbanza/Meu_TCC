@@ -26,60 +26,10 @@ namespace TCC
             pictureBox.Image = Properties.Resources.usuario; 
 
             
+            CriarBtn("Digite seu e-mail", 150,150);
 
-            TextBox txtEmail = new TextBox();
-            txtEmail.Size = new Size(250, 35);
-            txtEmail.Location = new Point(150, 150);
-            txtEmail.Multiline = true;
-            txtEmail.BorderStyle = BorderStyle.None;
-            string placeholder = "Digite seu e-mail";
-            txtEmail.Text = placeholder;
-            txtEmail.ForeColor = Color.Gray;
-            txtEmail.Enter += (sender, e) =>
-            {
-                if (txtEmail.Text == placeholder)
-                {
-                    txtEmail.Text = "";
-                    txtEmail.ForeColor = Color.Black;
-                }
-            };
-            txtEmail.Leave += (sender, e) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtEmail.Text))
-                {
-                    txtEmail.Text = placeholder;
-                    txtEmail.ForeColor = Color.Gray;
-                }
-            };
-            txtEmail.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, txtEmail.Width, txtEmail.Height, 12, 12));
+            CriarBtn("Digite sua senha", 150, 220);
 
-
-
-            TextBox txtSenha = new TextBox();
-            txtSenha.Size = new Size(250, 35);
-            txtSenha.Location = new Point(150, 220);
-            txtSenha.Multiline = true;
-            txtSenha.BorderStyle = BorderStyle.None;
-            string placeholderSenha = "Digite sua senha";
-            txtSenha.Text = placeholderSenha;
-            txtSenha.ForeColor = Color.Gray;
-            txtSenha.Enter += (sender, e) =>
-            {
-                if (txtSenha.Text == placeholderSenha)
-                {
-                    txtSenha.Text = "";
-                    txtSenha.ForeColor = Color.Black;
-                }
-            };
-            txtSenha.Leave += (sender, e) =>
-            {
-                if (string.IsNullOrWhiteSpace(txtSenha.Text))
-                {
-                    txtSenha.Text = placeholderSenha;
-                    txtSenha.ForeColor = Color.Gray;
-                }
-            };
-            txtSenha.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, txtSenha.Width, txtSenha.Height, 12, 12));
 
             Button btnEntrar = new Button();
             btnEntrar.Size = new Size(255, 50);
@@ -94,13 +44,41 @@ namespace TCC
 
 
             panelFlutuante.Controls.Add(pictureBox);
-            panelFlutuante.Controls.Add(txtEmail);
-            panelFlutuante.Controls.Add(txtSenha);
             panelFlutuante.Controls.Add(btnEntrar);
 
 
-
             panelFlutuante.BringToFront();
+        }
+
+        private void CriarBtn(string placeholder, int x, int y)
+        {
+
+            TextBox textBox = new TextBox();
+            textBox.Size = new Size(250, 35);
+            textBox.Location = new Point(x, y);
+            textBox.Multiline = true;
+            textBox.BorderStyle = BorderStyle.None;
+            textBox.Text = placeholder;
+            textBox.ForeColor = Color.Gray;
+            textBox.Enter += (sender, e) =>
+            {
+                if (textBox.Text == placeholder)
+                {
+                    textBox.Text = "";
+                    textBox.ForeColor = Color.Black;
+                }
+            };
+            textBox.Leave += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = placeholder;
+                    textBox.ForeColor = Color.Gray;
+                }
+            };
+            textBox.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox.Width, textBox.Height, 12, 12));
+
+            panelFlutuante.Controls.Add(textBox);
         }
 
         private void panelOverlay_MouseClick(object sender, MouseEventArgs e)
