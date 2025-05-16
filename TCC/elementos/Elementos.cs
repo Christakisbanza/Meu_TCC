@@ -16,7 +16,7 @@ namespace TCC.elementos
             int nWidthEllipse, int nHeightEllipse);
 
         
-        public static void CriarTxtBox(string placeholder, int x, int y, Panel panelFlutuante)
+        public static TextBox CriarTxtBox(string placeholder, int x, int y, Panel panelFlutuante)
         {
             TextBox textBox = new TextBox();
             textBox.Size = new Size(250, 35);
@@ -44,6 +44,8 @@ namespace TCC.elementos
             textBox.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, textBox.Width, textBox.Height, 12, 12));
             
             panelFlutuante.Controls.Add(textBox);
+
+            return textBox;
         }
 
         public static void CriarBtn(string txt, int x, int y, int width, int height, Panel panelFlutuante, Action eventoClick)
@@ -62,14 +64,14 @@ namespace TCC.elementos
         }
 
 
-        public static Panel CriarPanel()
+        public static void CriarPanel(Panel panelFlutuante)
         {
             Panel meuPanel = new Panel();
             meuPanel.Size = new Size(300, 300);  
             meuPanel.Location = new Point(50, 50);
             meuPanel.AutoScroll = true;
             meuPanel.Visible = true;
-            return meuPanel; 
+            panelFlutuante.Controls.Add(meuPanel);
         }
 
        
@@ -86,6 +88,23 @@ namespace TCC.elementos
 
 
             panelFlutuante.Controls.Add(novoLabel);
+        }
+
+
+        public static DateTimePicker CriarCalendario(int x, int y, Panel panelFlutuante) 
+        {
+
+            DateTimePicker dtpData = new DateTimePicker();
+            dtpData.Name = "dtpData";
+            dtpData.Format = DateTimePickerFormat.Custom;
+            dtpData.CustomFormat = "dd/MM/yyyy";
+            dtpData.Location = new System.Drawing.Point(x, y);
+            dtpData.Width = 150;
+
+            panelFlutuante.Controls.Add(dtpData);
+
+            return dtpData;
+
         }
 
 
