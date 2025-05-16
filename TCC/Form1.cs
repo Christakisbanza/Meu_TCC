@@ -6,11 +6,20 @@ namespace TCC
     {
         TextBox txtEmail;
         TextBox txtSenha;
-        TextBox nome;
+
+        TextBox emailCriar;
+        TextBox senhaCriar;
         TextBox cpf;
+
+        TextBox nomeEmpresa;
+        TextBox cnpj;
+
         DateTimePicker data;
+
         RadioButton rbM;
         RadioButton rbF;
+
+        CheckBox checkAdm;
         public Form1()
         {
             InitializeComponent();
@@ -52,13 +61,18 @@ namespace TCC
 
             Elementos.CriarLbl("Crie sua conta", 155, 15, panelFlutuante);
 
-            nome = Elementos.CriarTxtBox("Digite seu Nome", 150, 110, panelFlutuante);
+            emailCriar = Elementos.CriarTxtBox("Digite seu E-mail", 150, 110, panelFlutuante);
+            //senhaCriar = Elementos.CriarTxtBox("Digite seu E-mail", 150, 110, panelFlutuante);
             cpf = Elementos.CriarTxtBox("Digite seu CPF", 150, 170, panelFlutuante);
             data = Elementos.CriarCalendario(150, 230, panelFlutuante);
             rbM = Elementos.CriarRadioBtn("Masculino", 150, 290, panelFlutuante);
             rbF = Elementos.CriarRadioBtn("Feminino", 260, 290, panelFlutuante);
+            checkAdm = Elementos.CriarCheckBox("Administrador",150, 340, panelFlutuante);
 
-            Elementos.CriarBtn("Criar", 150, 450, 255, 50, panelFlutuante, () => MsgCriar());
+            nomeEmpresa = Elementos.CriarTxtBox("Digite o Nome da Empresa", 150, 440, panelFlutuante);
+            cnpj = Elementos.CriarTxtBox("Digite o CNPJ da Empresa", 150, 500, panelFlutuante);
+
+            Elementos.CriarBtn("Criar", 150, 600, 255, 50, panelFlutuante, () => MsgCriar());
         }
 
         public void MsgCriar()
@@ -68,9 +82,10 @@ namespace TCC
                                  "Nenhum selecionado";
 
             MessageBox.Show($"Data selecionada: {data.Value.ToString("dd/MM/yyyy")}\n" +
-                $"Nome: {nome.Text}\n" +
+                $"Nome: {emailCriar.Text}\n" +
                 $"CPF: {cpf.Text}\n" +
-                $"Sexo: {sexoSelecionado}");
+                $"Sexo: {sexoSelecionado}\n" +
+                $"Função: {checkAdm.Text}");
         }
 
         

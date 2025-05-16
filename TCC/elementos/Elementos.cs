@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic.Devices;
 
 namespace TCC.elementos
 {
@@ -120,6 +121,19 @@ namespace TCC.elementos
             panelFlutuante.Controls.Add(radio);
 
             return radio;
+        }
+
+        public static CheckBox CriarCheckBox(string txt, int x, int y, Panel panelFlutuante)
+        {
+            CheckBox chk = new CheckBox();
+            chk.Text = txt;
+            chk.Location = new System.Drawing.Point(x, y);
+            chk.AutoSize = true;
+
+            panelFlutuante.Controls.Add(chk);
+
+            return chk;
+            
         }
 
 
