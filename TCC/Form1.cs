@@ -9,6 +9,8 @@ namespace TCC
         TextBox nome;
         TextBox cpf;
         DateTimePicker data;
+        RadioButton rbM;
+        RadioButton rbF;
         public Form1()
         {
             InitializeComponent();
@@ -53,15 +55,22 @@ namespace TCC
             nome = Elementos.CriarTxtBox("Digite seu Nome", 150, 110, panelFlutuante);
             cpf = Elementos.CriarTxtBox("Digite seu CPF", 150, 170, panelFlutuante);
             data = Elementos.CriarCalendario(150, 230, panelFlutuante);
+            rbM = Elementos.CriarRadioBtn("Masculino", 150, 290, panelFlutuante);
+            rbF = Elementos.CriarRadioBtn("Feminino", 260, 290, panelFlutuante);
 
             Elementos.CriarBtn("Criar", 150, 450, 255, 50, panelFlutuante, () => MsgCriar());
         }
 
         public void MsgCriar()
         {
+            string sexoSelecionado = rbM.Checked ? "Masculino" :
+                                 rbF.Checked ? "Feminino" :
+                                 "Nenhum selecionado";
+
             MessageBox.Show($"Data selecionada: {data.Value.ToString("dd/MM/yyyy")}\n" +
                 $"Nome: {nome.Text}\n" +
-                $"CPF:{cpf.Text}");
+                $"CPF: {cpf.Text}\n" +
+                $"Sexo: {sexoSelecionado}");
         }
 
         

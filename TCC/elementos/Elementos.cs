@@ -108,6 +108,21 @@ namespace TCC.elementos
         }
 
 
+        public static RadioButton CriarRadioBtn(string txt,int x, int y, Panel panelFlutuante)
+        {
+            RadioButton radio = new RadioButton();
+
+            radio = new RadioButton();
+            radio.Text = txt;
+            radio.Location = new System.Drawing.Point(x, y);
+            radio.Name = "rb" + txt;
+
+            panelFlutuante.Controls.Add(radio);
+
+            return radio;
+        }
+
+
 
 
 
