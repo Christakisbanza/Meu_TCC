@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS users_db;
+
+USE users_db;
+
+CREATE TABLE IF NOT EXISTS users (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	email VARCHAR(100) NOT NULL,
+    	senha VARCHAR(100) NOT NULL,
+	cpf VARCHAR(100) NOT NULL,
+    	data_nascimento DATETIME NOT NULL,
+	sexo VARCHAR(20),
+    	funcao VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS empresas (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    	users_id INT,
+    	FOREIGN KEY (users_id) REFERENCES users(id),
+	nome_empresa VARCHAR(100) NOT NULL,
+    	cnpj VARCHAR(100) NOT NULL
+);

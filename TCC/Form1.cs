@@ -20,6 +20,8 @@ namespace TCC
         RadioButton rbF;
 
         CheckBox checkAdm;
+
+        private string connectionString = "server=localhost;database=users_db;uid=root;pwd=;";
         public Form1()
         {
             InitializeComponent();
