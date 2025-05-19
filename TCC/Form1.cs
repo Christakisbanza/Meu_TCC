@@ -1,4 +1,6 @@
+using TCC.dbConexion;
 using TCC.elementos;
+using TCC.entities;
 
 namespace TCC
 {
@@ -21,7 +23,8 @@ namespace TCC
 
         CheckBox checkAdm;
 
-        private string connectionString = "server=localhost;database=users_db;uid=root;pwd=;";
+        User user;
+
         public Form1()
         {
             InitializeComponent();
@@ -72,13 +75,19 @@ namespace TCC
 
             rbM = Elementos.CriarRadioBtn("Masculino", 150, 370, panelFlutuante);
             rbF = Elementos.CriarRadioBtn("Feminino", 260, 370, panelFlutuante);
+            string sexoSelecionado = rbM.Checked ? "Masculino" :
+                                 rbF.Checked ? "Feminino" :
+                                 "Nenhum selecionado";
 
             checkAdm = Elementos.CriarCheckBox("Administrador",150, 420, panelFlutuante);
 
             nomeEmpresa = Elementos.CriarTxtBox("Digite o Nome da Empresa", 150, 510, panelFlutuante);
             cnpj = Elementos.CriarTxtBox("Digite o CNPJ da Empresa", 150, 570, panelFlutuante);
 
-            Elementos.CriarBtn("Criar", 150, 650, 255, 50, panelFlutuante, () => MsgCriar());
+            user = new User(emailCriar, senhaCriar,cpf, data, rbM, checkAdm);
+            DBConexion.AddUser(user);
+
+            Elementos.CriarBtn("Criar", 150, 650, 255, 50, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados());
         }
 
         public void MsgCriar()
