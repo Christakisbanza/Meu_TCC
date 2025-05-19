@@ -59,20 +59,24 @@ namespace TCC
             panelOverlay.Visible = true;
             panelFlutuante.Visible = true;
 
-            Elementos.CriarLbl("Crie sua conta", 155, 15, panelFlutuante);
+            Elementos.CriarLbl("Crie sua conta", 155, 15,17, panelFlutuante);
 
             emailCriar = Elementos.CriarTxtBox("Digite seu E-mail", 150, 110, panelFlutuante);
-            //senhaCriar = Elementos.CriarTxtBox("Digite seu E-mail", 150, 110, panelFlutuante);
-            cpf = Elementos.CriarTxtBox("Digite seu CPF", 150, 170, panelFlutuante);
-            data = Elementos.CriarCalendario(150, 230, panelFlutuante);
-            rbM = Elementos.CriarRadioBtn("Masculino", 150, 290, panelFlutuante);
-            rbF = Elementos.CriarRadioBtn("Feminino", 260, 290, panelFlutuante);
-            checkAdm = Elementos.CriarCheckBox("Administrador",150, 340, panelFlutuante);
+            senhaCriar = Elementos.CriarTxtBox("Crie sua Senha", 150, 175, panelFlutuante);
+            cpf = Elementos.CriarTxtBox("Digite seu CPF", 150, 245, panelFlutuante);
 
-            nomeEmpresa = Elementos.CriarTxtBox("Digite o Nome da Empresa", 150, 440, panelFlutuante);
-            cnpj = Elementos.CriarTxtBox("Digite o CNPJ da Empresa", 150, 500, panelFlutuante);
+            Elementos.CriarLbl("Data de Nascimento:", 145, 295, 9, panelFlutuante);
+            data = Elementos.CriarCalendario(150, 320, panelFlutuante);
 
-            Elementos.CriarBtn("Criar", 150, 600, 255, 50, panelFlutuante, () => MsgCriar());
+            rbM = Elementos.CriarRadioBtn("Masculino", 150, 370, panelFlutuante);
+            rbF = Elementos.CriarRadioBtn("Feminino", 260, 370, panelFlutuante);
+
+            checkAdm = Elementos.CriarCheckBox("Administrador",150, 420, panelFlutuante);
+
+            nomeEmpresa = Elementos.CriarTxtBox("Digite o Nome da Empresa", 150, 510, panelFlutuante);
+            cnpj = Elementos.CriarTxtBox("Digite o CNPJ da Empresa", 150, 570, panelFlutuante);
+
+            Elementos.CriarBtn("Criar", 150, 650, 255, 50, panelFlutuante, () => MsgCriar());
         }
 
         public void MsgCriar()
@@ -80,12 +84,16 @@ namespace TCC
             string sexoSelecionado = rbM.Checked ? "Masculino" :
                                  rbF.Checked ? "Feminino" :
                                  "Nenhum selecionado";
+            string funcao = checkAdm.Checked ? checkAdm.Text : "";
 
             MessageBox.Show($"Data selecionada: {data.Value.ToString("dd/MM/yyyy")}\n" +
-                $"Nome: {emailCriar.Text}\n" +
+                $"Email: {emailCriar.Text}\n" +
+                $"Senha: {senhaCriar.Text}\n"+
                 $"CPF: {cpf.Text}\n" +
                 $"Sexo: {sexoSelecionado}\n" +
-                $"Função: {checkAdm.Text}");
+                $"Função: {funcao}\n" +
+                $"Empresa: {nomeEmpresa.Text}\n" +
+                $"Cnpj: {cnpj.Text}\n");
         }
 
         

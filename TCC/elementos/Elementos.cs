@@ -76,7 +76,7 @@ namespace TCC.elementos
         }
 
        
-        public static void CriarLbl(string texto, int x, int y, Panel panelFlutuante)
+        public static void CriarLbl(string texto, int x, int y, int size, Panel panelFlutuante)
         {
           
             Label novoLabel = new Label();
@@ -85,7 +85,7 @@ namespace TCC.elementos
             novoLabel.Location = new Point(x, y); 
             novoLabel.AutoSize = true; 
             novoLabel.ForeColor = Color.Black;
-            novoLabel.Font = new Font(novoLabel.Font.FontFamily, 17, FontStyle.Bold);
+            novoLabel.Font = new Font(novoLabel.Font.FontFamily, size, FontStyle.Bold);
 
 
             panelFlutuante.Controls.Add(novoLabel);
