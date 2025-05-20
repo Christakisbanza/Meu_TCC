@@ -86,6 +86,8 @@ namespace TCC
             DBConexion.AddUser(user);
 
             Elementos.CriarBtn("Criar", 150, 650, 255, 50, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados());
+
+            panelFlutuante.BringToFront();
         }
 
         

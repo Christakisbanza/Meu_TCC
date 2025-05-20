@@ -55,6 +55,13 @@ namespace TCC.dbConexion
                                 command.Parameters.AddWithValue("@data_nascimento", i.DataNascimento.Value.ToString("yyyy/MM/dd"));
                                 command.Parameters.AddWithValue("@sexo", ValidarSexo(i.SexoM, i.SexoF));
                                 command.Parameters.AddWithValue("@funcao", ValidarFuncao(i.Funcao));
+
+                                i.Email.Clear();
+                                i.Senha.Clear();
+                                i.Cpf.Clear();
+                                i.SexoM.Checked = false;
+                                i.SexoF.Checked = false;
+                                i.Funcao.Checked = false;
                             }
                             
 
@@ -65,7 +72,7 @@ namespace TCC.dbConexion
                         }
                         catch (PreecherCamposException ex)
                         {
-                            MessageBox.Show("Preecha todos os campos !");
+                            MessageBox.Show("Error: " + ex.Message + ex);
                         }
                         catch (MySqlException ex)
                         {
@@ -112,8 +119,8 @@ namespace TCC.dbConexion
             }
             else
             {
-                return "";
-                throw new PreecherCamposException();
+                txt.Clear();
+                throw new PreecherCamposException("Email inválido !");
             }
         }
 
@@ -125,8 +132,8 @@ namespace TCC.dbConexion
             }
             else
             {
-                return "";
-                throw new PreecherCamposException();
+                txt.Clear();
+                throw new PreecherCamposException("Senha inválida !");
             }
         }
 
@@ -138,8 +145,8 @@ namespace TCC.dbConexion
             }
             else
             {
-                return "";
-                throw new PreecherCamposException() ;
+                txt.Clear();
+                throw new PreecherCamposException("Cpf inválida !") ;
             }
         }
 
@@ -155,8 +162,9 @@ namespace TCC.dbConexion
             }
             else 
             {
-                return "";
-                throw new PreecherCamposException();
+                sexoM.Checked = false;
+                sexoF.Checked = false;
+                throw new PreecherCamposException("Selecione um sexo !");
             }
         }
 
@@ -168,8 +176,8 @@ namespace TCC.dbConexion
             }
             else
             {
-                return "";
-                throw new PreecherCamposException();
+                check.Checked = false;
+                throw new PreecherCamposException("Campo função obrigatória !");
             }
         }
     }
