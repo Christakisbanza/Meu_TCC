@@ -75,36 +75,17 @@ namespace TCC
 
             rbM = Elementos.CriarRadioBtn("Masculino", 150, 370, panelFlutuante);
             rbF = Elementos.CriarRadioBtn("Feminino", 260, 370, panelFlutuante);
-            string sexoSelecionado = rbM.Checked ? "Masculino" :
-                                 rbF.Checked ? "Feminino" :
-                                 "Nenhum selecionado";
+    
 
             checkAdm = Elementos.CriarCheckBox("Administrador",150, 420, panelFlutuante);
 
             nomeEmpresa = Elementos.CriarTxtBox("Digite o Nome da Empresa", 150, 510, panelFlutuante);
             cnpj = Elementos.CriarTxtBox("Digite o CNPJ da Empresa", 150, 570, panelFlutuante);
 
-            user = new User(emailCriar, senhaCriar,cpf, data, rbM, checkAdm);
+            user = new User(emailCriar, senhaCriar,cpf, data, rbM, rbF, checkAdm);
             DBConexion.AddUser(user);
 
             Elementos.CriarBtn("Criar", 150, 650, 255, 50, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados());
-        }
-
-        public void MsgCriar()
-        {
-            string sexoSelecionado = rbM.Checked ? "Masculino" :
-                                 rbF.Checked ? "Feminino" :
-                                 "Nenhum selecionado";
-            string funcao = checkAdm.Checked ? checkAdm.Text : "";
-
-            MessageBox.Show($"Data selecionada: {data.Value.ToString("dd/MM/yyyy")}\n" +
-                $"Email: {emailCriar.Text}\n" +
-                $"Senha: {senhaCriar.Text}\n"+
-                $"CPF: {cpf.Text}\n" +
-                $"Sexo: {sexoSelecionado}\n" +
-                $"Função: {funcao}\n" +
-                $"Empresa: {nomeEmpresa.Text}\n" +
-                $"Cnpj: {cnpj.Text}\n");
         }
 
         

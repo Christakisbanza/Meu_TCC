@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using TCC.entities;
+using TCC.exception;
 
 namespace TCC.dbConexion
 {
@@ -48,12 +49,12 @@ namespace TCC.dbConexion
                         {
                             foreach (var i in users)
                             {
-                                command.Parameters.AddWithValue("@email", i.Email.Text);
-                                command.Parameters.AddWithValue("@senha", i.Senha.Text);
-                                command.Parameters.AddWithValue("@cpf", i.Cpf.Text);
-                                command.Parameters.AddWithValue("@data_nascimento", i.DataNascimento.Text);
-                                command.Parameters.AddWithValue("@sexo", i.Sexo.Text);
-                                command.Parameters.AddWithValue("@funcao", i.Funcao.Text);
+                                command.Parameters.AddWithValue("@email", ValidarEmail(i.Email));
+                                command.Parameters.AddWithValue("@senha", ValidarSenha(i.Senha));
+                                command.Parameters.AddWithValue("@cpf", ValidarCpf(i.Cpf));
+                                command.Parameters.AddWithValue("@data_nascimento", i.DataNascimento.Value.ToString("yyyy/MM/dd"));
+                                command.Parameters.AddWithValue("@sexo", ValidarSexo(i.SexoM, i.SexoF));
+                                command.Parameters.AddWithValue("@funcao", ValidarFuncao(i.Funcao));
                             }
                             
 
@@ -61,6 +62,10 @@ namespace TCC.dbConexion
 
                             MessageBox.Show($"Cadastro realizado com sucesso!\nID: {newId}", "Sucesso",
                                           MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (PreecherCamposException ex)
+                        {
+                            MessageBox.Show("Preecha todos os campos !");
                         }
                         catch (MySqlException ex)
                         {
@@ -97,6 +102,75 @@ namespace TCC.dbConexion
         public static void RemoveEmpresa(Empresa empresa)
         {
             empresas.Remove(empresa);
+        }
+
+        private static string ValidarEmail(TextBox txt)
+        {
+            if (txt.Text != "Digite seu E-mail" && txt.Text.Contains('@'))
+            {
+                return txt.Text;
+            }
+            else
+            {
+                return "";
+                throw new PreecherCamposException();
+            }
+        }
+
+        private static string ValidarSenha(TextBox txt)
+        {
+            if (txt.Text != "Crie sua Senha")
+            {
+                return txt.Text;
+            }
+            else
+            {
+                return "";
+                throw new PreecherCamposException();
+            }
+        }
+
+        private static string ValidarCpf(TextBox txt)
+        {
+            if (txt.Text != "Digite seu CPF" && int.TryParse(txt.Text, out int n))
+            {
+                return txt.Text;
+            }
+            else
+            {
+                return "";
+                throw new PreecherCamposException() ;
+            }
+        }
+
+        private static string ValidarSexo(RadioButton sexoM, RadioButton sexoF)
+        {
+            if (sexoM.Checked)
+            {
+                return sexoM.Text;
+            }
+            else if (sexoF.Checked)
+            {
+                return sexoF.Text;
+            }
+            else 
+            {
+                return "";
+                throw new PreecherCamposException();
+            }
+        }
+
+        private static string ValidarFuncao(CheckBox check)
+        {
+            if (check.Checked)
+            {
+                return check.Text;
+            }
+            else
+            {
+                return "";
+                throw new PreecherCamposException();
+            }
         }
     }
 }
