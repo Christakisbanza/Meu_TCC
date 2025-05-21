@@ -23,8 +23,6 @@ namespace TCC
 
         CheckBox checkAdm;
 
-        User user;
-
         public Form1()
         {
             InitializeComponent();
@@ -81,13 +79,10 @@ namespace TCC
 
             nomeEmpresa = Elementos.CriarTxtBox("Digite o Nome da Empresa", 150, 510, panelFlutuante);
             cnpj = Elementos.CriarTxtBox("Digite o CNPJ da Empresa", 150, 570, panelFlutuante);
+           
 
-            user = new User(emailCriar, senhaCriar,cpf, data, rbM, rbF, checkAdm);
-            DBConexion.AddUser(user);
+            Elementos.CriarBtn("Criar", 150, 650, 255, 50, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados(panelOverlay, panelFlutuante, new User(emailCriar, senhaCriar, cpf, data, rbM, rbF, checkAdm), new Empresa(nomeEmpresa, cnpj)));
 
-            Elementos.CriarBtn("Criar", 150, 650, 255, 50, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados());
-
-            panelFlutuante.BringToFront();
         }
 
         

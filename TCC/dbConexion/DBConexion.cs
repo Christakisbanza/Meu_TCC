@@ -15,12 +15,10 @@ namespace TCC.dbConexion
 {
     internal class DBConexion
     {
-        static List<User> users = new List<User>();
-        static List<Empresa> empresas = new List<Empresa>();
 
         private static string connectionString = "server=localhost;database=users_db;uid=root;pwd=;";
 
-        public static void salvarDadosNoBancoDeDados()
+        public static void salvarDadosNoBancoDeDados(Panel panelOverlay, Panel panelFlutuante, User user, Empresa empresa)
         {
 
             try
@@ -47,28 +45,23 @@ namespace TCC.dbConexion
                     {
                         try
                         {
-                            foreach (var i in users)
-                            {
-                                command.Parameters.AddWithValue("@email", ValidarEmail(i.Email));
-                                command.Parameters.AddWithValue("@senha", ValidarSenha(i.Senha));
-                                command.Parameters.AddWithValue("@cpf", ValidarCpf(i.Cpf));
-                                command.Parameters.AddWithValue("@data_nascimento", i.DataNascimento.Value.ToString("yyyy/MM/dd"));
-                                command.Parameters.AddWithValue("@sexo", ValidarSexo(i.SexoM, i.SexoF));
-                                command.Parameters.AddWithValue("@funcao", ValidarFuncao(i.Funcao));
-
-                                i.Email.Clear();
-                                i.Senha.Clear();
-                                i.Cpf.Clear();
-                                i.SexoM.Checked = false;
-                                i.SexoF.Checked = false;
-                                i.Funcao.Checked = false;
-                            }
                             
+                            command.Parameters.AddWithValue("@email", ValidarEmail(user.Email));
+                            command.Parameters.AddWithValue("@senha", ValidarSenha(user.Senha));
+                            command.Parameters.AddWithValue("@cpf", ValidarCpf(user.Cpf));
+                            command.Parameters.AddWithValue("@data_nascimento", user.DataNascimento.Value.ToString("yyyy/MM/dd"));
+                            command.Parameters.AddWithValue("@sexo", ValidarSexo(user.SexoM, user.SexoF));
+                            command.Parameters.AddWithValue("@funcao", ValidarFuncao(user.Funcao));
+
 
                             int newId = Convert.ToInt32(command.ExecuteScalar());
 
                             MessageBox.Show($"Cadastro realizado com sucesso!\nID: {newId}", "Sucesso",
                                           MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            panelOverlay.Visible = false;
+                            panelFlutuante.Visible = false;
+                            panelFlutuante.Controls.Clear();
+                               
                         }
                         catch (PreecherCamposException ex)
                         {
@@ -89,26 +82,6 @@ namespace TCC.dbConexion
             {
                 MessageBox.Show("executar a operação", ex.Message);
             }
-        }
-
-        public static void AddUser(User user)
-        {
-            users.Add(user);
-        }
-
-        public static void RemoveUser(User user)
-        {
-            users.Remove(user);
-        }
-
-        public static void AddEmpresa(Empresa empresa)
-        {
-            empresas.Add(empresa);
-        }
-
-        public static void RemoveEmpresa(Empresa empresa)
-        {
-            empresas.Remove(empresa);
         }
 
         private static string ValidarEmail(TextBox txt)
