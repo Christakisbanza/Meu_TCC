@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using TCC.entities;
 using TCC.exception;
+using System.Diagnostics;
 
 namespace TCC.dbConexion
 {
@@ -41,40 +42,54 @@ namespace TCC.dbConexion
                                     (@email, @senha, @cpf, @data_nascimento, @sexo, @funcao);
                                     SELECT LAST_INSERT_ID();";
 
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    string queryEpresa = @"INSERT INTO empresas 
+                                    (users_id, nome_empresa, cnpj) 
+                                    VALUES 
+                                    (@users_id, @nome_empresa, @cnpj);";
+
+                    
+                    try
                     {
-                        try
-                        {
-                            
-                            command.Parameters.AddWithValue("@email", ValidarEmail(user.Email));
-                            command.Parameters.AddWithValue("@senha", ValidarSenha(user.Senha));
-                            command.Parameters.AddWithValue("@cpf", ValidarCpf(user.Cpf));
-                            command.Parameters.AddWithValue("@data_nascimento", user.DataNascimento.Value.ToString("yyyy/MM/dd"));
-                            command.Parameters.AddWithValue("@sexo", ValidarSexo(user.SexoM, user.SexoF));
-                            command.Parameters.AddWithValue("@funcao", ValidarFuncao(user.Funcao));
+                        MySqlTransaction transaction = connection.BeginTransaction();
+
+                        MySqlCommand command = new MySqlCommand(query, connection, transaction);
+
+                        command.Parameters.AddWithValue("@email", ValidarEmail(user.Email));
+                        command.Parameters.AddWithValue("@senha", ValidarSenha(user.Senha));
+                        command.Parameters.AddWithValue("@cpf", ValidarCpf(user.Cpf));
+                        command.Parameters.AddWithValue("@data_nascimento", user.DataNascimento.Value.ToString("yyyy/MM/dd"));
+                        command.Parameters.AddWithValue("@sexo", ValidarSexo(user.SexoM, user.SexoF));
+                        command.Parameters.AddWithValue("@funcao", ValidarFuncao(user.Funcao));
+                        int newId = Convert.ToInt32(command.ExecuteScalar());
 
 
-                            int newId = Convert.ToInt32(command.ExecuteScalar());
 
-                            MessageBox.Show($"Cadastro realizado com sucesso!\nID: {newId}", "Sucesso",
-                                          MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            panelOverlay.Visible = false;
-                            panelFlutuante.Visible = false;
-                            panelFlutuante.Controls.Clear();
+                        MySqlCommand commandEmpresa = new MySqlCommand(queryEpresa, connection, transaction);
+
+                        commandEmpresa.Parameters.AddWithValue("@users_id", newId);
+                        commandEmpresa.Parameters.AddWithValue("@nome_empresa", ValidarNomeEmpresa(empresa.NomeEmpresa));
+                        commandEmpresa.Parameters.AddWithValue("@cnpj", ValidarCnpj(empresa.Cnpj)); 
+                        commandEmpresa.ExecuteNonQuery();
+
+                        transaction.Commit();
+                        MessageBox.Show($"Cadastro realizado com sucesso!\nID: {newId}", "Sucesso",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        panelOverlay.Visible = false;
+                        panelFlutuante.Visible = false;
+                        panelFlutuante.Controls.Clear();
                                
-                        }
-                        catch (PreecherCamposException ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message + ex);
-                        }
-                        catch (MySqlException ex)
-                        {
-                            MessageBox.Show("inserir os dados no banco", ex.Message);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("processar a operação", ex.Message);
-                        }
+                    }
+                    catch (PreecherCamposException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("inserir os dados no banco", ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("processar a operação", ex.Message);
                     }
                 }
             }
@@ -119,7 +134,7 @@ namespace TCC.dbConexion
             else
             {
                 txt.Clear();
-                throw new PreecherCamposException("Cpf inválida !") ;
+                throw new PreecherCamposException("Cpf inválido !") ;
             }
         }
 
@@ -150,7 +165,33 @@ namespace TCC.dbConexion
             else
             {
                 check.Checked = false;
-                throw new PreecherCamposException("Campo função obrigatória !");
+                throw new PreecherCamposException("Função obrigatória !");
+            }
+        }
+
+        private static string ValidarNomeEmpresa(TextBox txt)
+        {
+            if (txt.Text != "Digite o Nome da Empresa")
+            {
+                return txt.Text;
+            }
+            else
+            {
+                txt.Clear();
+                throw new PreecherCamposException("Nome da empresa obrigatório !");
+            }
+        }
+
+        private static string ValidarCnpj(TextBox txt)
+        {
+            if (txt.Text != "Digite o CNPJ da Empresa" && int.TryParse(txt.Text, out int n))
+            {
+                return txt.Text;
+            }
+            else
+            {
+                txt.Clear();
+                throw new PreecherCamposException("Cnpj inválido !");
             }
         }
     }
