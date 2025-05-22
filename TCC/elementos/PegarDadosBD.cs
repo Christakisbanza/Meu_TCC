@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using TCC.entities;
 using TCC.exception;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TCC.elementos
 {
@@ -43,22 +44,20 @@ namespace TCC.elementos
                        
                         MySqlDataReader reader = command.ExecuteReader();
 
+                        bool emailSenhaCorreto = false;
+
                         while (reader.Read()) 
                         {      
                             string email = reader.GetString(0);
                             string senha = reader.GetString(1);
 
-                            if(txtEmail.Text.Trim() == email && txtSenha.Text.Trim() == senha)
-                            {
-                                MessageBox.Show($"Enail: {email}, Senha: {senha}\n" +
-                                    $"Validação com sucesso !");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Email ou senha inválido !");
-                            }
-
+                            emailSenhaCorreto = ValidarEmailSenha(txtEmail, email, txtSenha, senha);
                             
+                        }
+
+                        if (!emailSenhaCorreto)
+                        {
+                            MessageBox.Show("Email ou senha inválido !");
                         }
 
                        reader.Close();
@@ -77,6 +76,20 @@ namespace TCC.elementos
             catch (Exception ex)
             {
                 MessageBox.Show("executar a operação", ex.Message);
+            }
+        }
+
+        public static bool ValidarEmailSenha(TextBox txtEmail, string email, TextBox txtSenha, string senha)
+        {
+            if (txtEmail.Text.Trim() == email && txtSenha.Text.Trim() == senha)
+            {
+                MessageBox.Show($"Enail: {email}, Senha: {senha}\n" +
+                    $"Validação com sucesso !");
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
