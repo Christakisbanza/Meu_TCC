@@ -44,21 +44,28 @@ namespace TCC.elementos
                        
                         MySqlDataReader reader = command.ExecuteReader();
 
-                        bool emailSenhaCorreto = false;
+                        int numeroDeValidacao = 0;
 
                         while (reader.Read()) 
                         {      
                             string email = reader.GetString(0);
                             string senha = reader.GetString(1);
 
-                            emailSenhaCorreto = ValidarEmailSenha(txtEmail, email, txtSenha, senha);
-                            
+                            if (txtEmail.Text.Trim() == email && txtSenha.Text.Trim() == senha)
+                            {
+                                MessageBox.Show($"Enail: {email}, Senha: {senha}\n" +
+                                    $"Validação com sucesso !");
+                                numeroDeValidacao++;
+                            }
                         }
 
-                        if (!emailSenhaCorreto)
+                        if (numeroDeValidacao == 0)
                         {
                             MessageBox.Show("Email ou senha inválido !");
                         }
+
+                        txtEmail.Clear();
+                        txtSenha.Clear();
 
                        reader.Close();
 
@@ -76,20 +83,6 @@ namespace TCC.elementos
             catch (Exception ex)
             {
                 MessageBox.Show("executar a operação", ex.Message);
-            }
-        }
-
-        public static bool ValidarEmailSenha(TextBox txtEmail, string email, TextBox txtSenha, string senha)
-        {
-            if (txtEmail.Text.Trim() == email && txtSenha.Text.Trim() == senha)
-            {
-                MessageBox.Show($"Enail: {email}, Senha: {senha}\n" +
-                    $"Validação com sucesso !");
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
     }
