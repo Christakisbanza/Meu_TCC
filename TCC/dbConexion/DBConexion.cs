@@ -103,7 +103,7 @@ namespace TCC.dbConexion
         {
             if (txt.Text != "Digite seu E-mail" && txt.Text.Contains('@'))
             {
-                return txt.Text;
+                return txt.Text.Trim();
             }
             else
             {
@@ -116,7 +116,7 @@ namespace TCC.dbConexion
         {
             if (txt.Text != "Crie sua Senha")
             {
-                return txt.Text;
+                return txt.Text.Trim();
             }
             else
             {
@@ -129,7 +129,7 @@ namespace TCC.dbConexion
         {
             if (txt.Text != "Digite seu CPF" && int.TryParse(txt.Text, out int n))
             {
-                return txt.Text;
+                return txt.Text.Trim();
             }
             else
             {
@@ -173,7 +173,7 @@ namespace TCC.dbConexion
         {
             if (txt.Text != "Digite o Nome da Empresa")
             {
-                return txt.Text;
+                return txt.Text.Trim();
             }
             else
             {
@@ -186,7 +186,7 @@ namespace TCC.dbConexion
         {
             if (txt.Text != "Digite o CNPJ da Empresa" && int.TryParse(txt.Text, out int n))
             {
-                return txt.Text;
+                return txt.Text.Trim();
             }
             else
             {

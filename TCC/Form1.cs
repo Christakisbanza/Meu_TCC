@@ -46,7 +46,7 @@ namespace TCC
             txtEmail = Elementos.CriarTxtBox("Digite seu e-mail", 150, 160, panelFlutuante);
             txtSenha = Elementos.CriarTxtBox("Digite sua senha", 150, 230, panelFlutuante);
 
-            Elementos.CriarBtn("Entrar",150,310,255,50,panelFlutuante,() => MsgEntrar());
+            Elementos.CriarBtn("Entrar",150,310,255,50,panelFlutuante,() => PegarDadosBD.BuscarDados(panelOverlay, panelFlutuante, txtEmail, txtSenha));
 
 
             panelFlutuante.BringToFront();
