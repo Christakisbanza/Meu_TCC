@@ -15,7 +15,7 @@ namespace TCC.elementos
 
         private static string connectionString = "server=localhost;database=users_db;uid=root;pwd=;";
 
-        public static void BuscarDados(Panel panelOverlay, Panel panelFlutuante, TextBox txtEmail, TextBox txtSenha)
+        public static void BuscarDados(Panel panelOverlay, Panel panelFlutuante, TextBox txtEmail, TextBox txtSenha, Form1 form)
         {
 
             try
@@ -55,7 +55,14 @@ namespace TCC.elementos
                             {
                                 MessageBox.Show($"Enail: {email}, Senha: {senha}\n" +
                                     $"Validação com sucesso !");
+
+                                panelOverlay.Visible = false;
+                                panelFlutuante.Visible = false;
+                                panelFlutuante.Controls.Clear();
+
                                 numeroDeValidacao++;
+                                
+                                Elementos.CriarPanelEntrar(form);
                             }
                         }
 

@@ -104,6 +104,7 @@
             Controls.Add(btnEntrar);
             Controls.Add(btnCriarConta);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             panelOverlay.ResumeLayout(false);
             ResumeLayout(false);

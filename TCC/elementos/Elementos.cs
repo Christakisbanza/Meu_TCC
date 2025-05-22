@@ -65,14 +65,17 @@ namespace TCC.elementos
         }
 
 
-        public static void CriarPanel(Panel panelFlutuante)
+        public static void CriarPanelEntrar(Form1 form)
         {
             Panel meuPanel = new Panel();
-            meuPanel.Size = new Size(300, 300);  
-            meuPanel.Location = new Point(50, 50);
+            meuPanel.Size = new System.Drawing.Size(200, 150);
+            meuPanel.Location = new System.Drawing.Point(50, 50);
+            meuPanel.BackColor = System.Drawing.Color.LightBlue;
+            meuPanel.Dock = DockStyle.Fill;
             meuPanel.AutoScroll = true;
             meuPanel.Visible = true;
-            panelFlutuante.Controls.Add(meuPanel);
+            form.Controls.Add(meuPanel);
+            meuPanel.BringToFront();
         }
 
        

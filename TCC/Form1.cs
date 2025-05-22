@@ -27,6 +27,7 @@ namespace TCC
         {
             InitializeComponent();
             panelFlutuante.AutoScroll = true;
+         
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
@@ -46,7 +47,7 @@ namespace TCC
             txtEmail = Elementos.CriarTxtBox("Digite seu e-mail", 150, 160, panelFlutuante);
             txtSenha = Elementos.CriarTxtBox("Digite sua senha", 150, 230, panelFlutuante);
 
-            Elementos.CriarBtn("Entrar",150,310,255,50,panelFlutuante,() => PegarDadosBD.BuscarDados(panelOverlay, panelFlutuante, txtEmail, txtSenha));
+            Elementos.CriarBtn("Entrar", 150, 310, 255, 50, panelFlutuante, () => PegarDadosBD.BuscarDados(panelOverlay, panelFlutuante, txtEmail, txtSenha, this));
 
 
             panelFlutuante.BringToFront();
@@ -62,7 +63,7 @@ namespace TCC
             panelOverlay.Visible = true;
             panelFlutuante.Visible = true;
 
-            Elementos.CriarLbl("Crie sua conta", 155, 15,17, panelFlutuante);
+            Elementos.CriarLbl("Crie sua conta", 155, 15, 17, panelFlutuante);
 
             emailCriar = Elementos.CriarTxtBox("Digite seu E-mail", 150, 110, panelFlutuante);
             senhaCriar = Elementos.CriarTxtBox("Crie sua Senha", 150, 175, panelFlutuante);
@@ -73,19 +74,19 @@ namespace TCC
 
             rbM = Elementos.CriarRadioBtn("Masculino", 150, 370, panelFlutuante);
             rbF = Elementos.CriarRadioBtn("Feminino", 260, 370, panelFlutuante);
-    
 
-            checkAdm = Elementos.CriarCheckBox("Administrador",150, 420, panelFlutuante);
+
+            checkAdm = Elementos.CriarCheckBox("Administrador", 150, 420, panelFlutuante);
 
             nomeEmpresa = Elementos.CriarTxtBox("Digite o Nome da Empresa", 150, 510, panelFlutuante);
             cnpj = Elementos.CriarTxtBox("Digite o CNPJ da Empresa", 150, 570, panelFlutuante);
-           
+
 
             Elementos.CriarBtn("Criar", 150, 650, 255, 50, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados(panelOverlay, panelFlutuante, new User(emailCriar, senhaCriar, cpf, data, rbM, rbF, checkAdm), new Empresa(nomeEmpresa, cnpj)));
 
         }
 
-        
+
 
         private void panelOverlay_MouseClick(object sender, MouseEventArgs e)
         {
@@ -98,7 +99,7 @@ namespace TCC
             }
         }
 
-        
+
 
     }
 }
