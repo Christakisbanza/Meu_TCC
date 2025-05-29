@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using Microsoft.VisualBasic.Devices;
 
 namespace TCC.elementos
@@ -55,8 +56,9 @@ namespace TCC.elementos
             btn.Size = new Size(width, height);
             btn.Location = new Point(x, y);
             btn.Text = txt;
-            btn.ForeColor = Color.Black;
-            btn.Font = new Font(btn.Font, FontStyle.Bold);
+            btn.ForeColor = Color.White;
+            btn.BackColor = Color.Black;
+            btn.Font = new Font(btn.Font.FontFamily,20, FontStyle.Bold);
             btn.Click += (s, e) =>
             {
                 eventoClick();
@@ -68,9 +70,9 @@ namespace TCC.elementos
         public static Panel CriarPanelEntrar(Form1 form)
         {
             Panel meuPanel = new Panel();
-            meuPanel.Size = new System.Drawing.Size(200, 150);
-            meuPanel.Location = new System.Drawing.Point(50, 50);
-            meuPanel.BackColor = System.Drawing.Color.LightBlue;
+            meuPanel.Size = new Size(200, 150);
+            meuPanel.Location = new Point(50, 50);
+            meuPanel.BackColor = Color.LightBlue;
             meuPanel.Dock = DockStyle.Fill;
             meuPanel.AutoScroll = true;
             meuPanel.Visible = true;
@@ -82,7 +84,7 @@ namespace TCC.elementos
         public static Panel CriarPanelContainer(Form1 form)
         {
             Panel meuPanel = new Panel();
-            meuPanel.Size = new System.Drawing.Size(800, 400);
+            meuPanel.Size = new Size(800, 400);
             meuPanel.Visible = true;
             form.Controls.Add(meuPanel);
             meuPanel.BringToFront();

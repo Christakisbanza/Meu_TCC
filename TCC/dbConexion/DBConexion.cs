@@ -19,7 +19,7 @@ namespace TCC.dbConexion
 
         private static string connectionString = "server=localhost;database=users_db;uid=root;pwd=;";
 
-        public static void salvarDadosNoBancoDeDados(Panel panelOverlay, Panel panelFlutuante, User user, Empresa empresa)
+        public static void salvarDadosNoBancoDeDados(Panel panelOverlay, Panel panelFlutuante,Panel container, User user, Empresa empresa)
         {
 
             try
@@ -76,6 +76,7 @@ namespace TCC.dbConexion
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                         panelOverlay.Visible = false;
                         panelFlutuante.Visible = false;
+                        container.Visible = true; 
                         panelFlutuante.Controls.Clear();
                                
                     }
