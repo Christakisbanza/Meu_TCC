@@ -65,7 +65,7 @@ namespace TCC.elementos
         }
 
 
-        public static void CriarPanelEntrar(Form1 form)
+        public static Panel CriarPanelEntrar(Form1 form)
         {
             Panel meuPanel = new Panel();
             meuPanel.Size = new System.Drawing.Size(200, 150);
@@ -76,9 +76,20 @@ namespace TCC.elementos
             meuPanel.Visible = true;
             form.Controls.Add(meuPanel);
             meuPanel.BringToFront();
+            return meuPanel;
         }
 
-       
+        public static Panel CriarPanelContainer(Form1 form)
+        {
+            Panel meuPanel = new Panel();
+            meuPanel.Size = new System.Drawing.Size(800, 400);
+            meuPanel.Visible = true;
+            form.Controls.Add(meuPanel);
+            meuPanel.BringToFront();
+            return meuPanel;
+        }
+
+
         public static void CriarLbl(string texto, int x, int y, int size, Panel panelFlutuante)
         {
           

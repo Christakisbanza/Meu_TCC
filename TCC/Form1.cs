@@ -23,18 +23,35 @@ namespace TCC
 
         CheckBox checkAdm;
 
+        Panel container;
+
         public Form1()
         {
             InitializeComponent();
             panelFlutuante.AutoScroll = true;
-         
+
+            container = Elementos.CriarPanelContainer(this);
+            container.Controls.Add(btnEntrar);
+            container.Controls.Add(btnCriarConta);
+
+
+            this.Resize += (s, e) =>
+            {
+                CentralizarControle(panelFlutuante, 200);
+                CentralizarControle(txtInicial, 200);
+                btnEntrar.Location = new Point(120,300);
+                btnCriarConta.Location = new Point(550, 300);
+                CentralizarControle(container, 300);
+
+            };
+
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
             panelOverlay.Visible = true;
             panelFlutuante.Visible = true;
-
+            container.Visible = false; 
 
             PictureBox pictureBox = new PictureBox();
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -53,15 +70,13 @@ namespace TCC
             panelFlutuante.BringToFront();
         }
 
-        public void MsgEntrar()
-        {
-            MessageBox.Show($"E-mail: {txtEmail.Text} \nSenha: {txtSenha.Text}");
-        }
+
 
         private void btnCriarConta_Click(object sender, EventArgs e)
         {
             panelOverlay.Visible = true;
             panelFlutuante.Visible = true;
+            container.Visible = false;
 
             Elementos.CriarLbl("Crie sua conta", 155, 15, 17, panelFlutuante);
 
@@ -95,8 +110,14 @@ namespace TCC
             {
                 panelOverlay.Visible = false;
                 panelFlutuante.Visible = false;
+                container.Visible = true;
                 panelFlutuante.Controls.Clear();
             }
+        }
+
+        private void CentralizarControle(Control ctrl, int posY)
+        {
+            ctrl.Location = new Point((this.ClientSize.Width - ctrl.Width) / 2, posY);
         }
 
 

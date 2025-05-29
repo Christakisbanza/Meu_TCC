@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using TCC.app;
+using TCC.elementos;
 using TCC.entities;
 using TCC.exception;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
-namespace TCC.elementos
+namespace TCC.dbConexion
 {
     internal class PegarDadosBD
     {
@@ -38,16 +40,16 @@ namespace TCC.elementos
 
                     try
                     {
-                     
+
                         MySqlCommand command = new MySqlCommand(query, connection);
 
-                       
+
                         MySqlDataReader reader = command.ExecuteReader();
 
-                        int numeroDeValidacao = 0;
+                        bool validacao = false;
 
-                        while (reader.Read()) 
-                        {      
+                        while (reader.Read())
+                        {
                             string email = reader.GetString(0);
                             string senha = reader.GetString(1);
 
@@ -60,13 +62,13 @@ namespace TCC.elementos
                                 panelFlutuante.Visible = false;
                                 panelFlutuante.Controls.Clear();
 
-                                numeroDeValidacao++;
-                                
-                                Elementos.CriarPanelEntrar(form);
-                            }
+                                validacao = true;
+
+                                TelaInicial.CriarTelaInicial(form);
+                            }           
                         }
 
-                        if (numeroDeValidacao == 0)
+                        if (validacao == false)
                         {
                             MessageBox.Show("Email ou senha inválido !");
                         }
@@ -74,7 +76,7 @@ namespace TCC.elementos
                         txtEmail.Clear();
                         txtSenha.Clear();
 
-                       reader.Close();
+                        reader.Close();
 
                     }
                     catch (MySqlException ex)
