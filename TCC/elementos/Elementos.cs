@@ -109,8 +109,8 @@ namespace TCC.elementos
         public static Panel CriarPanelPrincipal(Panel panelDeFundo)
         {
             Panel meuPanel = new Panel();
-            meuPanel.Size = new Size(400, 600);
-            meuPanel.Location = new Point(800, 250);
+            meuPanel.Size = new Size(800, 600);
+            meuPanel.Location = new Point(820, 250);
             meuPanel.BackColor = Color.White;
             meuPanel.Visible = true;
             panelDeFundo.Controls.Add(meuPanel);

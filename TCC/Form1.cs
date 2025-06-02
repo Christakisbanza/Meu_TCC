@@ -64,7 +64,7 @@ namespace TCC
             txtEmail = Elementos.CriarTxtBox("Digite seu e-mail", 150, 160, panelFlutuante);
             txtSenha = Elementos.CriarTxtBox("Digite sua senha", 150, 230, panelFlutuante);
 
-            Elementos.CriarBtn("Entrar", 150, 310, 255, 50, 12, panelFlutuante, () => PegarDadosBD.BuscarDados(panelOverlay, panelFlutuante, txtEmail, txtSenha, this));
+            Elementos.CriarBtn("Entrar", 150, 310, 255, 50, 11, panelFlutuante, () => PegarDadosBD.BuscarDados(panelOverlay, panelFlutuante, txtEmail, txtSenha, this));
 
 
             panelFlutuante.BringToFront();
@@ -97,7 +97,7 @@ namespace TCC
             cnpj = Elementos.CriarTxtBox("Digite o CNPJ da Empresa", 150, 570, panelFlutuante);
 
 
-            Elementos.CriarBtn("Criar", 150, 650, 255, 50, 12, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados(panelOverlay, panelFlutuante,container, new User(emailCriar, senhaCriar, cpf, data, rbM, rbF, checkAdm), new Empresa(nomeEmpresa, cnpj)));
+            Elementos.CriarBtn("Criar", 150, 650, 255, 50, 11, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados(panelOverlay, panelFlutuante,container, new User(emailCriar, senhaCriar, cpf, data, rbM, rbF, checkAdm), new Empresa(nomeEmpresa, cnpj)));
 
         }
 
