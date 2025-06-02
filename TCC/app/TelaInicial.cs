@@ -17,8 +17,10 @@ namespace TCC.app
             
             foreach (var i in email)
             {
-                Elementos.CriarLbl($"Olá, {i}", 400, 30, 20, panelDeFundo);
+                Elementos.CriarLbl($"Olá, {i}", 300, 90, 20, panelDeFundo);
             }
+
+            Elementos.CriarImgPerfil(1500, 50, panelDeFundo, () => Elementos.CriarPanelPrincipal(panelDeFundo));
 
             Button btn1 = Elementos.CriarBtn("Cadastrar Produtos", 50, 50, 300, 80, 10, panelDeFundo, () => MessageBox.Show("Clicou !"));
             Button btn2 = Elementos.CriarBtn("Ver Produtos", 50, 180, 300, 80, 10, panelDeFundo, () => MessageBox.Show("Clicou !"));

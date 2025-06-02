@@ -94,7 +94,7 @@ namespace TCC.elementos
         {
             Panel meuPanel = new Panel();
             meuPanel.Size = new Size(400, 600);
-            meuPanel.Location = new Point(400, 200);
+            meuPanel.Location = new Point(300, 250);
             meuPanel.BackColor = Color.Gray;
             meuPanel.Visible = true;
             panelDeFundo.Controls.Add(meuPanel);
@@ -102,6 +102,18 @@ namespace TCC.elementos
             {
                 meuPanel.Controls.Add(btn);
             }
+            meuPanel.BringToFront();
+            return meuPanel;
+        }
+
+        public static Panel CriarPanelPrincipal(Panel panelDeFundo)
+        {
+            Panel meuPanel = new Panel();
+            meuPanel.Size = new Size(400, 600);
+            meuPanel.Location = new Point(800, 250);
+            meuPanel.BackColor = Color.White;
+            meuPanel.Visible = true;
+            panelDeFundo.Controls.Add(meuPanel);
             meuPanel.BringToFront();
             return meuPanel;
         }
@@ -165,6 +177,20 @@ namespace TCC.elementos
 
             return chk;
             
+        }
+
+        public static void CriarImgPerfil(int x, int y, Panel panelDeFundo, Action eventoClick)
+        {
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.Size = new Size(100, 100);
+            pictureBox.Location = new Point(x, y);
+            pictureBox.Image = Properties.Resources.usuario;
+            pictureBox.Click += (s, e) =>
+            {
+                eventoClick();
+            };
+            panelDeFundo.Controls.Add(pictureBox);
         }
 
 
