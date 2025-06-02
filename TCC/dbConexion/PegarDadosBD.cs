@@ -63,8 +63,8 @@ namespace TCC.dbConexion
                                 panelFlutuante.Controls.Clear();
 
                                 validacao = true;
+
                                 TelaInicial.AddEmail(email);
-                                
                                 TelaInicial.CriarTelaInicial(form);
                             }           
                         }

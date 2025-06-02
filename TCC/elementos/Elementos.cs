@@ -50,7 +50,7 @@ namespace TCC.elementos
             return textBox;
         }
 
-        public static void CriarBtn(string txt, int x, int y, int width, int height, Panel panelFlutuante, Action eventoClick)
+        public static Button CriarBtn(string txt, int x, int y, int width, int height, int fontSize, Panel panelFlutuante, Action eventoClick)
         {
             Button btn = new Button();
             btn.Size = new Size(width, height);
@@ -58,20 +58,19 @@ namespace TCC.elementos
             btn.Text = txt;
             btn.ForeColor = Color.White;
             btn.BackColor = Color.Black;
-            btn.Font = new Font(btn.Font.FontFamily,20, FontStyle.Bold);
+            btn.Font = new Font(btn.Font.FontFamily, fontSize, FontStyle.Bold);
             btn.Click += (s, e) =>
             {
                 eventoClick();
             };
             panelFlutuante.Controls.Add(btn);
+            return btn;
         }
 
 
         public static Panel CriarPanelEntrar(Form1 form)
         {
             Panel meuPanel = new Panel();
-            meuPanel.Size = new Size(200, 150);
-            meuPanel.Location = new Point(50, 50);
             meuPanel.BackColor = Color.LightBlue;
             meuPanel.Dock = DockStyle.Fill;
             meuPanel.AutoScroll = true;
@@ -87,6 +86,22 @@ namespace TCC.elementos
             meuPanel.Size = new Size(800, 400);
             meuPanel.Visible = true;
             form.Controls.Add(meuPanel);
+            meuPanel.BringToFront();
+            return meuPanel;
+        }
+
+        public static Panel CriarPanelContainerBtnsIniciais(Panel panelDeFundo, List<Button> btns)
+        {
+            Panel meuPanel = new Panel();
+            meuPanel.Size = new Size(400, 600);
+            meuPanel.Location = new Point(400, 200);
+            meuPanel.BackColor = Color.Gray;
+            meuPanel.Visible = true;
+            panelDeFundo.Controls.Add(meuPanel);
+            foreach (var btn in btns)
+            {
+                meuPanel.Controls.Add(btn);
+            }
             meuPanel.BringToFront();
             return meuPanel;
         }

@@ -20,10 +20,12 @@ namespace TCC.app
                 Elementos.CriarLbl($"Olá, {i}", 400, 30, 20, panelDeFundo);
             }
 
-            Elementos.CriarBtn("Cadastrar Produtos", 400, 200, 400, 200, panelDeFundo, () => MessageBox.Show("Clicou !"));
-            Elementos.CriarBtn("Ver Produtos", 1100, 200, 400, 200, panelDeFundo, () => MessageBox.Show("Clicou !"));
-            Elementos.CriarBtn("Fornecedores", 400, 600, 400, 200, panelDeFundo, () => MessageBox.Show("Clicou !"));
-            Elementos.CriarBtn("Configurações", 1100, 600, 400, 200, panelDeFundo, () => MessageBox.Show("Clicou !"));
+            Button btn1 = Elementos.CriarBtn("Cadastrar Produtos", 50, 50, 300, 80, 10, panelDeFundo, () => MessageBox.Show("Clicou !"));
+            Button btn2 = Elementos.CriarBtn("Ver Produtos", 50, 180, 300, 80, 10, panelDeFundo, () => MessageBox.Show("Clicou !"));
+            Button btn3 = Elementos.CriarBtn("Fornecedores", 50, 310, 300, 80, 10, panelDeFundo, () => MessageBox.Show("Clicou !"));
+            Button btn4 = Elementos.CriarBtn("Configurações", 50, 440, 300, 80, 10, panelDeFundo, () => MessageBox.Show("Clicou !"));
+
+            Panel btns = Elementos.CriarPanelContainerBtnsIniciais(panelDeFundo, [btn1,btn2,btn3,btn4]);
         }
 
         public static void AddEmail(String dado)
