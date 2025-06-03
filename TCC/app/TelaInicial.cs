@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TCC.elementos;
 
 namespace TCC.app
@@ -14,6 +15,9 @@ namespace TCC.app
         static TextBox quantidade;
         static TextBox categorioa;
         static TextBox descricao;
+
+        static Button btnImg;
+        static Button btnCadastrar;
 
         static List<String> email = new List<String>();
         static List<String> dados = new List<String>();
@@ -85,9 +89,31 @@ namespace TCC.app
             categorioa = Elementos.CriarTxtBox(480, 200,p);
 
             
-            Elementos.CriarLbl("Descição:", 70, 350, 12, p);
-            descricao = Elementos.CriarTxtBox(75, 390, p);
+            Elementos.CriarLbl("Descição:", 70, 270, 12, p);
+            descricao = Elementos.CriarTxtBox(75, 310, p);
             descricao.Multiline = true;
+            descricao.Size = new Size(300, 125);
+
+            btnImg = Elementos.CriarBtn("Selecione img", 475, 340, 220, 50, 10, p, () =>
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Arquivos de imagem|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    PictureBox pictureBox = new PictureBox();
+                    pictureBox.Size = new Size(170, 170);
+                    pictureBox.Location = new Point(500, 300);
+                    pictureBox.Image = Image.FromFile(openFileDialog.FileName);
+                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    p.Controls.Add(pictureBox);
+                    btnImg.Visible = false;
+                }
+            });
+            btnImg.BackColor = Color.Gray;
+
+            btnCadastrar = Elementos.CriarBtn("Cadastrar", 310, 500, 170, 70, 10, p, () => MessageBox.Show("ok"));
+            btnCadastrar.BackColor = Color.Green;
         }
 
         public static void VerProdutos(Panel panelDeFundo)
