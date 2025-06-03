@@ -50,6 +50,20 @@ namespace TCC.elementos
             return textBox;
         }
 
+        public static TextBox CriarTxtBox(int x, int y, Panel panelFlutuante)
+        {
+            TextBox textBox = new TextBox();
+            textBox.Size = new Size(220, 200);
+            textBox.Location = new Point(x, y);
+            //textBox.Multiline = true;
+            textBox.BorderStyle = BorderStyle.FixedSingle;
+            textBox.ForeColor = Color.Gray;
+
+            panelFlutuante.Controls.Add(textBox);
+
+            return textBox;
+        }
+
         public static Button CriarBtn(string txt, int x, int y, int width, int height, int fontSize, Panel panelFlutuante, Action eventoClick)
         {
             Button btn = new Button();
@@ -95,7 +109,9 @@ namespace TCC.elementos
             Panel meuPanel = new Panel();
             meuPanel.Size = new Size(400, 600);
             meuPanel.Location = new Point(300, 250);
-            meuPanel.BackColor = Color.Gray;
+            Color cor = AjustarCor(Color.Gray, 1.4f);
+            meuPanel.BackColor = cor;
+            meuPanel.BorderStyle = BorderStyle.Fixed3D;
             meuPanel.Visible = true;
             panelDeFundo.Controls.Add(meuPanel);
             foreach (var btn in btns)
@@ -112,10 +128,24 @@ namespace TCC.elementos
             meuPanel.Size = new Size(800, 600);
             meuPanel.Location = new Point(820, 250);
             meuPanel.BackColor = Color.White;
+            meuPanel.BorderStyle= BorderStyle.FixedSingle;
             meuPanel.Visible = true;
             panelDeFundo.Controls.Add(meuPanel);
             meuPanel.BringToFront();
             return meuPanel;
+        }
+        public static Color AjustarCor(Color color, float factor)
+        {
+            
+            int r = (int)(color.R * factor);
+            int g = (int)(color.G * factor);
+            int b = (int)(color.B * factor);
+
+            r = Math.Min(255, Math.Max(0, r));
+            g = Math.Min(255, Math.Max(0, g));
+            b = Math.Min(255, Math.Max(0, b));
+
+            return Color.FromArgb(color.A, r, g, b);
         }
 
 

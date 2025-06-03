@@ -9,6 +9,12 @@ namespace TCC.app
 {
     internal class TelaInicial
     {
+        static TextBox nome;
+        static TextBox preco;
+        static TextBox quantidade;
+        static TextBox categorioa;
+        static TextBox descricao;
+
         static List<String> email = new List<String>();
         static List<String> dados = new List<String>();
         public static void CriarTelaInicial(Form1 form)
@@ -23,10 +29,10 @@ namespace TCC.app
 
             Elementos.CriarImgPerfil(1500, 50, panelDeFundo, () => ClicouNoPerfil(panelDeFundo));
 
-            Button btn1 = Elementos.CriarBtn("Cadastrar Produtos", 50, 50, 300, 80, 10, panelDeFundo, () => CadastrarProdutos(panelDeFundo));
-            Button btn2 = Elementos.CriarBtn("Ver Produtos", 50, 180, 300, 80, 10, panelDeFundo, () => VerProdutos(panelDeFundo));
-            Button btn3 = Elementos.CriarBtn("Fornecedores", 50, 310, 300, 80, 10, panelDeFundo, () => Fornecedores(panelDeFundo));
-            Button btn4 = Elementos.CriarBtn("Configurações", 50, 440, 300, 80, 10, panelDeFundo, () => Configurações(panelDeFundo));
+            Button btn1 = Elementos.CriarBtn("Cadastrar Produtos", 50, 50, 300, 80, 12, panelDeFundo, () => CadastrarProdutos(panelDeFundo));
+            Button btn2 = Elementos.CriarBtn("Ver Produtos", 50, 180, 300, 80, 12, panelDeFundo, () => VerProdutos(panelDeFundo));
+            Button btn3 = Elementos.CriarBtn("Fornecedores", 50, 310, 300, 80, 12, panelDeFundo, () => Fornecedores(panelDeFundo));
+            Button btn4 = Elementos.CriarBtn("Configurações", 50, 440, 300, 80, 12, panelDeFundo, () => Configurações(panelDeFundo));
 
             Panel btns = Elementos.CriarPanelContainerBtnsIniciais(panelDeFundo, [btn1,btn2,btn3,btn4]);
         }
@@ -37,26 +43,26 @@ namespace TCC.app
 
             foreach (var i in email)
             {
-                Elementos.CriarLbl($"Email: {i}", 30, 30, 12, p);
+                Elementos.CriarLbl($"Email: {i}", 30, 50, 12, p);
             }
-            int n = 0;
+            int n = 50;
             foreach (var i in dados)
             {
-                if (n == 0) 
+                if (n == 50) 
                 {
-                    Elementos.CriarLbl($"Cpf: {i}", 30, n += 30, 12, p);
+                    Elementos.CriarLbl($"Cpf: {i}", 30, n += 50, 12, p);
                 }
-                else if (n == 30)
+                else if (n == 100)
                 {
-                    Elementos.CriarLbl($"Data Nascimento: {i}", 30, n += 30, 12, p);
+                    Elementos.CriarLbl($"Data Nascimento: {i}", 30, n += 50, 12, p);
                 }
-                else if (n == 60)
+                else if (n == 150)
                 {
-                    Elementos.CriarLbl($"Sexo: {i}", 30, n += 30, 12, p);
+                    Elementos.CriarLbl($"Sexo: {i}", 30, n += 50, 12, p);
                 }
-                else if (n == 90)
+                else if (n == 200)
                 {
-                    Elementos.CriarLbl($"Função: {i}", 30, n += 30, 12, p);
+                    Elementos.CriarLbl($"Função: {i}", 30, n += 50, 12, p);
                 }
                 
             }
@@ -65,6 +71,23 @@ namespace TCC.app
         public static void CadastrarProdutos(Panel panelDeFundo)
         {
             Panel p = Elementos.CriarPanelPrincipal(panelDeFundo);
+
+            Elementos.CriarLbl("Nome:", 70, 50, 12, p);
+            nome = Elementos.CriarTxtBox(75,90,p);
+
+            Elementos.CriarLbl("Preço:", 475, 50, 12, p);
+            preco = Elementos.CriarTxtBox(480, 90,p);
+
+            Elementos.CriarLbl("Quantidade:", 70, 160, 12, p);
+            quantidade = Elementos.CriarTxtBox(75, 200, p);
+
+            Elementos.CriarLbl("Categoria:", 475, 160, 12, p);
+            categorioa = Elementos.CriarTxtBox(480, 200,p);
+
+            
+            Elementos.CriarLbl("Descição:", 70, 350, 12, p);
+            descricao = Elementos.CriarTxtBox(75, 390, p);
+            descricao.Multiline = true;
         }
 
         public static void VerProdutos(Panel panelDeFundo)
