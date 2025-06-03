@@ -102,8 +102,8 @@ namespace TCC.app
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     PictureBox pictureBox = new PictureBox();
-                    pictureBox.Size = new Size(170, 170);
-                    pictureBox.Location = new Point(500, 300);
+                    pictureBox.Size = new Size(150, 150);
+                    pictureBox.Location = new Point(510, 300);
                     pictureBox.Image = Image.FromFile(openFileDialog.FileName);
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                     p.Controls.Add(pictureBox);
