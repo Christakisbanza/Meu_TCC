@@ -109,7 +109,7 @@ namespace TCC.elementos
             Panel meuPanel = new Panel();
             meuPanel.Size = new Size(400, 600);
             meuPanel.Location = new Point(300, 250);
-            Color cor = AjustarCor(Color.Gray, 1.4f);
+            Color cor = AjustarCor(Color.Gray, 1.7f);
             meuPanel.BackColor = cor;
             meuPanel.BorderStyle = BorderStyle.Fixed3D;
             meuPanel.Visible = true;

@@ -19,3 +19,13 @@ CREATE TABLE IF NOT EXISTS empresas (
 	nome_empresa VARCHAR(100) NOT NULL,
     	cnpj VARCHAR(100) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS produtos (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+    	preco VARCHAR(100) NOT NULL,
+	quantidade VARCHAR(100) NOT NULL,
+    	categoria VARCHAR(100) NOT NULL,
+	descricao VARCHAR(20),
+    	img VARCHAR(100) NOT NULL
+);

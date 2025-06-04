@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TCC.dbConexion;
 using TCC.elementos;
+using TCC.entities;
 
 namespace TCC.app
 {
@@ -37,6 +39,8 @@ namespace TCC.app
             Button btn2 = Elementos.CriarBtn("Ver Produtos", 50, 180, 300, 80, 12, panelDeFundo, () => VerProdutos(panelDeFundo));
             Button btn3 = Elementos.CriarBtn("Fornecedores", 50, 310, 300, 80, 12, panelDeFundo, () => Fornecedores(panelDeFundo));
             Button btn4 = Elementos.CriarBtn("Configurações", 50, 440, 300, 80, 12, panelDeFundo, () => Configurações(panelDeFundo));
+            
+            MudarCorBtns(btn1,btn2, btn3, btn4);
 
             Panel btns = Elementos.CriarPanelContainerBtnsIniciais(panelDeFundo, [btn1,btn2,btn3,btn4]);
         }
@@ -94,10 +98,13 @@ namespace TCC.app
             descricao.Multiline = true;
             descricao.Size = new Size(300, 125);
 
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Arquivos de imagem|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+
             btnImg = Elementos.CriarBtn("Selecione img", 475, 340, 220, 50, 10, p, () =>
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Arquivos de imagem|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+                
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -112,7 +119,7 @@ namespace TCC.app
             });
             btnImg.BackColor = Color.Gray;
 
-            btnCadastrar = Elementos.CriarBtn("Cadastrar", 310, 500, 170, 70, 10, p, () => MessageBox.Show("ok"));
+            btnCadastrar = Elementos.CriarBtn("Cadastrar", 310, 500, 170, 70, 10, p, () => DBConexionProdutos.salvarProdutos(new Produtos(nome, preco,quantidade,categorioa,descricao, openFileDialog.FileName) ));
             btnCadastrar.BackColor = Color.Green;
         }
 
@@ -141,6 +148,18 @@ namespace TCC.app
         public static void AddDados(string dado)
         {
             dados.Add(dado);
+        }
+
+        public static void MudarCorBtns(Button btn1, Button btn2, Button btn3, Button btn4)
+        {
+            btn1.BackColor = Color.LightBlue;
+            btn2.BackColor = Color.LightBlue;
+            btn3.BackColor = Color.LightBlue;
+            btn4.BackColor = Color.LightBlue;
+            btn1.ForeColor = Color.Black;
+            btn2.ForeColor = Color.Black;
+            btn3.ForeColor = Color.Black;
+            btn4.ForeColor = Color.Black;
         }
     }
 }
