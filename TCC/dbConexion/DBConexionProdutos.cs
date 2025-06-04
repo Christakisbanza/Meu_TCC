@@ -79,13 +79,12 @@ namespace TCC.dbConexion
 
         private static string ValidarNome(TextBox txt)
         {
-            if (txt.Text != " ")
+            if (!string.IsNullOrWhiteSpace(txt.Text))
             {
                 return txt.Text.Trim();
             }
             else
             {
-                txt.Clear();
                 throw new PreecherCamposException("Nome obrigatório !");
             }
         }
@@ -118,39 +117,37 @@ namespace TCC.dbConexion
 
         private static string ValidarCategoria(TextBox txt)
         {
-            if (txt.Text != " ")
+            if (!string.IsNullOrWhiteSpace(txt.Text))
             {
                 return txt.Text.Trim();
             }
             else
             {
-                txt.Clear();
                 throw new PreecherCamposException("Categoria obrigatório !");
             }
         }
 
         private static string ValidarDescricao(TextBox txt)
         {
-            if (txt.Text != " ")
+            if (!string.IsNullOrWhiteSpace(txt.Text))
             {
                 return txt.Text.Trim();
             }
             else
             {
-                txt.Clear();
                 throw new PreecherCamposException("Descrição obrigatório !");
             }
         }
 
         private static string ValidarImg(string txt)
         {
-            if (txt != " ")
+            if (!string.IsNullOrWhiteSpace(txt))
             {
                 return txt.Trim();
             }
             else
             {
-                throw new PreecherCamposException("Descrição obrigatório !");
+                throw new PreecherCamposException("Imagem obrigatório !");
             }
         }
     }

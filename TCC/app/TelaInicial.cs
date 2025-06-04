@@ -23,6 +23,7 @@ namespace TCC.app
 
         static List<String> email = new List<String>();
         static List<String> dados = new List<String>();
+        static List<string> produtos = new List<string>();
         public static void CriarTelaInicial(Form1 form)
         {
             Panel panelDeFundo = Elementos.CriarPanelEntrar(form);
@@ -126,6 +127,54 @@ namespace TCC.app
         public static void VerProdutos(Panel panelDeFundo)
         {
             Panel p = Elementos.CriarPanelPrincipal(panelDeFundo);
+
+            p.AutoScroll = true;
+
+            BuscarDadosProtutos.BuscarProdutos();
+
+            int x = 60;
+            int y = 50;
+
+            int xImg = 450;
+            int yImg = 230;
+            foreach (var i in produtos)
+            {
+                if (y == 50)
+                {
+                    Elementos.CriarLbl($"Nome: {i}", x, y += 50, 12, p);
+                }
+                else if (y == 100)
+                {
+                    Elementos.CriarLbl($"Preço: R${i}", x, y += 80, 12, p);
+                }
+                else if (y == 180)
+                {
+                    Elementos.CriarLbl($"Quantidade: {i}", x, y += 80, 12, p);
+                }
+                else if (y == 260)
+                {
+                    Elementos.CriarLbl($"Categoria: {i}", x, y += 80, 12, p);
+                }
+                else if (y == 340)
+                {
+                    Elementos.CriarLbl($"Descrição: {i}", x, y += 80, 12, p);
+                }
+                else if (y == 420)
+                {
+                    PictureBox pictureBox = new PictureBox();
+                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureBox.Size = new Size(200, 200);
+                    pictureBox.Location = new Point(xImg, yImg);
+                    pictureBox.Image = Image.FromFile(i);
+                    p.Controls.Add(pictureBox);
+
+                    x += 800;
+                    y = 50;
+
+                    xImg += 800;
+
+                }
+            }
         }
 
         public static void Fornecedores(Panel panelDeFundo)
@@ -148,6 +197,11 @@ namespace TCC.app
         public static void AddDados(string dado)
         {
             dados.Add(dado);
+        }
+
+        public static void AddProdutos(string produto)
+        {
+            produtos.Add(produto);
         }
 
         public static void MudarCorBtns(Button btn1, Button btn2, Button btn3, Button btn4)
