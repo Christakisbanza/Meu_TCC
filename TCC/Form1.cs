@@ -29,6 +29,7 @@ namespace TCC
         {
             InitializeComponent();
             panelFlutuante.AutoScroll = true;
+            panelFlutuante.BorderStyle = BorderStyle.Fixed3D; 
 
             container = Elementos.CriarPanelContainer(this);
             container.Controls.Add(btnEntrar);

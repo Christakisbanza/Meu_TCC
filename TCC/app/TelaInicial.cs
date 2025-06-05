@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace TCC.app
 
         static List<String> email = new List<String>();
         static List<String> dados = new List<String>();
-        static List<string> produtos = new List<string>();
+        static HashSet<string> produtos = new HashSet<string>();
         public static void CriarTelaInicial(Form1 form)
         {
             Panel panelDeFundo = Elementos.CriarPanelEntrar(form);
@@ -122,6 +123,13 @@ namespace TCC.app
 
             btnCadastrar = Elementos.CriarBtn("Cadastrar", 310, 500, 170, 70, 10, p, () => DBConexionProdutos.salvarProdutos(new Produtos(nome, preco,quantidade,categorioa,descricao, openFileDialog.FileName) ));
             btnCadastrar.BackColor = Color.Green;
+
+            nome.Clear();
+            preco.Clear();
+            quantidade.Clear();
+            categorioa.Clear(); 
+            descricao.Clear();
+            
         }
 
         public static void VerProdutos(Panel panelDeFundo)
@@ -129,14 +137,14 @@ namespace TCC.app
             Panel p = Elementos.CriarPanelPrincipal(panelDeFundo);
 
             p.AutoScroll = true;
-
+            
             BuscarDadosProtutos.BuscarProdutos();
 
             int x = 60;
             int y = 50;
 
-            int xImg = 450;
-            int yImg = 230;
+            int xImg = 350;
+            int yImg = 150;
             foreach (var i in produtos)
             {
                 if (y == 50)
@@ -163,7 +171,7 @@ namespace TCC.app
                 {
                     PictureBox pictureBox = new PictureBox();
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    pictureBox.Size = new Size(200, 200);
+                    pictureBox.Size = new Size(350, 250);
                     pictureBox.Location = new Point(xImg, yImg);
                     pictureBox.Image = Image.FromFile(i);
                     p.Controls.Add(pictureBox);
@@ -172,7 +180,7 @@ namespace TCC.app
                     y = 50;
 
                     xImg += 800;
-
+                    
                 }
             }
         }
