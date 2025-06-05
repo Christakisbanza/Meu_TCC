@@ -135,52 +135,52 @@ namespace TCC.app
         public static void VerProdutos(Panel panelDeFundo)
         {
             Panel p = Elementos.CriarPanelPrincipal(panelDeFundo);
-
+            p.BackColor = Color.LightGray;
             p.AutoScroll = true;
             
             BuscarDadosProtutos.BuscarProdutos();
 
-            int x = 60;
+            int x = 0;
             int y = 50;
 
-            int xImg = 350;
-            int yImg = 150;
+            int xP = 50;
+
             foreach (var i in produtos)
             {
+                Panel pContainer = Elementos.CriarPanelContainer(p, xP, 50);
+               
                 if (y == 50)
                 {
-                    Elementos.CriarLbl($"Nome: {i}", x, y += 50, 12, p);
+                    Elementos.CriarLbl($"Nome: {i}", x, y += 50, 12, pContainer);
                 }
                 else if (y == 100)
                 {
-                    Elementos.CriarLbl($"Preço: R${i}", x, y += 80, 12, p);
+                    Elementos.CriarLbl($"Preço: R${i}", x, y += 80, 12, pContainer);
                 }
                 else if (y == 180)
                 {
-                    Elementos.CriarLbl($"Quantidade: {i}", x, y += 80, 12, p);
+                    Elementos.CriarLbl($"Quantidade: {i}", x, y += 80, 12, pContainer);
                 }
                 else if (y == 260)
                 {
-                    Elementos.CriarLbl($"Categoria: {i}", x, y += 80, 12, p);
+                    Elementos.CriarLbl($"Categoria: {i}", x, y += 80, 12, pContainer);
                 }
                 else if (y == 340)
                 {
-                    Elementos.CriarLbl($"Descrição: {i}", x, y += 80, 12, p);
+                    Elementos.CriarLbl($"Descrição: {i}", x, y += 80, 12, pContainer);
                 }
                 else if (y == 420)
                 {
                     PictureBox pictureBox = new PictureBox();
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    pictureBox.Size = new Size(350, 250);
-                    pictureBox.Location = new Point(xImg, yImg);
+                    pictureBox.Size = new Size(250, 200);
+                    pictureBox.Location = new Point(400, 150);
                     pictureBox.Image = Image.FromFile(i);
-                    p.Controls.Add(pictureBox);
+                    pContainer.Controls.Add(pictureBox);
 
-                    x += 800;
                     y = 50;
 
-                    xImg += 800;
-                    
+                    xP += 800;
                 }
             }
         }

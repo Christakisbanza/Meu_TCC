@@ -103,6 +103,18 @@ namespace TCC.elementos
             meuPanel.BringToFront();
             return meuPanel;
         }
+        public static Panel CriarPanelContainer(Panel p, int x, int y)
+        {
+            Panel meuPanel = new Panel();
+            meuPanel.Size = new Size(700, 500);
+            meuPanel.Location = new Point(x, y);
+            meuPanel.BackColor = Color.White;
+            meuPanel.BorderStyle = BorderStyle.Fixed3D;
+            meuPanel.Visible = true;
+            p.Controls.Add(meuPanel);
+            meuPanel.BringToFront();
+            return meuPanel;
+        }
 
         public static Panel CriarPanelContainerBtnsIniciais(Panel panelDeFundo, List<Button> btns)
         {
