@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using TCC.app;
 using TCC.entities;
 using TCC.exception;
 
@@ -79,14 +80,16 @@ namespace TCC.dbConexion
 
         private static string ValidarNome(TextBox txt)
         {
-            if (!string.IsNullOrWhiteSpace(txt.Text))
+            BuscarDadosProtutos.BuscarProdutos();
+
+            foreach (var i in TelaInicial.produtos)
             {
-                return txt.Text.Trim();
+                if (string.IsNullOrWhiteSpace(txt.Text) || i.NomeT == txt.Text)
+                {
+                    throw new PreecherCamposException("Nome obrigatório !");
+                }
             }
-            else
-            {
-                throw new PreecherCamposException("Nome obrigatório !");
-            }
+            return txt.Text.Trim();
         }
 
         private static string ValidarPreco(TextBox txt)

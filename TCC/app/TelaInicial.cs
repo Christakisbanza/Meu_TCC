@@ -24,7 +24,8 @@ namespace TCC.app
 
         static List<String> email = new List<String>();
         static List<String> dados = new List<String>();
-        static HashSet<string> produtos = new HashSet<string>();
+
+        public static HashSet<Produtos> produtos = new HashSet<Produtos>();
         public static void CriarTelaInicial(Form1 form)
         {
             Panel panelDeFundo = Elementos.CriarPanelEntrar(form);
@@ -140,52 +141,37 @@ namespace TCC.app
             Label categoria = null;
             Label descricao = null;
 
-            int y = 50;
-
             int xPanel = 50;
 
             foreach (var i in produtos)
             {
-                if (y == 50)
-                {
-                    nome = Elementos.CriarLbl($"Nome: {i}", 50, y += 50, 12);
-                }
-                else if (y == 100)
-                {
-                    preco = Elementos.CriarLbl($"Preço: R${i}", 50, y += 70, 12);
-                }
-                else if (y == 170)
-                {
-                    quantidade = Elementos.CriarLbl($"Quantidade: {i}", 50, y += 70, 12);
-                }
-                else if (y == 240)
-                {
-                    categoria = Elementos.CriarLbl($"Categoria: {i}", 50, y += 70, 12);
-                }
-                else if (y == 310)
-                {
-                    descricao = Elementos.CriarLbl($"Descrição: {i}", 50, y += 70, 12);
-                }
-                else if (y == 380)
-                {
-                    PictureBox pictureBox = new PictureBox();
-                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    pictureBox.Size = new Size(250, 200);
-                    pictureBox.Location = new Point(400, 150);
-                    pictureBox.Image = Image.FromFile(i);
+               
+                nome = Elementos.CriarLbl($"Nome: {i.NomeT}", 50, 100, 12);
+               
+                preco = Elementos.CriarLbl($"Preço: R${i.PrecoT}", 50, 170, 12);
+                
+                quantidade = Elementos.CriarLbl($"Quantidade: {i.QuantidadeT}", 50, 240, 12);
+                
+                categoria = Elementos.CriarLbl($"Categoria: {i.CategoriaT}", 50, 310, 12);
+                
+                descricao = Elementos.CriarLbl($"Descrição: {i.DescricaoT}", 50, 380, 12);
+                
+                PictureBox pictureBox = new PictureBox();
+                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox.Size = new Size(250, 200);
+                pictureBox.Location = new Point(400, 150);
+                pictureBox.Image = Image.FromFile(i.Img);
 
-                    Panel pContainer = Elementos.CriarPanelContainer(p, xPanel, 50);
-                    pContainer.Controls.Add(nome);
-                    pContainer.Controls.Add(preco);
-                    pContainer.Controls.Add(quantidade);
-                    pContainer.Controls.Add(categoria);
-                    pContainer.Controls.Add(descricao);
-                    pContainer.Controls.Add(pictureBox);
+                Panel pContainer = Elementos.CriarPanelContainer(p, xPanel, 50);
+                pContainer.Controls.Add(nome);
+                pContainer.Controls.Add(preco);
+                pContainer.Controls.Add(quantidade);
+                pContainer.Controls.Add(categoria);
+                pContainer.Controls.Add(descricao);
+                pContainer.Controls.Add(pictureBox);
 
-                    y = 50;
-
-                    xPanel += 800;
-                }
+                xPanel += 800;
+                
             }
             Elementos.CriarPanelMargin(p, xPanel);
         }
@@ -212,10 +198,11 @@ namespace TCC.app
             dados.Add(dado);
         }
 
-        public static void AddProdutos(string produto)
+        public static void AddProdutos(Produtos produto)
         {
             produtos.Add(produto);
         }
+
 
         public static void MudarCorBtns(Button btn1, Button btn2, Button btn3, Button btn4)
         {

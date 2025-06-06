@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using TCC.app;
+using TCC.entities;
 
 namespace TCC.dbConexion
 {
@@ -52,13 +53,7 @@ namespace TCC.dbConexion
                             string descricao = reader.GetString(4);
                             string img = reader.GetString(5);
 
-                            TelaInicial.AddProdutos(nome);
-                            TelaInicial.AddProdutos(preco);
-                            TelaInicial.AddProdutos(quantidade);
-                            TelaInicial.AddProdutos(categoria);
-                            TelaInicial.AddProdutos(descricao);
-                            TelaInicial.AddProdutos(img);
-
+                            TelaInicial.AddProdutos(new Produtos(nome,preco,quantidade,categoria,descricao,img));
                         }
 
                         reader.Close();
@@ -70,7 +65,7 @@ namespace TCC.dbConexion
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("processar a operação", ex.Message);
+                        MessageBox.Show($"processar a operação {ex}", ex.Message);
                     }
                 }
             }

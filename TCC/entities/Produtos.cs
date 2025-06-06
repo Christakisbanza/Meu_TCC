@@ -16,6 +16,14 @@ namespace TCC.entities
         public TextBox Descricao { get; set; }
         public string Img { get; set; }
 
+
+        public string NomeT { get; set; }
+        public string PrecoT { get; set; }
+        public string QuantidadeT { get; set; }
+        public string CategoriaT { get; set; }
+        public string DescricaoT { get; set; }
+
+
         public Produtos(TextBox nome, TextBox preco, TextBox quantidade, TextBox categoria, TextBox descricao, string img)
         {
             Nome = nome;
@@ -23,6 +31,16 @@ namespace TCC.entities
             Quantidade = quantidade;
             Categoria = categoria;
             Descricao = descricao;
+            Img = img;
+        }
+
+        public Produtos(string nome, string preco, string quantidade, string categoria, string descricao, string img)
+        {
+            NomeT = nome;
+            PrecoT = preco;
+            QuantidadeT = quantidade;
+            CategoriaT = categoria;
+            DescricaoT = descricao;
             Img = img;
         }
     }
