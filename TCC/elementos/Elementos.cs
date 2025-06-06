@@ -146,6 +146,17 @@ namespace TCC.elementos
             meuPanel.BringToFront();
             return meuPanel;
         }
+
+        public static void CriarPanelMargin(Panel p, int xPanel)
+        {
+            Panel meuPanel = new Panel();
+            meuPanel.Size = new Size(25, 25);
+            meuPanel.Location = new Point(xPanel, 250);
+            meuPanel.BackColor = Color.LightGray;
+            p.Controls.Add(meuPanel); 
+        }
+
+
         public static Color AjustarCor(Color color, float factor)
         {
             
@@ -174,6 +185,20 @@ namespace TCC.elementos
 
 
             panelFlutuante.Controls.Add(novoLabel);
+        }
+        public static Label CriarLbl(string texto, int x, int y, int size)
+        {
+
+            Label novoLabel = new Label();
+
+            novoLabel.Text = texto;
+            novoLabel.Location = new Point(x, y);
+            novoLabel.AutoSize = true;
+            novoLabel.ForeColor = Color.Black;
+            novoLabel.Font = new Font(novoLabel.Font.FontFamily, size, FontStyle.Bold);
+
+
+            return novoLabel;
         }
 
 

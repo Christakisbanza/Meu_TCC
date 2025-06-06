@@ -123,12 +123,6 @@ namespace TCC.app
 
             btnCadastrar = Elementos.CriarBtn("Cadastrar", 310, 500, 170, 70, 10, p, () => DBConexionProdutos.salvarProdutos(new Produtos(nome, preco,quantidade,categorioa,descricao, openFileDialog.FileName) ));
             btnCadastrar.BackColor = Color.Green;
-
-            nome.Clear();
-            preco.Clear();
-            quantidade.Clear();
-            categorioa.Clear(); 
-            descricao.Clear();
             
         }
 
@@ -140,49 +134,60 @@ namespace TCC.app
             
             BuscarDadosProtutos.BuscarProdutos();
 
-            int x = 0;
+            Label nome = null;
+            Label preco = null;
+            Label quantidade = null;
+            Label categoria = null;
+            Label descricao = null;
+
             int y = 50;
 
-            int xP = 50;
+            int xPanel = 50;
 
             foreach (var i in produtos)
             {
-                Panel pContainer = Elementos.CriarPanelContainer(p, xP, 50);
-               
                 if (y == 50)
                 {
-                    Elementos.CriarLbl($"Nome: {i}", x, y += 50, 12, pContainer);
+                    nome = Elementos.CriarLbl($"Nome: {i}", 50, y += 50, 12);
                 }
                 else if (y == 100)
                 {
-                    Elementos.CriarLbl($"Preço: R${i}", x, y += 80, 12, pContainer);
+                    preco = Elementos.CriarLbl($"Preço: R${i}", 50, y += 70, 12);
                 }
-                else if (y == 180)
+                else if (y == 170)
                 {
-                    Elementos.CriarLbl($"Quantidade: {i}", x, y += 80, 12, pContainer);
+                    quantidade = Elementos.CriarLbl($"Quantidade: {i}", 50, y += 70, 12);
                 }
-                else if (y == 260)
+                else if (y == 240)
                 {
-                    Elementos.CriarLbl($"Categoria: {i}", x, y += 80, 12, pContainer);
+                    categoria = Elementos.CriarLbl($"Categoria: {i}", 50, y += 70, 12);
                 }
-                else if (y == 340)
+                else if (y == 310)
                 {
-                    Elementos.CriarLbl($"Descrição: {i}", x, y += 80, 12, pContainer);
+                    descricao = Elementos.CriarLbl($"Descrição: {i}", 50, y += 70, 12);
                 }
-                else if (y == 420)
+                else if (y == 380)
                 {
                     PictureBox pictureBox = new PictureBox();
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                     pictureBox.Size = new Size(250, 200);
                     pictureBox.Location = new Point(400, 150);
                     pictureBox.Image = Image.FromFile(i);
+
+                    Panel pContainer = Elementos.CriarPanelContainer(p, xPanel, 50);
+                    pContainer.Controls.Add(nome);
+                    pContainer.Controls.Add(preco);
+                    pContainer.Controls.Add(quantidade);
+                    pContainer.Controls.Add(categoria);
+                    pContainer.Controls.Add(descricao);
                     pContainer.Controls.Add(pictureBox);
 
                     y = 50;
 
-                    xP += 800;
+                    xPanel += 800;
                 }
             }
+            Elementos.CriarPanelMargin(p, xPanel);
         }
 
         public static void Fornecedores(Panel panelDeFundo)
