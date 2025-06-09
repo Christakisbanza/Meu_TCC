@@ -25,7 +25,7 @@ namespace TCC.app
         static List<String> email = new List<String>();
         static List<String> dados = new List<String>();
 
-        public static HashSet<Produtos> produtos = new HashSet<Produtos>();
+        public static List<Produtos> produtos = new List<Produtos>();
         public static void CriarTelaInicial(Form1 form)
         {
             Panel panelDeFundo = Elementos.CriarPanelEntrar(form);
@@ -170,6 +170,8 @@ namespace TCC.app
                 pContainer.Controls.Add(descricao);
                 pContainer.Controls.Add(pictureBox);
 
+                Elementos.CriarImgDeletar(600, 10, pContainer, () => MessageBox.Show("ok"));
+
                 xPanel += 800;
                 
             }
@@ -200,7 +202,14 @@ namespace TCC.app
 
         public static void AddProdutos(Produtos produto)
         {
-            produtos.Add(produto);
+            if (produtos.Any(p => p.NomeT.Equals(produto.NomeT, StringComparison.OrdinalIgnoreCase)))
+            {
+                Console.WriteLine($"Produto com nome '{produto.NomeT}' já existe.");
+            }
+            else
+            {
+                produtos.Add(produto);
+            }
         }
 
 

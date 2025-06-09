@@ -84,9 +84,9 @@ namespace TCC.dbConexion
 
             foreach (var i in TelaInicial.produtos)
             {
-                if (string.IsNullOrWhiteSpace(txt.Text) || i.NomeT == txt.Text)
+                if (string.IsNullOrWhiteSpace(txt.Text) || i.NomeT.ToLower() == txt.Text.ToLower())
                 {
-                    throw new PreecherCamposException("Nome obrigatório !");
+                    throw new PreecherCamposException("Nome obrigatório ou já existente !");
                 }
             }
             return txt.Text.Trim();
@@ -144,14 +144,16 @@ namespace TCC.dbConexion
 
         private static string ValidarImg(string txt)
         {
-            if (!string.IsNullOrWhiteSpace(txt))
+            BuscarDadosProtutos.BuscarProdutos();
+
+            foreach (var i in TelaInicial.produtos)
             {
-                return txt.Trim();
+                if (string.IsNullOrWhiteSpace(txt) || i.Img.ToLower() == txt.ToLower())
+                {
+                    throw new PreecherCamposException("Imagem obrigatório ou já existente!");
+                }
             }
-            else
-            {
-                throw new PreecherCamposException("Imagem obrigatório !");
-            }
+            return txt.Trim();
         }
     }
 }

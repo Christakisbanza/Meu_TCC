@@ -260,6 +260,20 @@ namespace TCC.elementos
             panelDeFundo.Controls.Add(pictureBox);
         }
 
+        public static void CriarImgDeletar(int x, int y, Panel p, Action eventoClick)
+        {
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.Size = new Size(40, 40);
+            pictureBox.Location = new Point(x, y);
+            pictureBox.Image = Properties.Resources.deletar;
+            pictureBox.Click += (s, e) =>
+            {
+                eventoClick();
+            };
+            p.Controls.Add(pictureBox);
+        }
+
 
 
 
