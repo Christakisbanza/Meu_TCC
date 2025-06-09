@@ -146,7 +146,7 @@ namespace TCC.app
             foreach (var i in produtos)
             {
                
-                nome = Elementos.CriarLbl($"Nome: {i.NomeT}", 50, 100, 12);
+                nome = Elementos.CriarLbl("Nome:", $"{i.NomeT}", 50, 100, 12);
                
                 preco = Elementos.CriarLbl($"Preço: R${i.PrecoT}", 50, 170, 12);
                 
@@ -170,7 +170,8 @@ namespace TCC.app
                 pContainer.Controls.Add(descricao);
                 pContainer.Controls.Add(pictureBox);
 
-                Elementos.CriarImgDeletar(600, 10, pContainer, () => MessageBox.Show("ok"));
+                Elementos.CriarImgDeletar(650, 10, pContainer, () => MessageBox.Show("ok"));
+                Elementos.CriarImgEditar(580, 10, pContainer, () => MessageBox.Show("ok"));
 
                 xPanel += 800;
                 

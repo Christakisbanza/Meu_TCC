@@ -186,6 +186,27 @@ namespace TCC.elementos
 
             panelFlutuante.Controls.Add(novoLabel);
         }
+
+        public static Label CriarLbl(string texto, string texto2, int x, int y, int size)
+        {
+
+            Label novoLabel = new Label();
+            novoLabel.Text = texto;
+            novoLabel.Location = new Point(x, y);
+            novoLabel.AutoSize = true;
+            novoLabel.ForeColor = Color.Black;
+            novoLabel.Font = new Font(novoLabel.Font.FontFamily, size, FontStyle.Bold);
+
+            Label novoLabel2 = new Label();
+            novoLabel.Text = texto2;
+            novoLabel.Location = new Point(x + 10, y + 10);
+            novoLabel.AutoSize = true;
+            novoLabel.ForeColor = Color.Black;
+            novoLabel.Font = new Font(novoLabel.Font.FontFamily, size, FontStyle.Regular);
+
+            return novoLabel;
+            
+        }
         public static Label CriarLbl(string texto, int x, int y, int size)
         {
 
@@ -274,6 +295,19 @@ namespace TCC.elementos
             p.Controls.Add(pictureBox);
         }
 
+        public static void CriarImgEditar(int x, int y, Panel p, Action eventoClick)
+        {
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.Size = new Size(40, 40);
+            pictureBox.Location = new Point(x, y);
+            pictureBox.Image = Properties.Resources.edit;
+            pictureBox.Click += (s, e) =>
+            {
+                eventoClick();
+            };
+            p.Controls.Add(pictureBox);
+        }
 
 
 
