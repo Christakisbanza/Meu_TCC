@@ -48,7 +48,7 @@
             // 
             // panelFlutuante
             // 
-            panelFlutuante.BackColor = SystemColors.ActiveBorder;
+            panelFlutuante.BackColor = Color.FromArgb(224, 224, 224);
             panelFlutuante.BorderStyle = BorderStyle.FixedSingle;
             panelFlutuante.Location = new Point(196, 65);
             panelFlutuante.Name = "panelFlutuante";

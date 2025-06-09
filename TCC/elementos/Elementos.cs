@@ -187,26 +187,6 @@ namespace TCC.elementos
             panelFlutuante.Controls.Add(novoLabel);
         }
 
-        public static Label CriarLbl(string texto, string texto2, int x, int y, int size)
-        {
-
-            Label novoLabel = new Label();
-            novoLabel.Text = texto;
-            novoLabel.Location = new Point(x, y);
-            novoLabel.AutoSize = true;
-            novoLabel.ForeColor = Color.Black;
-            novoLabel.Font = new Font(novoLabel.Font.FontFamily, size, FontStyle.Bold);
-
-            Label novoLabel2 = new Label();
-            novoLabel.Text = texto2;
-            novoLabel.Location = new Point(x + 10, y + 10);
-            novoLabel.AutoSize = true;
-            novoLabel.ForeColor = Color.Black;
-            novoLabel.Font = new Font(novoLabel.Font.FontFamily, size, FontStyle.Regular);
-
-            return novoLabel;
-            
-        }
         public static Label CriarLbl(string texto, int x, int y, int size)
         {
 
@@ -221,7 +201,19 @@ namespace TCC.elementos
 
             return novoLabel;
         }
+        public static Label CriarLblRegular(string texto, int x, int y, int size)
+        {
 
+            Label novoLabel = new Label();
+
+            novoLabel.Text = texto;
+            novoLabel.Location = new Point(x, y);
+            novoLabel.AutoSize = true;
+            novoLabel.ForeColor = Color.Black;
+            novoLabel.Font = new Font(novoLabel.Font.FontFamily, size, FontStyle.Regular);
+
+            return novoLabel;
+        }
 
         public static DateTimePicker CriarCalendario(int x, int y, Panel panelFlutuante) 
         {

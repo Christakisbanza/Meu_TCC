@@ -135,26 +135,28 @@ namespace TCC.app
             
             BuscarDadosProtutos.BuscarProdutos();
 
-            Label nome = null;
-            Label preco = null;
-            Label quantidade = null;
-            Label categoria = null;
-            Label descricao = null;
 
             int xPanel = 50;
 
             foreach (var i in produtos)
             {
-               
-                nome = Elementos.CriarLbl("Nome:", $"{i.NomeT}", 50, 100, 12);
-               
-                preco = Elementos.CriarLbl($"Preço: R${i.PrecoT}", 50, 170, 12);
-                
-                quantidade = Elementos.CriarLbl($"Quantidade: {i.QuantidadeT}", 50, 240, 12);
-                
-                categoria = Elementos.CriarLbl($"Categoria: {i.CategoriaT}", 50, 310, 12);
-                
-                descricao = Elementos.CriarLbl($"Descrição: {i.DescricaoT}", 50, 380, 12);
+                Label idTxt = Elementos.CriarLbl("ID: ", 25, 25, 10);
+                Label id = Elementos.CriarLblRegular($"{i.Id}", 65, 25, 10);
+
+                Label nomeTxt = Elementos.CriarLbl("Nome: ", 50, 100, 12);
+                Label nome = Elementos.CriarLblRegular($"{i.NomeT}", 140, 100, 12);
+
+                Label precoTxt = Elementos.CriarLbl("Preço: ", 50, 170, 12);
+                Label preco = Elementos.CriarLblRegular($"R${i.PrecoT}", 140, 170, 12);
+
+                Label quantidadeTxt = Elementos.CriarLbl("Quantidade: ", 50, 240, 12);
+                Label quantidade = Elementos.CriarLblRegular($"{i.QuantidadeT}", 205, 240, 12);
+
+                Label categoriaTxt = Elementos.CriarLbl("Categoria: ", 50, 310, 12);
+                Label categoria = Elementos.CriarLblRegular($"{i.CategoriaT}", 185, 310, 12);
+
+                Label descricaoTxt = Elementos.CriarLbl("Descrição: ", 50, 380, 12);
+                Label descricao = Elementos.CriarLblRegular($"{i.DescricaoT}", 185, 380, 12);
                 
                 PictureBox pictureBox = new PictureBox();
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -163,12 +165,9 @@ namespace TCC.app
                 pictureBox.Image = Image.FromFile(i.Img);
 
                 Panel pContainer = Elementos.CriarPanelContainer(p, xPanel, 50);
-                pContainer.Controls.Add(nome);
-                pContainer.Controls.Add(preco);
-                pContainer.Controls.Add(quantidade);
-                pContainer.Controls.Add(categoria);
-                pContainer.Controls.Add(descricao);
-                pContainer.Controls.Add(pictureBox);
+                pContainer.Controls.AddRange(new Control[] {idTxt,nomeTxt, precoTxt, quantidadeTxt, categoriaTxt, descricaoTxt});
+                pContainer.Controls.AddRange(new Control[] {id,nome, preco, quantidade, categoria, descricao, pictureBox });
+       
 
                 Elementos.CriarImgDeletar(650, 10, pContainer, () => MessageBox.Show("ok"));
                 Elementos.CriarImgEditar(580, 10, pContainer, () => MessageBox.Show("ok"));

@@ -32,7 +32,7 @@ namespace TCC.dbConexion
 
 
 
-                    string query = "SELECT nome, preco, quantidade, categoria, descricao, img" +
+                    string query = "SELECT id, nome, preco, quantidade, categoria, descricao, img" +
                                     " FROM produtos";
 
                     try
@@ -46,14 +46,15 @@ namespace TCC.dbConexion
 
                         while (reader.Read())
                         {
-                            string nome = reader.GetString(0);
-                            string preco = reader.GetString(1);
-                            string quantidade = reader.GetString(2);
-                            string categoria = reader.GetString(3);
-                            string descricao = reader.GetString(4);
-                            string img = reader.GetString(5);
+                            int id = reader.GetInt32(0);
+                            string nome = reader.GetString(1);
+                            string preco = reader.GetString(2);
+                            string quantidade = reader.GetString(3);
+                            string categoria = reader.GetString(4);
+                            string descricao = reader.GetString(5);
+                            string img = reader.GetString(6);
 
-                            TelaInicial.AddProdutos(new Produtos(nome,preco,quantidade,categoria,descricao,img));
+                            TelaInicial.AddProdutos(new Produtos(id,nome,preco,quantidade,categoria,descricao,img));
                         }
 
                         reader.Close();

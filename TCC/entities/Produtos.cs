@@ -34,8 +34,9 @@ namespace TCC.entities
             Img = img;
         }
 
-        public Produtos(string nome, string preco, string quantidade, string categoria, string descricao, string img)
+        public Produtos(int id, string nome, string preco, string quantidade, string categoria, string descricao, string img)
         {
+            Id = id;
             NomeT = nome;
             PrecoT = preco;
             QuantidadeT = quantidade;

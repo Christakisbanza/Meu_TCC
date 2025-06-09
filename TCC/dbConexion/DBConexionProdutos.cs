@@ -82,14 +82,16 @@ namespace TCC.dbConexion
         {
             BuscarDadosProtutos.BuscarProdutos();
 
+            string textoFormatado = txt.Text.Trim();
+
             foreach (var i in TelaInicial.produtos)
             {
-                if (string.IsNullOrWhiteSpace(txt.Text) || i.NomeT.ToLower() == txt.Text.ToLower())
+                if (string.IsNullOrWhiteSpace(txt.Text) || i.NomeT.ToLower() == textoFormatado.ToLower())
                 {
                     throw new PreecherCamposException("Nome obrigatório ou já existente !");
                 }
             }
-            return txt.Text.Trim();
+            return textoFormatado;
         }
 
         private static string ValidarPreco(TextBox txt)
