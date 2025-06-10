@@ -129,10 +129,10 @@ namespace TCC.app
 
         public static void VerProdutos(Panel panelDeFundo)
         {
-            Panel p = Elementos.CriarPanelPrincipal(panelDeFundo);
-            p.BackColor = Color.LightGray;
-            p.AutoScroll = true;
-            
+            Panel panel = Elementos.CriarPanelPrincipal(panelDeFundo);
+            panel.BackColor = Color.LightGray;
+            panel.AutoScroll = true;
+          
             BuscarDadosProtutos.BuscarProdutos();
 
 
@@ -164,18 +164,18 @@ namespace TCC.app
                 pictureBox.Location = new Point(400, 150);
                 pictureBox.Image = Image.FromFile(i.Img);
 
-                Panel pContainer = Elementos.CriarPanelContainer(p, xPanel, 50);
+                Panel pContainer = Elementos.CriarPanelContainer(panel, xPanel, 50);
                 pContainer.Controls.AddRange(new Control[] {idTxt,nomeTxt, precoTxt, quantidadeTxt, categoriaTxt, descricaoTxt});
                 pContainer.Controls.AddRange(new Control[] {id,nome, preco, quantidade, categoria, descricao, pictureBox });
        
 
-                Elementos.CriarImgDeletar(650, 10, pContainer, () => MessageBox.Show("ok"));
+                Elementos.CriarImgDeletar(650, 10, pContainer, () => MessageBox.Show("Deseja deletar ?", "Confirmação", MessageBoxButtons.YesNo));
                 Elementos.CriarImgEditar(580, 10, pContainer, () => MessageBox.Show("ok"));
-
+                
                 xPanel += 800;
                 
             }
-            Elementos.CriarPanelMargin(p, xPanel);
+            Elementos.CriarPanelMargin(panel, xPanel);
         }
 
         public static void Fornecedores(Panel panelDeFundo)
@@ -211,7 +211,10 @@ namespace TCC.app
                 produtos.Add(produto);
             }
         }
-
+        public static void RemoveProduto(Produtos p)
+        {
+            produtos.Remove(p);
+        }
 
         public static void MudarCorBtns(Button btn1, Button btn2, Button btn3, Button btn4)
         {

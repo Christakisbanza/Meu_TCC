@@ -12,7 +12,7 @@ namespace TCC.dbConexion
     internal class DeletarDoBancoDeDados
     {
         private static string connectionString = "server=localhost;database=users_db;uid=root;pwd=;";
-        public static void Deletar(Produtos p)
+        public static void Deletar(Produtos produto, Panel pContainer, Panel panel)
         {
             try
             {
@@ -30,20 +30,22 @@ namespace TCC.dbConexion
 
 
 
-                    string query = "DELETE FROM Produtos WHERE nome = @nome";
+                    string query = "DELETE FROM produtos WHERE nome = @nome";
 
                     try
                     {
-
-                        MySqlCommand command = new MySqlCommand(query, connection);
-
                         using (MySqlCommand cmd = new MySqlCommand(query, connection))
                         {
-                            cmd.Parameters.AddWithValue("@nome", p.NomeT);
+                            cmd.Parameters.AddWithValue("@nome", produto.NomeT);
+
+                            TelaInicial.RemoveProduto(produto);
+
+                            pContainer.Controls.Clear();
+                            panel.Controls.Remove(pContainer);
 
                             int linhasAfetadas = cmd.ExecuteNonQuery();
 
-                            MessageBox.Show($"Linhas deletadas: {linhasAfetadas}");
+                            MessageBox.Show($"ID:{produto.Id} - Deletado com sucesso !");
                         }
 
                     }
