@@ -84,18 +84,18 @@ namespace TCC.app
             Panel p = Elementos.CriarPanelPrincipal(panelDeFundo);
 
             Elementos.CriarLbl("Nome:", 70, 50, 12, p);
-            nome = Elementos.CriarTxtBox(75,90,p);
+            nome = Elementos.CriarTxtBox(75, 90, p);
 
             Elementos.CriarLbl("Preço:", 475, 50, 12, p);
-            preco = Elementos.CriarTxtBox(480, 90,p);
+            preco = Elementos.CriarTxtBox(480, 90, p);
 
             Elementos.CriarLbl("Quantidade:", 70, 160, 12, p);
             quantidade = Elementos.CriarTxtBox(75, 200, p);
 
             Elementos.CriarLbl("Categoria:", 475, 160, 12, p);
-            categorioa = Elementos.CriarTxtBox(480, 200,p);
+            categorioa = Elementos.CriarTxtBox(480, 200, p);
 
-            
+
             Elementos.CriarLbl("Descição:", 70, 270, 12, p);
             descricao = Elementos.CriarTxtBox(75, 310, p);
             descricao.Multiline = true;
@@ -105,13 +105,13 @@ namespace TCC.app
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Arquivos de imagem|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
 
+            PictureBox pictureBox = null;
+
             btnImg = Elementos.CriarBtn("Selecione img", 475, 340, 220, 50, 10, p, () =>
             {
-                
-
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    PictureBox pictureBox = new PictureBox();
+                    pictureBox = new PictureBox();
                     pictureBox.Size = new Size(150, 150);
                     pictureBox.Location = new Point(510, 300);
                     pictureBox.Image = Image.FromFile(openFileDialog.FileName);
@@ -122,7 +122,20 @@ namespace TCC.app
             });
             btnImg.BackColor = Color.Gray;
 
-            btnCadastrar = Elementos.CriarBtn("Cadastrar", 310, 500, 170, 70, 10, p, () => DBConexionProdutos.salvarProdutos(new Produtos(nome, preco,quantidade,categorioa,descricao, openFileDialog.FileName) ));
+            btnCadastrar = Elementos.CriarBtn("Cadastrar", 310, 500, 170, 70, 10, p, () => {
+                DBConexionProdutos.salvarProdutos(new Produtos(nome, preco, quantidade, categorioa, descricao, openFileDialog.FileName));
+
+                nome.Clear();
+                preco.Clear();
+                quantidade.Clear();
+                categorioa.Clear();
+                descricao.Clear();
+
+                p.Controls.Remove(pictureBox);
+                btnImg.Visible = true;
+
+                nome.Focus();
+            });
             btnCadastrar.BackColor = Color.Green;
             
         }
@@ -132,7 +145,7 @@ namespace TCC.app
             Panel panel = Elementos.CriarPanelPrincipal(panelDeFundo);
             panel.BackColor = Color.LightGray;
             panel.AutoScroll = true;
-          
+            
             BuscarDadosProtutos.BuscarProdutos();
 
 
@@ -169,7 +182,7 @@ namespace TCC.app
                 pContainer.Controls.AddRange(new Control[] {id,nome, preco, quantidade, categoria, descricao, pictureBox });
        
 
-                Elementos.CriarImgDeletar(650, 10, pContainer, () => MessageBox.Show("Deseja deletar ?", "Confirmação", MessageBoxButtons.YesNo));
+                Elementos.CriarImgDeletar(650, 10, pContainer, () => Deletar(i, pContainer, panel));
                 Elementos.CriarImgEditar(580, 10, pContainer, () => MessageBox.Show("ok"));
                 
                 xPanel += 800;
@@ -189,6 +202,19 @@ namespace TCC.app
         }
 
 
+
+
+
+
+        public static void Deletar(Produtos produto, Panel pContainer, Panel panel)
+        {
+            DialogResult res = MessageBox.Show("Deseja deletar ?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (res == DialogResult.Yes) 
+            {
+                DeletarDoBancoDeDados.Deletar(produto, pContainer, panel);
+            }
+        }
 
         public static void AddEmail(String dado)
         {
