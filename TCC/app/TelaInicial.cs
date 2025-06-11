@@ -21,10 +21,16 @@ namespace TCC.app
 
         static Button btnImg;
         static Button btnCadastrar;
+        static Button btnSaidaPorVenda;
+        static Button btnOutrasSaidas;
 
         static List<String> dados = new List<String>();
-
         public static List<Produtos> produtos = new List<Produtos>();
+
+
+
+
+
         public static void CriarTelaInicial(Form1 form)
         {
             Panel panelDeFundo = Elementos.CriarPanelEntrar(form);
@@ -40,8 +46,15 @@ namespace TCC.app
             Button btn2 = Elementos.CriarBtn("Ver Produtos", 50, 180, 300, 80, 12, panelDeFundo, () => VerProdutos(panelVerProdutos, [panelPerfil,panelCadastrarProduto,panelFornecedores,panelConfiguracao]));
             Button btn3 = Elementos.CriarBtn("Fornecedores", 50, 310, 300, 80, 12, panelDeFundo, () => Fornecedores(panelFornecedores, [panelPerfil,panelCadastrarProduto,panelVerProdutos,panelConfiguracao]));
             Button btn4 = Elementos.CriarBtn("Configurações", 50, 440, 300, 80, 12, panelDeFundo, () => Configurações(panelConfiguracao, [panelPerfil,panelCadastrarProduto, panelVerProdutos,panelFornecedores]));
-            
-            MudarCorBtns(btn1,btn2, btn3, btn4);
+            MudarCorBtns(btn1, btn2, btn3, btn4);
+
+            btnSaidaPorVenda = Elementos.CriarBtn("Saída Por Venda", 1275, 820, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
+            btnSaidaPorVenda.Visible = false;
+            btnSaidaPorVenda.BackColor = Color.Green;
+
+            btnOutrasSaidas = Elementos.CriarBtn("Outras Saídas", 1575, 820, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
+            btnOutrasSaidas.Visible = false;
+            btnOutrasSaidas.BackColor = Color.DarkRed; 
 
             Panel btns = Elementos.CriarPanelContainerBtnsIniciais(panelDeFundo, [btn1,btn2,btn3,btn4]);
         }
@@ -54,6 +67,8 @@ namespace TCC.app
             }
             panelPerfil.Visible = true;
 
+            btnSaidaPorVenda.Visible = false;
+            btnOutrasSaidas.Visible=false;
 
             int n = 50;
             foreach (var i in dados)
@@ -85,6 +100,9 @@ namespace TCC.app
                 i.Visible = false;
             }
             panelCadastrarProduto.Visible = true;
+
+            btnSaidaPorVenda.Visible = false;
+            btnOutrasSaidas.Visible = false;
 
             Elementos.CriarLbl("Nome:", 70, 50, 12, panelCadastrarProduto);
             nome = Elementos.CriarTxtBox(75, 90, panelCadastrarProduto);
@@ -152,7 +170,12 @@ namespace TCC.app
             panelVerProdutos.Visible = true;
             panelVerProdutos.BackColor = Color.LightGray;
             panelVerProdutos.AutoScroll = true;
-            
+
+            btnSaidaPorVenda.Visible = true;
+            btnSaidaPorVenda.BringToFront();
+            btnOutrasSaidas.Visible = true;
+            btnOutrasSaidas.BringToFront();
+
             BuscarDadosProtutos.BuscarProdutos();
 
 
@@ -205,6 +228,9 @@ namespace TCC.app
                 i.Visible = false;
             }
             panelFornecedores.Visible = true;
+
+            btnSaidaPorVenda.Visible = false;
+            btnOutrasSaidas.Visible = false;
         }
 
         public static void Configurações(Panel panelConfiguracao, List<Panel> panelList)
@@ -214,6 +240,9 @@ namespace TCC.app
                 i.Visible = false;
             }
             panelConfiguracao.Visible = true;
+
+            btnSaidaPorVenda.Visible = false;
+            btnOutrasSaidas.Visible = false;
         }
 
 
