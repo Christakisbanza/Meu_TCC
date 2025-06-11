@@ -137,8 +137,8 @@ namespace TCC.elementos
         public static Panel CriarPanelPrincipal(Panel panelDeFundo)
         {
             Panel meuPanel = new Panel();
-            meuPanel.Size = new Size(1100, 900);
-            meuPanel.Location = new Point(650, 50);
+            meuPanel.Size = new Size(1200, 900);
+            meuPanel.Location = new Point(650, 40);
             meuPanel.BackColor = Color.White;
             meuPanel.BorderStyle= BorderStyle.FixedSingle;
             meuPanel.Visible = false;
@@ -263,7 +263,7 @@ namespace TCC.elementos
         {
             PictureBox pictureBox = new PictureBox();
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox.Size = new Size(100, 100);
+            pictureBox.Size = new Size(150, 150);
             pictureBox.Location = new Point(x, y);
             pictureBox.Image = Properties.Resources.usuario;
             pictureBox.Click += (s, e) =>

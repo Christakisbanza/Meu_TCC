@@ -34,7 +34,7 @@ namespace TCC.app
             Panel panelFornecedores = Elementos.CriarPanelPrincipal(panelDeFundo);
             Panel panelConfiguracao = Elementos.CriarPanelPrincipal(panelDeFundo);
 
-            Elementos.CriarImgPerfil(150, 50, panelDeFundo, () => ClicouNoPerfil(panelPerfil, [panelCadastrarProduto, panelVerProdutos,panelFornecedores,panelConfiguracao]));
+            Elementos.CriarImgPerfil(275, 50, panelDeFundo, () => ClicouNoPerfil(panelPerfil, [panelCadastrarProduto, panelVerProdutos,panelFornecedores,panelConfiguracao]));
 
             Button btn1 = Elementos.CriarBtn("Cadastrar Produtos", 50, 50, 300, 80, 12, panelDeFundo, () => CadastrarProdutos(panelCadastrarProduto, [panelPerfil,panelVerProdutos, panelFornecedores,panelConfiguracao]));
             Button btn2 = Elementos.CriarBtn("Ver Produtos", 50, 180, 300, 80, 12, panelDeFundo, () => VerProdutos(panelVerProdutos, [panelPerfil,panelCadastrarProduto,panelFornecedores,panelConfiguracao]));
