@@ -119,8 +119,8 @@ namespace TCC.elementos
         public static Panel CriarPanelContainerBtnsIniciais(Panel panelDeFundo, List<Button> btns)
         {
             Panel meuPanel = new Panel();
-            meuPanel.Size = new Size(400, 600);
-            meuPanel.Location = new Point(300, 250);
+            meuPanel.Size = new Size(400, 575);
+            meuPanel.Location = new Point(150, 290);
             Color cor = AjustarCor(Color.Gray, 1.7f);
             meuPanel.BackColor = cor;
             meuPanel.BorderStyle = BorderStyle.Fixed3D;
@@ -137,11 +137,11 @@ namespace TCC.elementos
         public static Panel CriarPanelPrincipal(Panel panelDeFundo)
         {
             Panel meuPanel = new Panel();
-            meuPanel.Size = new Size(800, 600);
-            meuPanel.Location = new Point(820, 250);
+            meuPanel.Size = new Size(1100, 900);
+            meuPanel.Location = new Point(650, 50);
             meuPanel.BackColor = Color.White;
             meuPanel.BorderStyle= BorderStyle.FixedSingle;
-            meuPanel.Visible = true;
+            meuPanel.Visible = false;
             panelDeFundo.Controls.Add(meuPanel);
             meuPanel.BringToFront();
             return meuPanel;

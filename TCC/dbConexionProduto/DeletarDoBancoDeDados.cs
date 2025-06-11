@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 using TCC.app;
 using TCC.entities;
 
-namespace TCC.dbConexion
+namespace TCC.dbConexionProduto
 {
     internal class DeletarDoBancoDeDados
     {

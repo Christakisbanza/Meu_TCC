@@ -69,7 +69,6 @@ namespace TCC.dbConexion
 
                                 validacao = true;
 
-                                TelaInicial.AddEmail(email);
                                 TelaInicial.AddDados(cpf);
                                 TelaInicial.AddDados(data.ToString("yyyy/MM/dd"));
                                 TelaInicial.AddDados(sexo);

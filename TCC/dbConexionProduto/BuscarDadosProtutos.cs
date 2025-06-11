@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 using TCC.app;
 using TCC.entities;
 
-namespace TCC.dbConexion
+namespace TCC.dbConexionProduto
 {
     internal class BuscarDadosProtutos
     {
@@ -54,7 +54,7 @@ namespace TCC.dbConexion
                             string descricao = reader.GetString(5);
                             string img = reader.GetString(6);
 
-                            TelaInicial.AddProdutos(new Produtos(id,nome,preco,quantidade,categoria,descricao,img));
+                            TelaInicial.AddProdutos(new Produtos(id, nome, preco, quantidade, categoria, descricao, img));
                         }
 
                         reader.Close();

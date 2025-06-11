@@ -8,7 +8,7 @@ using TCC.app;
 using TCC.entities;
 using TCC.exception;
 
-namespace TCC.dbConexion
+namespace TCC.dbConexionProduto
 {
     internal class DBConexionProdutos
     {
@@ -45,15 +45,15 @@ namespace TCC.dbConexion
                         MySqlCommand command = new MySqlCommand(query, connection);
 
                         command.Parameters.AddWithValue("@nome", ValidarNome(produto.Nome));
-                        command.Parameters.AddWithValue("@preco", ValidarPreco(produto.Preco) );
-                        command.Parameters.AddWithValue("@quantidade", ValidarQuantidade(produto.Quantidade) );
-                        command.Parameters.AddWithValue("@categoria", ValidarCategoria(produto.Categoria) );
+                        command.Parameters.AddWithValue("@preco", ValidarPreco(produto.Preco));
+                        command.Parameters.AddWithValue("@quantidade", ValidarQuantidade(produto.Quantidade));
+                        command.Parameters.AddWithValue("@categoria", ValidarCategoria(produto.Categoria));
                         command.Parameters.AddWithValue("@descricao", ValidarDescricao(produto.Descricao));
                         command.Parameters.AddWithValue("@img", ValidarImg(produto.Img));
                         int newId = Convert.ToInt32(command.ExecuteScalar());
 
 
-                        
+
                         MessageBox.Show($"Cadastro realizado com sucesso!\nID: {newId}", "Sucesso",
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
