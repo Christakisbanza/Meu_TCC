@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using TCC.dbConexionProduto;
 using TCC.elementos;
 using TCC.entities;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TCC.app
 {
@@ -27,7 +28,8 @@ namespace TCC.app
         static Label filtrarLbl;
         static TextBox filtrarNome;
         static ListBox filtrarCategoria;
-        static ListBox filtrarQuantidade;
+        static ComboBox filtrarQuantidade;
+        static PictureBox imgSearch;
 
         static List<String> dados = new List<String>();
         public static List<Produtos> produtos = new List<Produtos>();
@@ -72,6 +74,8 @@ namespace TCC.app
             filtrarLbl.Visible = false;
             filtrarNome.Visible = false;
             filtrarCategoria.Visible = false;
+            filtrarQuantidade.Visible = false;
+            imgSearch.Visible = false;
 
             int n = 50;
             foreach (var i in dados)
@@ -110,6 +114,8 @@ namespace TCC.app
             filtrarLbl.Visible = false;
             filtrarNome.Visible = false;
             filtrarCategoria.Visible = false;
+            filtrarQuantidade.Visible = false;
+            imgSearch.Visible = false;
 
             Elementos.CriarLbl("Nome:", 70, 50, 12, panelCadastrarProduto);
             nome = Elementos.CriarTxtBox(75, 90, panelCadastrarProduto);
@@ -175,6 +181,10 @@ namespace TCC.app
                 i.Visible = false;
             }
             panelVerProdutos.Controls.Clear();
+            filtrarNome.Clear();
+            filtrarCategoria.Items.Clear();
+            filtrarQuantidade.Items.Clear();
+
             panelVerProdutos.Visible = true;
             panelVerProdutos.BackColor = Color.LightGray;
             panelVerProdutos.AutoScroll = true;
@@ -189,6 +199,10 @@ namespace TCC.app
             filtrarNome.BringToFront();
             filtrarCategoria.Visible = true;
             filtrarCategoria.BringToFront();
+            filtrarQuantidade.Visible = true;
+            filtrarQuantidade.BringToFront();
+            imgSearch.Visible = true;
+            imgSearch.BringToFront();
 
             BuscarDadosProtutos.BuscarProdutos();
 
@@ -230,7 +244,13 @@ namespace TCC.app
                 Elementos.CriarImgEditar(580, 10, pContainer, () => MessageBox.Show("ok"));
                 
                 xPanel += 800;
-                
+
+                if (!filtrarCategoria.Items.Contains(i.CategoriaT))
+                {
+                    filtrarCategoria.Items.Add(i.CategoriaT);
+                }
+                filtrarQuantidade.Items.Add("Maior Quantidade");
+                filtrarQuantidade.Items.Add("Menor Quantidade");
             }
             Elementos.CriarPanelMargin(panelVerProdutos, xPanel);
         }
@@ -249,6 +269,8 @@ namespace TCC.app
             filtrarLbl.Visible = false;
             filtrarNome.Visible = false;
             filtrarCategoria.Visible = false;
+            filtrarQuantidade.Visible = false;
+            imgSearch.Visible = false;
         }
 
         public static void Configurações(Panel panelConfiguracao, List<Panel> panelList)
@@ -265,7 +287,11 @@ namespace TCC.app
             filtrarLbl.Visible = false;
             filtrarNome.Visible = false;
             filtrarCategoria.Visible = false;
+            filtrarQuantidade.Visible = false;
+            imgSearch.Visible = false;
         }
+
+
 
 
 
@@ -276,23 +302,26 @@ namespace TCC.app
             filtrarLbl.BackColor = Color.LightGray;
             panelDeFundo.Controls.Add(filtrarLbl);
 
-            filtrarNome = Elementos.CriarTxtBox(705, 700, panelDeFundo);
+            imgSearch = Elementos.CriarImgSearch(705, 703, panelDeFundo);
+            imgSearch.Visible = false;
+
+            filtrarNome = Elementos.CriarTxtBox(735, 700, panelDeFundo);
             filtrarNome.Visible = false;
 
             filtrarCategoria = Elementos.CriarListBox(panelDeFundo);
             filtrarCategoria.Visible = false;
 
-            btnSaidaPorVenda = Elementos.CriarBtn("Saída Por Venda", 1285, 820, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
+            filtrarQuantidade = Elementos.CriarComboBox(panelDeFundo);
+            filtrarQuantidade.Visible = false;
+
+            btnSaidaPorVenda = Elementos.CriarBtn("Saída Por Venda", 1285, 840, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
             btnSaidaPorVenda.Visible = false;
             btnSaidaPorVenda.BackColor = Color.Green;
 
-            btnOutrasSaidas = Elementos.CriarBtn("Outras Saídas", 1575, 820, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
+            btnOutrasSaidas = Elementos.CriarBtn("Outras Saídas", 1575, 840, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
             btnOutrasSaidas.Visible = false;
             btnOutrasSaidas.BackColor = Color.DarkRed;
         }
-
-
-
 
 
 
@@ -303,6 +332,7 @@ namespace TCC.app
             if (res == DialogResult.Yes) 
             {
                 DeletarDoBancoDeDados.Deletar(produto, pContainer, panel);
+                filtrarCategoria.Items.Remove(produto.CategoriaT);
             }
         }
 

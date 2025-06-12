@@ -265,18 +265,38 @@ namespace TCC.elementos
 
             listBox.Name = "Categorias";
             listBox.Location = new Point(705, 750);
-            listBox.Size = new Size(450,100);     
-
-            listBox.Items.Add("Item 1");
-            listBox.Items.Add("Item 2");
-            listBox.Items.Add("Item 3");
+            listBox.Size = new Size(465,165);     
 
             listBox.SelectedIndexChanged += (sender, e) =>
             {
                 MessageBox.Show($"Selecionado: {listBox.SelectedItem}");
             };
+
             paneDeFunfo.Controls.Add(listBox);
+
             return listBox;
+        }
+
+        public static ComboBox CriarComboBox(Panel paneDeFunfo) 
+        {
+            ComboBox comboBox = new ComboBox();
+
+            comboBox.Name = "Filtrar por Quantidade";
+            comboBox.Location = new Point(970, 700);
+            comboBox.Size = new Size(200, 50);
+            comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            comboBox.Items.Add("Maior Quantidade");
+            comboBox.Items.Add("Menor Quantidade");
+
+            comboBox.SelectedIndexChanged += (sender, e) =>
+            {
+                MessageBox.Show($"Selecionado: {comboBox.SelectedItem}");
+            };
+
+            paneDeFunfo.Controls.Add(comboBox);
+
+            return comboBox;
         }
 
         public static void CriarImgPerfil(int x, int y, Panel panelDeFundo, Action eventoClick)
@@ -319,6 +339,19 @@ namespace TCC.elementos
                 eventoClick();
             };
             p.Controls.Add(pictureBox);
+        }
+
+        public static PictureBox CriarImgSearch(int x, int y, Panel p)
+        {
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.Size = new Size(25, 25);
+            pictureBox.BackColor = Color.LightGray;
+            pictureBox.Location = new Point(x, y);
+            pictureBox.Image = Properties.Resources.search;
+            p.Controls.Add(pictureBox);
+
+            return pictureBox;
         }
 
 
