@@ -65,6 +65,7 @@ namespace TCC.app
             {
                 i.Visible = false;
             }
+            panelPerfil.Controls.Clear();
             panelPerfil.Visible = true;
 
             btnSaidaPorVenda.Visible = false;
@@ -99,6 +100,7 @@ namespace TCC.app
             {
                 i.Visible = false;
             }
+            panelCadastrarProduto.Controls.Clear();
             panelCadastrarProduto.Visible = true;
 
             btnSaidaPorVenda.Visible = false;
@@ -167,6 +169,7 @@ namespace TCC.app
             {
                 i.Visible = false;
             }
+            panelVerProdutos.Controls.Clear();
             panelVerProdutos.Visible = true;
             panelVerProdutos.BackColor = Color.LightGray;
             panelVerProdutos.AutoScroll = true;
@@ -227,6 +230,7 @@ namespace TCC.app
             {
                 i.Visible = false;
             }
+            panelFornecedores.Controls.Clear();
             panelFornecedores.Visible = true;
 
             btnSaidaPorVenda.Visible = false;
@@ -239,6 +243,7 @@ namespace TCC.app
             {
                 i.Visible = false;
             }
+            panelConfiguracao.Controls.Clear();
             panelConfiguracao.Visible = true;
 
             btnSaidaPorVenda.Visible = false;
