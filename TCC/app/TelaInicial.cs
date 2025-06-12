@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using TCC.dbConexionProduto;
 using TCC.elementos;
 using TCC.entities;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TCC.app
 {
@@ -249,8 +248,7 @@ namespace TCC.app
                 {
                     filtrarCategoria.Items.Add(i.CategoriaT);
                 }
-                filtrarQuantidade.Items.Add("Maior Quantidade");
-                filtrarQuantidade.Items.Add("Menor Quantidade");
+
             }
             Elementos.CriarPanelMargin(panelVerProdutos, xPanel);
         }
