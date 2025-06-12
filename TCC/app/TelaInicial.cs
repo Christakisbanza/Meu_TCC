@@ -24,6 +24,11 @@ namespace TCC.app
         static Button btnSaidaPorVenda;
         static Button btnOutrasSaidas;
 
+        static Label filtrarLbl;
+        static TextBox filtrarNome;
+        static ListBox filtrarCategoria;
+        static ListBox filtrarQuantidade;
+
         static List<String> dados = new List<String>();
         public static List<Produtos> produtos = new List<Produtos>();
 
@@ -48,13 +53,7 @@ namespace TCC.app
             Button btn4 = Elementos.CriarBtn("Configurações", 50, 440, 300, 80, 12, panelDeFundo, () => Configurações(panelConfiguracao, [panelPerfil,panelCadastrarProduto, panelVerProdutos,panelFornecedores]));
             MudarCorBtns(btn1, btn2, btn3, btn4);
 
-            btnSaidaPorVenda = Elementos.CriarBtn("Saída Por Venda", 1275, 820, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
-            btnSaidaPorVenda.Visible = false;
-            btnSaidaPorVenda.BackColor = Color.Green;
-
-            btnOutrasSaidas = Elementos.CriarBtn("Outras Saídas", 1575, 820, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
-            btnOutrasSaidas.Visible = false;
-            btnOutrasSaidas.BackColor = Color.DarkRed; 
+            ElementosDinamicosEmVerProdutos(panelDeFundo);
 
             Panel btns = Elementos.CriarPanelContainerBtnsIniciais(panelDeFundo, [btn1,btn2,btn3,btn4]);
         }
@@ -70,6 +69,8 @@ namespace TCC.app
 
             btnSaidaPorVenda.Visible = false;
             btnOutrasSaidas.Visible=false;
+            filtrarLbl.Visible = false;
+            filtrarNome.Visible = false;
 
             int n = 50;
             foreach (var i in dados)
@@ -105,6 +106,8 @@ namespace TCC.app
 
             btnSaidaPorVenda.Visible = false;
             btnOutrasSaidas.Visible = false;
+            filtrarLbl.Visible = false;
+            filtrarNome.Visible = false;
 
             Elementos.CriarLbl("Nome:", 70, 50, 12, panelCadastrarProduto);
             nome = Elementos.CriarTxtBox(75, 90, panelCadastrarProduto);
@@ -178,6 +181,10 @@ namespace TCC.app
             btnSaidaPorVenda.BringToFront();
             btnOutrasSaidas.Visible = true;
             btnOutrasSaidas.BringToFront();
+            filtrarLbl.Visible = true;
+            filtrarLbl.BringToFront();
+            filtrarNome.Visible = true;
+            filtrarNome.BringToFront();
 
             BuscarDadosProtutos.BuscarProdutos();
 
@@ -235,6 +242,8 @@ namespace TCC.app
 
             btnSaidaPorVenda.Visible = false;
             btnOutrasSaidas.Visible = false;
+            filtrarLbl.Visible = false;
+            filtrarNome.Visible = false;
         }
 
         public static void Configurações(Panel panelConfiguracao, List<Panel> panelList)
@@ -248,6 +257,29 @@ namespace TCC.app
 
             btnSaidaPorVenda.Visible = false;
             btnOutrasSaidas.Visible = false;
+            filtrarLbl.Visible = false;
+            filtrarNome.Visible = false;
+        }
+
+
+
+        public static void ElementosDinamicosEmVerProdutos(Panel panelDeFundo)
+        {
+            filtrarLbl = Elementos.CriarLblRegular("Filtrar por Nome, Categoria ou Quantidade:", 700, 650, 12);
+            filtrarLbl.Visible = false;
+            filtrarLbl.BackColor = Color.LightGray;
+            panelDeFundo.Controls.Add(filtrarLbl);
+
+            filtrarNome = Elementos.CriarTxtBox(705, 700, panelDeFundo);
+            filtrarNome.Visible = false;
+
+            btnSaidaPorVenda = Elementos.CriarBtn("Saída Por Venda", 1285, 820, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
+            btnSaidaPorVenda.Visible = false;
+            btnSaidaPorVenda.BackColor = Color.Green;
+
+            btnOutrasSaidas = Elementos.CriarBtn("Outras Saídas", 1575, 820, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
+            btnOutrasSaidas.Visible = false;
+            btnOutrasSaidas.BackColor = Color.DarkRed;
         }
 
 
