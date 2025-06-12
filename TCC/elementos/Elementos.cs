@@ -259,6 +259,26 @@ namespace TCC.elementos
             
         }
 
+        public static ListBox CriarListBox(Panel paneDeFunfo)
+        {
+            ListBox listBox = new ListBox();
+
+            listBox.Name = "Categorias";
+            listBox.Location = new Point(705, 750);
+            listBox.Size = new Size(450,100);     
+
+            listBox.Items.Add("Item 1");
+            listBox.Items.Add("Item 2");
+            listBox.Items.Add("Item 3");
+
+            listBox.SelectedIndexChanged += (sender, e) =>
+            {
+                MessageBox.Show($"Selecionado: {listBox.SelectedItem}");
+            };
+            paneDeFunfo.Controls.Add(listBox);
+            return listBox;
+        }
+
         public static void CriarImgPerfil(int x, int y, Panel panelDeFundo, Action eventoClick)
         {
             PictureBox pictureBox = new PictureBox();

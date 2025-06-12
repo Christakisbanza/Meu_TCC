@@ -71,6 +71,7 @@ namespace TCC.app
             btnOutrasSaidas.Visible=false;
             filtrarLbl.Visible = false;
             filtrarNome.Visible = false;
+            filtrarCategoria.Visible = false;
 
             int n = 50;
             foreach (var i in dados)
@@ -108,6 +109,7 @@ namespace TCC.app
             btnOutrasSaidas.Visible = false;
             filtrarLbl.Visible = false;
             filtrarNome.Visible = false;
+            filtrarCategoria.Visible = false;
 
             Elementos.CriarLbl("Nome:", 70, 50, 12, panelCadastrarProduto);
             nome = Elementos.CriarTxtBox(75, 90, panelCadastrarProduto);
@@ -185,6 +187,8 @@ namespace TCC.app
             filtrarLbl.BringToFront();
             filtrarNome.Visible = true;
             filtrarNome.BringToFront();
+            filtrarCategoria.Visible = true;
+            filtrarCategoria.BringToFront();
 
             BuscarDadosProtutos.BuscarProdutos();
 
@@ -244,6 +248,7 @@ namespace TCC.app
             btnOutrasSaidas.Visible = false;
             filtrarLbl.Visible = false;
             filtrarNome.Visible = false;
+            filtrarCategoria.Visible = false;
         }
 
         public static void Configurações(Panel panelConfiguracao, List<Panel> panelList)
@@ -259,6 +264,7 @@ namespace TCC.app
             btnOutrasSaidas.Visible = false;
             filtrarLbl.Visible = false;
             filtrarNome.Visible = false;
+            filtrarCategoria.Visible = false;
         }
 
 
@@ -272,6 +278,9 @@ namespace TCC.app
 
             filtrarNome = Elementos.CriarTxtBox(705, 700, panelDeFundo);
             filtrarNome.Visible = false;
+
+            filtrarCategoria = Elementos.CriarListBox(panelDeFundo);
+            filtrarCategoria.Visible = false;
 
             btnSaidaPorVenda = Elementos.CriarBtn("Saída Por Venda", 1285, 820, 240, 65, 12, panelDeFundo, () => MessageBox.Show("Ok"));
             btnSaidaPorVenda.Visible = false;
