@@ -62,20 +62,9 @@ namespace TCC.app
 
         public static void ClicouNoPerfil(Panel panelPerfil, List<Panel> panelList)
         {
-            foreach (var i in panelList)
-            {
-                i.Visible = false;
-            }
-            panelPerfil.Controls.Clear();
-            panelPerfil.Visible = true;
+            ExibirPanel(panelPerfil, panelList);
 
-            btnSaidaPorVenda.Visible = false;
-            btnOutrasSaidas.Visible=false;
-            filtrarLbl.Visible = false;
-            filtrarNome.Visible = false;
-            filtrarCategoria.Visible = false;
-            filtrarQuantidade.Visible = false;
-            imgSearch.Visible = false;
+            OcultarElementosDinamicos();
 
             int n = 50;
             foreach (var i in dados)
@@ -102,20 +91,9 @@ namespace TCC.app
 
         public static void CadastrarProdutos(Panel panelCadastrarProduto, List<Panel> panelList)
         {
-            foreach (var i in panelList)
-            {
-                i.Visible = false;
-            }
-            panelCadastrarProduto.Controls.Clear();
-            panelCadastrarProduto.Visible = true;
+            ExibirPanel(panelCadastrarProduto, panelList);
 
-            btnSaidaPorVenda.Visible = false;
-            btnOutrasSaidas.Visible = false;
-            filtrarLbl.Visible = false;
-            filtrarNome.Visible = false;
-            filtrarCategoria.Visible = false;
-            filtrarQuantidade.Visible = false;
-            imgSearch.Visible = false;
+            OcultarElementosDinamicos();
 
             Elementos.CriarLbl("Nome:", 70, 50, 12, panelCadastrarProduto);
             nome = Elementos.CriarTxtBox(75, 90, panelCadastrarProduto);
@@ -176,19 +154,14 @@ namespace TCC.app
 
         public static void VerProdutos(Panel panelVerProdutos, List<Panel> panelList)
         {
-            foreach (var i in panelList)
-            {
-                i.Visible = false;
-            }
-            panelVerProdutos.Controls.Clear();
+            ExibirPanel(panelVerProdutos, panelList);
+
             filtrarNome.Clear();
             filtrarQuantidade.Items.Clear();
             filtrarQuantidade.Items.Add("Maior Quantidade");
             filtrarQuantidade.Items.Add("Menor Quantidade");
             filtrarCategoria.Items.Clear();
             
-
-            panelVerProdutos.Visible = true;
             panelVerProdutos.BackColor = Color.LightGray;
             panelVerProdutos.AutoScroll = true;
 
@@ -270,38 +243,14 @@ namespace TCC.app
 
         public static void Fornecedores(Panel panelFornecedores, List<Panel> panelList)
         {
-            foreach (var i in panelList)
-            {
-                i.Visible = false;
-            }
-            panelFornecedores.Controls.Clear();
-            panelFornecedores.Visible = true;
-
-            btnSaidaPorVenda.Visible = false;
-            btnOutrasSaidas.Visible = false;
-            filtrarLbl.Visible = false;
-            filtrarNome.Visible = false;
-            filtrarCategoria.Visible = false;
-            filtrarQuantidade.Visible = false;
-            imgSearch.Visible = false;
+            ExibirPanel(panelFornecedores, panelList);
+            OcultarElementosDinamicos();
         }
 
         public static void Configurações(Panel panelConfiguracao, List<Panel> panelList)
         {
-            foreach (var i in panelList)
-            {
-                i.Visible = false;
-            }
-            panelConfiguracao.Controls.Clear();
-            panelConfiguracao.Visible = true;
-
-            btnSaidaPorVenda.Visible = false;
-            btnOutrasSaidas.Visible = false;
-            filtrarLbl.Visible = false;
-            filtrarNome.Visible = false;
-            filtrarCategoria.Visible = false;
-            filtrarQuantidade.Visible = false;
-            imgSearch.Visible = false;
+            ExibirPanel(panelConfiguracao, panelList);
+            OcultarElementosDinamicos();
         }
 
 
@@ -336,7 +285,26 @@ namespace TCC.app
             btnOutrasSaidas.BackColor = Color.DarkRed;
         }
 
+        public static void OcultarElementosDinamicos()
+        {
+            btnSaidaPorVenda.Visible = false;
+            btnOutrasSaidas.Visible = false;
+            filtrarLbl.Visible = false;
+            filtrarNome.Visible = false;
+            filtrarCategoria.Visible = false;
+            filtrarQuantidade.Visible = false;
+            imgSearch.Visible = false;
+        }
 
+        public static void ExibirPanel(Panel panel, List<Panel> panelList)
+        {
+            foreach (var i in panelList)
+            {
+                i.Visible = false;
+            }
+            panel.Controls.Clear();
+            panel.Visible = true;
+        }
 
         public static void Deletar(Produtos produto, Panel pContainer, Panel panel)
         {
