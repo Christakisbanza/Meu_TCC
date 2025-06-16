@@ -286,9 +286,6 @@ namespace TCC.elementos
             comboBox.Size = new Size(200, 50);
             comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            comboBox.Items.Add("Maior Quantidade");
-            comboBox.Items.Add("Menor Quantidade");
-
             comboBox.SelectedIndexChanged += (sender, e) =>
             {
                 MessageBox.Show($"Selecionado: {comboBox.SelectedItem}");

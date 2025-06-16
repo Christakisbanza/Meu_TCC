@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TCC.dbConexionProduto;
 using TCC.elementos;
+using TCC.elementos.elementosMsg;
 using TCC.entities;
 
 namespace TCC.app
@@ -181,27 +182,18 @@ namespace TCC.app
             }
             panelVerProdutos.Controls.Clear();
             filtrarNome.Clear();
-            filtrarCategoria.Items.Clear();
             filtrarQuantidade.Items.Clear();
+            filtrarQuantidade.Items.Add("Maior Quantidade");
+            filtrarQuantidade.Items.Add("Menor Quantidade");
+            filtrarCategoria.Items.Clear();
+            
 
             panelVerProdutos.Visible = true;
             panelVerProdutos.BackColor = Color.LightGray;
             panelVerProdutos.AutoScroll = true;
 
-            btnSaidaPorVenda.Visible = true;
-            btnSaidaPorVenda.BringToFront();
-            btnOutrasSaidas.Visible = true;
-            btnOutrasSaidas.BringToFront();
-            filtrarLbl.Visible = true;
-            filtrarLbl.BringToFront();
-            filtrarNome.Visible = true;
-            filtrarNome.BringToFront();
-            filtrarCategoria.Visible = true;
-            filtrarCategoria.BringToFront();
-            filtrarQuantidade.Visible = true;
-            filtrarQuantidade.BringToFront();
-            imgSearch.Visible = true;
-            imgSearch.BringToFront();
+           
+           
 
             BuscarDadosProtutos.BuscarProdutos();
 
@@ -251,6 +243,29 @@ namespace TCC.app
 
             }
             Elementos.CriarPanelMargin(panelVerProdutos, xPanel);
+
+            if (produtos.Count == 0)
+            {
+                new MsgTemporaria("Nenhum Produto Cadastrado !").Show();
+
+            }
+            else
+            {
+                btnSaidaPorVenda.Visible = true;
+                btnSaidaPorVenda.BringToFront();
+                btnOutrasSaidas.Visible = true;
+                btnOutrasSaidas.BringToFront();
+                filtrarLbl.Visible = true;
+                filtrarLbl.BringToFront();
+                filtrarNome.Visible = true;
+                filtrarNome.BringToFront();
+                filtrarCategoria.Visible = true;
+                filtrarCategoria.BringToFront();
+                filtrarQuantidade.Visible = true;
+                filtrarQuantidade.BringToFront();
+                imgSearch.Visible = true;
+                imgSearch.BringToFront();
+            }
         }
 
         public static void Fornecedores(Panel panelFornecedores, List<Panel> panelList)
