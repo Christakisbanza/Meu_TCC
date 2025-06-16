@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using TCC.app;
 using TCC.elementos;
+using TCC.elementos.elementosMsg;
 using TCC.entities;
 using TCC.exception;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -60,8 +61,7 @@ namespace TCC.dbConexion
 
                             if (txtEmail.Text.Trim() == email && txtSenha.Text.Trim() == senha)
                             {
-                                MessageBox.Show($"Enail: {email}, Senha: {senha}\n" +
-                                    $"Validação com sucesso !");
+                                new MsgTemporaria("Validação com sucesso !").Show();
 
                                 panelOverlay.Visible = false;
                                 panelFlutuante.Visible = false;
@@ -79,7 +79,7 @@ namespace TCC.dbConexion
 
                         if (validacao == false)
                         {
-                            MessageBox.Show("Email ou senha inválido !");
+                            new MsgTemporaria("Email ou Senha inválido !").Show();
                         }
 
                         txtEmail.Clear();

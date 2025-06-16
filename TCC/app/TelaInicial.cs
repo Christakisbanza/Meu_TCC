@@ -235,10 +235,11 @@ namespace TCC.app
                 Elementos.CriarImgEditar(580, 10, pContainer, () => MessageBox.Show("ok"));
                 
                 xPanel += 800;
-
-                if (!filtrarCategoria.Items.Contains(i.CategoriaT))
+                
+                
+                if (!filtrarCategoria.Items.Contains(i.CategoriaT.ToUpper()))
                 {
-                    filtrarCategoria.Items.Add(i.CategoriaT);
+                    filtrarCategoria.Items.Add(i.CategoriaT.ToUpper());
                 }
 
             }
@@ -247,7 +248,6 @@ namespace TCC.app
             if (produtos.Count == 0)
             {
                 new MsgTemporaria("Nenhum Produto Cadastrado !").Show();
-
             }
             else
             {
