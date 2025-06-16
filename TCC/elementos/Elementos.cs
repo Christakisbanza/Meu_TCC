@@ -269,7 +269,7 @@ namespace TCC.elementos
 
             listBox.SelectedIndexChanged += (sender, e) =>
             {
-                MessageBox.Show($"Selecionado: {listBox.SelectedItem}");
+                
             };
 
             paneDeFunfo.Controls.Add(listBox);

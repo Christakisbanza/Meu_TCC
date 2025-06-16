@@ -165,14 +165,10 @@ namespace TCC.app
             panelVerProdutos.BackColor = Color.LightGray;
             panelVerProdutos.AutoScroll = true;
 
-           
-           
-
             BuscarDadosProtutos.BuscarProdutos();
 
-
             int xPanel = 50;
-
+            int x = 50;
             foreach (var i in produtos)
             {
                 Label idTxt = Elementos.CriarLbl("ID: ", 25, 25, 10);
@@ -207,17 +203,30 @@ namespace TCC.app
                 Elementos.CriarImgDeletar(650, 10, pContainer, () => Deletar(i, pContainer, panelVerProdutos));
                 Elementos.CriarImgEditar(580, 10, pContainer, () => MessageBox.Show("ok"));
                 
-                xPanel += 800;
-                
                 
                 if (!filtrarCategoria.Items.Contains(i.CategoriaT.ToUpper()))
                 {
                     filtrarCategoria.Items.Add(i.CategoriaT.ToUpper());
                 }
 
+                filtrarCategoria.SelectedIndexChanged += (sender, e) =>
+                {
+                    x = 50;
+                    if (filtrarCategoria.SelectedItem.ToString() != i.CategoriaT.ToUpper())
+                    {
+                        pContainer.Visible = false;
+                    }
+                    if(filtrarCategoria.SelectedItem.ToString() == i.CategoriaT.ToUpper())
+                    {
+                        pContainer.Visible = true;
+                        pContainer.Location = new Point(x, 50);
+                        x += 800;
+                    }
+                };
+                xPanel += 800;
+
             }
             Elementos.CriarPanelMargin(panelVerProdutos, xPanel);
-
             if (produtos.Count == 0)
             {
                 new MsgTemporaria("Nenhum Produto Cadastrado !").Show();
