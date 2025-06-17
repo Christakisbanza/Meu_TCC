@@ -231,28 +231,8 @@ namespace TCC.app
 
             }
             Elementos.CriarPanelMargin(panelVerProdutos, xPanel);
-            
-            if (produtos.Count == 0)
-            {
-                new MsgTemporaria("Nenhum Produto Cadastrado !").Show();
-            }
-            else
-            {
-                btnSaidaPorVenda.Visible = true;
-                btnSaidaPorVenda.BringToFront();
-                btnOutrasSaidas.Visible = true;
-                btnOutrasSaidas.BringToFront();
-                filtrarLbl.Visible = true;
-                filtrarLbl.BringToFront();
-                filtrarNome.Visible = true;
-                filtrarNome.BringToFront();
-                filtrarCategoria.Visible = true;
-                filtrarCategoria.BringToFront();
-                filtrarQuantidade.Visible = true;
-                filtrarQuantidade.BringToFront();
-                imgSearch.Visible = true;
-                imgSearch.BringToFront();
-            }
+
+            ExibirElementosDinamicos();
         }
 
         public static void Fornecedores(Panel panelFornecedores, List<Panel> panelList)
@@ -273,7 +253,7 @@ namespace TCC.app
 
         public static void ElementosDinamicosEmVerProdutos(Panel panelDeFundo)
         {
-            filtrarLbl = Elementos.CriarLblRegular("Filtrar por Nome, Categoria ou Quantidade:", 700, 650, 12);
+            filtrarLbl = Elementos.CriarLblRegular("Filtrar por Nome, Quantidade ou Categoria:", 700, 650, 12);
             filtrarLbl.Visible = false;
             filtrarLbl.BackColor = Color.LightGray;
             panelDeFundo.Controls.Add(filtrarLbl);
@@ -308,6 +288,31 @@ namespace TCC.app
             filtrarCategoria.Visible = false;
             filtrarQuantidade.Visible = false;
             imgSearch.Visible = false;
+        }
+
+        public static void ExibirElementosDinamicos()
+        {
+            if (produtos.Count == 0)
+            {
+                new MsgTemporaria("Nenhum Produto Cadastrado !").Show();
+            }
+            else
+            {
+                btnSaidaPorVenda.Visible = true;
+                btnSaidaPorVenda.BringToFront();
+                btnOutrasSaidas.Visible = true;
+                btnOutrasSaidas.BringToFront();
+                filtrarLbl.Visible = true;
+                filtrarLbl.BringToFront();
+                filtrarNome.Visible = true;
+                filtrarNome.BringToFront();
+                filtrarCategoria.Visible = true;
+                filtrarCategoria.BringToFront();
+                filtrarQuantidade.Visible = true;
+                filtrarQuantidade.BringToFront();
+                imgSearch.Visible = true;
+                imgSearch.BringToFront();
+            }
         }
 
         public static void ExibirPanel(Panel panel, List<Panel> panelList)
