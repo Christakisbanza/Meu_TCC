@@ -14,7 +14,7 @@ namespace TCC.elementos.elementosMsg
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.BackColor = Color.White;
-            this.Opacity = 0.5;
+            this.Opacity = 0.7;
             this.ShowInTaskbar = false;
             this.TopMost = true;
             this.Size = new Size(400, 200);

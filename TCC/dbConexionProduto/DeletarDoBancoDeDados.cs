@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using TCC.app;
+using TCC.elementos.elementosMsg;
 using TCC.entities;
 
 namespace TCC.dbConexionProduto
@@ -45,7 +46,7 @@ namespace TCC.dbConexionProduto
 
                             int linhasAfetadas = cmd.ExecuteNonQuery();
 
-                            MessageBox.Show($"ID:{produto.Id} - Deletado com sucesso !");
+                            new MsgTemporaria($"ID:{produto.Id} - Deletado com sucesso !").Show();
                         }
 
                     }

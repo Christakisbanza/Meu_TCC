@@ -169,6 +169,11 @@ namespace TCC.app
 
             int xPanel = 50;
             int x = 50;
+            filtrarCategoria.MouseClick += (sender, e) =>
+            {
+                x = 50;
+            };
+            
             foreach (var i in produtos)
             {
                 Label idTxt = Elementos.CriarLbl("ID: ", 25, 25, 10);
@@ -191,7 +196,7 @@ namespace TCC.app
                 
                 PictureBox pictureBox = new PictureBox();
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                pictureBox.Size = new Size(250, 200);
+                pictureBox.Size = new Size(250, 225);
                 pictureBox.Location = new Point(400, 150);
                 pictureBox.Image = Image.FromFile(i.Img);
 
@@ -211,22 +216,22 @@ namespace TCC.app
 
                 filtrarCategoria.SelectedIndexChanged += (sender, e) =>
                 {
-                    x = 50;
-                    if (filtrarCategoria.SelectedItem.ToString() != i.CategoriaT.ToUpper())
-                    {
-                        pContainer.Visible = false;
-                    }
                     if(filtrarCategoria.SelectedItem.ToString() == i.CategoriaT.ToUpper())
                     {
                         pContainer.Visible = true;
                         pContainer.Location = new Point(x, 50);
                         x += 800;
                     }
+                    else
+                    {
+                        pContainer.Visible = false;
+                    }
                 };
                 xPanel += 800;
 
             }
             Elementos.CriarPanelMargin(panelVerProdutos, xPanel);
+            
             if (produtos.Count == 0)
             {
                 new MsgTemporaria("Nenhum Produto Cadastrado !").Show();
