@@ -61,7 +61,7 @@ namespace TCC.dbConexion
 
                             if (txtEmail.Text.Trim() == email && txtSenha.Text.Trim() == senha)
                             {
-                                new MsgTemporaria("Validação com sucesso !").Show();
+                                new MsgTemporaria("Bem vindo !").Show();
 
                                 panelOverlay.Visible = false;
                                 panelFlutuante.Visible = false;

@@ -16,6 +16,7 @@ namespace TCC.app
     {
         static TextBox nome;
         static TextBox preco;
+        static TextBox precoCompra;
         static TextBox quantidade;
         static TextBox categorioa;
         static TextBox descricao;
@@ -98,15 +99,20 @@ namespace TCC.app
             Elementos.CriarLbl("Nome:", 70, 50, 12, panelCadastrarProduto);
             nome = Elementos.CriarTxtBox(75, 90, panelCadastrarProduto);
 
-            Elementos.CriarLbl("Preço:", 475, 50, 12, panelCadastrarProduto);
+            Elementos.CriarLbl("Preço Unitário da Venda:", 475, 50, 12, panelCadastrarProduto);
             preco = Elementos.CriarTxtBox(480, 90, panelCadastrarProduto);
+            preco.Size = new Size(300,35);
+
+            Elementos.CriarLbl("Preço Unitário da Compra:", 475, 160, 12, panelCadastrarProduto);
+            precoCompra = Elementos.CriarTxtBox(480, 200, panelCadastrarProduto);
+            precoCompra.Size = new Size(300, 35);
 
             Elementos.CriarLbl("Quantidade:", 70, 160, 12, panelCadastrarProduto);
             quantidade = Elementos.CriarTxtBox(75, 200, panelCadastrarProduto);
 
-            Elementos.CriarLbl("Categoria:", 475, 160, 12, panelCadastrarProduto);
-            categorioa = Elementos.CriarTxtBox(480, 200, panelCadastrarProduto);
-
+            Elementos.CriarLbl("Categoria:", 475, 270, 12, panelCadastrarProduto);
+            categorioa = Elementos.CriarTxtBox(480, 310, panelCadastrarProduto);
+            categorioa.Size = new Size(300, 35);
 
             Elementos.CriarLbl("Descição:", 70, 270, 12, panelCadastrarProduto);
             descricao = Elementos.CriarTxtBox(75, 310, panelCadastrarProduto);
@@ -119,13 +125,13 @@ namespace TCC.app
 
             PictureBox pictureBox = null;
 
-            btnImg = Elementos.CriarBtn("Selecione img", 475, 340, 220, 50, 10, panelCadastrarProduto, () =>
+            btnImg = Elementos.CriarBtn("Selecione img", 900, 200, 220, 50, 10, panelCadastrarProduto, () =>
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     pictureBox = new PictureBox();
-                    pictureBox.Size = new Size(150, 150);
-                    pictureBox.Location = new Point(510, 300);
+                    pictureBox.Size = new Size(250, 250);
+                    pictureBox.Location = new Point(900, 125);
                     pictureBox.Image = Image.FromFile(openFileDialog.FileName);
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                     panelCadastrarProduto.Controls.Add(pictureBox);
@@ -134,7 +140,7 @@ namespace TCC.app
             });
             btnImg.BackColor = Color.Gray;
 
-            btnCadastrar = Elementos.CriarBtn("Cadastrar", 310, 500, 170, 70, 10, panelCadastrarProduto, () => {
+            btnCadastrar = Elementos.CriarBtn("Cadastrar", 500, 500, 170, 70, 10, panelCadastrarProduto, () => {
                 DBConexionProdutos.salvarProdutos(new Produtos(nome, preco, quantidade, categorioa, descricao, openFileDialog.FileName));
 
                 nome.Clear();
@@ -182,8 +188,8 @@ namespace TCC.app
                 Label nomeTxt = Elementos.CriarLbl("Nome: ", 50, 100, 12);
                 Label nome = Elementos.CriarLblRegular($"{i.NomeT}", 140, 100, 12);
 
-                Label precoTxt = Elementos.CriarLbl("Preço: ", 50, 170, 12);
-                Label preco = Elementos.CriarLblRegular($"R${i.PrecoT}", 140, 170, 12);
+                Label precoTxt = Elementos.CriarLbl("Preço da Venda: ", 50, 170, 12);
+                Label preco = Elementos.CriarLblRegular($"R${i.PrecoT}", 250, 170, 12);
 
                 Label quantidadeTxt = Elementos.CriarLbl("Quantidade: ", 50, 240, 12);
                 Label quantidade = Elementos.CriarLblRegular($"{i.QuantidadeT}", 205, 240, 12);
