@@ -68,14 +68,26 @@ namespace TCC.app
 
             foreach (var dado in dadosUser)
             {
-                Label id = Elementos.CriarLblRegular($"Id: {dado.Id}", 50, 50, 12);
-                Label email = Elementos.CriarLblRegular($"Email: {dado.EmailString}", 50, 100, 12);
-                Label cpf = Elementos.CriarLblRegular($"Cpf: {dado.CpfString}", 50, 150, 12);
-                Label data = Elementos.CriarLblRegular($"Data Nascimento: {dado.DataNascimentoString}", 50, 200, 12);
-                Label sexo = Elementos.CriarLblRegular($"Sexo: {dado.SexoString}", 50, 250, 12);
-                Label funcao = Elementos.CriarLblRegular($"Função: {dado.FuncaoString}", 50, 300, 12);
+                Label idTxt = Elementos.CriarLbl("ID: ", 50, 50, 10);
+                Label id = Elementos.CriarLblRegular($"{dado.Id}", 100, 50, 12);
+
+                Label emailTxt = Elementos.CriarLbl("Email: ", 50, 100, 10);
+                Label email = Elementos.CriarLblRegular($"{dado.EmailString}", 100, 100, 12);
+
+                Label cpfTxt = Elementos.CriarLbl("Cpf: ", 50, 150, 10);
+                Label cpf = Elementos.CriarLblRegular($"{dado.CpfString}", 100, 150, 12);
+
+                Label dataTxt = Elementos.CriarLbl("Data Nascimento: ", 50, 200, 10);
+                Label data = Elementos.CriarLblRegular($"{dado.DataNascimentoString}", 100, 200, 12);
+
+                Label sexoTxt = Elementos.CriarLbl("Sexo: ", 50, 250, 10);
+                Label sexo = Elementos.CriarLblRegular($"{dado.SexoString}", 100, 250, 12);
+
+                Label funcaoTxt = Elementos.CriarLbl("Função: ", 50, 300, 10);
+                Label funcao = Elementos.CriarLblRegular($"{dado.FuncaoString}", 100, 300, 12);
 
                 panelPerfil.Controls.AddRange(new Control[] {id, email, cpf, data, sexo, funcao });
+                panelPerfil.Controls.AddRange(new Control[] { idTxt, emailTxt, cpfTxt, dataTxt, sexoTxt, funcaoTxt });
             }
 
         }
