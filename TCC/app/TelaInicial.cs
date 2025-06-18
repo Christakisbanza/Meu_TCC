@@ -96,28 +96,28 @@ namespace TCC.app
 
             OcultarElementosDinamicos();
 
-            Panel pContainer = Elementos.CriarPanelContainer(panelCadastrarProduto, 50, 150, 1100,600);
+            Panel pContainer = Elementos.CriarPanelContainer(panelCadastrarProduto, 25, 25, 1150,600);
 
-            Elementos.CriarLbl("Nome:", 70, 50, 12, pContainer);
-            nome = Elementos.CriarTxtBox(75, 90, pContainer);
+            Elementos.CriarLbl("Nome:", 30, 50, 12, pContainer);
+            nome = Elementos.CriarTxtBox(35, 90, pContainer);
 
-            Elementos.CriarLbl("Preço Unitário da Venda:", 475, 50, 12, pContainer);
-            preco = Elementos.CriarTxtBox(480, 90, pContainer);
+            Elementos.CriarLbl("Preço Unitário da Venda:", 435, 50, 12, pContainer);
+            preco = Elementos.CriarTxtBox(440, 90, pContainer);
             preco.Size = new Size(300,35);
 
-            Elementos.CriarLbl("Preço Unitário da Compra:", 475, 160, 12, pContainer);
-            precoCompra = Elementos.CriarTxtBox(480, 200, pContainer);
+            Elementos.CriarLbl("Preço Unitário da Compra:", 435, 160, 12, pContainer);
+            precoCompra = Elementos.CriarTxtBox(440, 200, pContainer);
             precoCompra.Size = new Size(300, 35);
 
-            Elementos.CriarLbl("Quantidade:", 70, 160, 12, pContainer);
-            quantidade = Elementos.CriarTxtBox(75, 200, pContainer);
+            Elementos.CriarLbl("Quantidade:", 30, 160, 12, pContainer);
+            quantidade = Elementos.CriarTxtBox(35, 200, pContainer);
 
-            Elementos.CriarLbl("Categoria:", 475, 270, 12, pContainer);
-            categorioa = Elementos.CriarTxtBox(480, 310, pContainer);
+            Elementos.CriarLbl("Categoria:", 435, 270, 12, pContainer);
+            categorioa = Elementos.CriarTxtBox(440, 310, pContainer);
             categorioa.Size = new Size(300, 35);
 
-            Elementos.CriarLbl("Descição:", 70, 270, 12, pContainer);
-            descricao = Elementos.CriarTxtBox(75, 310, pContainer);
+            Elementos.CriarLbl("Descição:", 30, 270, 12, pContainer);
+            descricao = Elementos.CriarTxtBox(35, 310, pContainer);
             descricao.Multiline = true;
             descricao.Size = new Size(300, 125);
 
@@ -127,13 +127,13 @@ namespace TCC.app
 
             PictureBox pictureBox = null;
 
-            btnImg = Elementos.CriarBtn("Selecione img", 900, 200, 220, 50, 10, pContainer, () =>
+            btnImg = Elementos.CriarBtn("Selecione img", 850, 200, 220, 50, 10, pContainer, () =>
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     pictureBox = new PictureBox();
                     pictureBox.Size = new Size(250, 250);
-                    pictureBox.Location = new Point(900, 125);
+                    pictureBox.Location = new Point(850, 125);
                     pictureBox.Image = Image.FromFile(openFileDialog.FileName);
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                     pContainer.Controls.Add(pictureBox);
