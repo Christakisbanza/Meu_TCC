@@ -96,26 +96,28 @@ namespace TCC.app
 
             OcultarElementosDinamicos();
 
-            Elementos.CriarLbl("Nome:", 70, 50, 12, panelCadastrarProduto);
-            nome = Elementos.CriarTxtBox(75, 90, panelCadastrarProduto);
+            Panel pContainer = Elementos.CriarPanelContainer(panelCadastrarProduto, 50, 150, 1100,600);
 
-            Elementos.CriarLbl("Preço Unitário da Venda:", 475, 50, 12, panelCadastrarProduto);
-            preco = Elementos.CriarTxtBox(480, 90, panelCadastrarProduto);
+            Elementos.CriarLbl("Nome:", 70, 50, 12, pContainer);
+            nome = Elementos.CriarTxtBox(75, 90, pContainer);
+
+            Elementos.CriarLbl("Preço Unitário da Venda:", 475, 50, 12, pContainer);
+            preco = Elementos.CriarTxtBox(480, 90, pContainer);
             preco.Size = new Size(300,35);
 
-            Elementos.CriarLbl("Preço Unitário da Compra:", 475, 160, 12, panelCadastrarProduto);
-            precoCompra = Elementos.CriarTxtBox(480, 200, panelCadastrarProduto);
+            Elementos.CriarLbl("Preço Unitário da Compra:", 475, 160, 12, pContainer);
+            precoCompra = Elementos.CriarTxtBox(480, 200, pContainer);
             precoCompra.Size = new Size(300, 35);
 
-            Elementos.CriarLbl("Quantidade:", 70, 160, 12, panelCadastrarProduto);
-            quantidade = Elementos.CriarTxtBox(75, 200, panelCadastrarProduto);
+            Elementos.CriarLbl("Quantidade:", 70, 160, 12, pContainer);
+            quantidade = Elementos.CriarTxtBox(75, 200, pContainer);
 
-            Elementos.CriarLbl("Categoria:", 475, 270, 12, panelCadastrarProduto);
-            categorioa = Elementos.CriarTxtBox(480, 310, panelCadastrarProduto);
+            Elementos.CriarLbl("Categoria:", 475, 270, 12, pContainer);
+            categorioa = Elementos.CriarTxtBox(480, 310, pContainer);
             categorioa.Size = new Size(300, 35);
 
-            Elementos.CriarLbl("Descição:", 70, 270, 12, panelCadastrarProduto);
-            descricao = Elementos.CriarTxtBox(75, 310, panelCadastrarProduto);
+            Elementos.CriarLbl("Descição:", 70, 270, 12, pContainer);
+            descricao = Elementos.CriarTxtBox(75, 310, pContainer);
             descricao.Multiline = true;
             descricao.Size = new Size(300, 125);
 
@@ -125,7 +127,7 @@ namespace TCC.app
 
             PictureBox pictureBox = null;
 
-            btnImg = Elementos.CriarBtn("Selecione img", 900, 200, 220, 50, 10, panelCadastrarProduto, () =>
+            btnImg = Elementos.CriarBtn("Selecione img", 900, 200, 220, 50, 10, pContainer, () =>
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -134,13 +136,13 @@ namespace TCC.app
                     pictureBox.Location = new Point(900, 125);
                     pictureBox.Image = Image.FromFile(openFileDialog.FileName);
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    panelCadastrarProduto.Controls.Add(pictureBox);
+                    pContainer.Controls.Add(pictureBox);
                     btnImg.Visible = false;
                 }
             });
             btnImg.BackColor = Color.Gray;
 
-            btnCadastrar = Elementos.CriarBtn("Cadastrar", 500, 500, 170, 70, 10, panelCadastrarProduto, () => {
+            btnCadastrar = Elementos.CriarBtn("Cadastrar", 500, 500, 170, 70, 10, pContainer, () => {
                 DBConexionProdutos.salvarProdutos(new Produtos(nome, preco, quantidade, categorioa, descricao, openFileDialog.FileName));
 
                 nome.Clear();
@@ -149,13 +151,13 @@ namespace TCC.app
                 categorioa.Clear();
                 descricao.Clear();
 
-                panelCadastrarProduto.Controls.Remove(pictureBox);
+                pContainer.Controls.Remove(pictureBox);
                 btnImg.Visible = true;
 
                 nome.Focus();
             });
             btnCadastrar.BackColor = Color.Green;
-            
+            panelCadastrarProduto.BackColor = Color.LightGray; 
         }
 
         public static void VerProdutos(Panel panelVerProdutos, List<Panel> panelList)
