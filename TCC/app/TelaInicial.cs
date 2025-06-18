@@ -32,9 +32,8 @@ namespace TCC.app
         static ComboBox filtrarQuantidade;
         static PictureBox imgSearch;
 
-        static List<String> dados = new List<String>();
         public static List<Produtos> produtos = new List<Produtos>();
-
+        static List<User> dadosUser = new List<User>();
 
 
 
@@ -67,27 +66,18 @@ namespace TCC.app
 
             OcultarElementosDinamicos();
 
-            int n = 50;
-            foreach (var i in dados)
+            foreach (var dado in dadosUser)
             {
-                if (n == 50) 
-                {
-                    Elementos.CriarLbl($"Cpf: {i}", 30, n += 50, 12, panelPerfil);
-                }
-                else if (n == 100)
-                {
-                    Elementos.CriarLbl($"Data Nascimento: {i}", 30, n += 50, 12, panelPerfil);
-                }
-                else if (n == 150)
-                {
-                    Elementos.CriarLbl($"Sexo: {i}", 30, n += 50, 12, panelPerfil);
-                }
-                else if (n == 200)
-                {
-                    Elementos.CriarLbl($"Função: {i}", 30, n += 50, 12, panelPerfil);
-                }
-                
+                Label id = Elementos.CriarLblRegular($"Id: {dado.Id}", 50, 50, 12);
+                Label email = Elementos.CriarLblRegular($"Email: {dado.EmailString}", 50, 100, 12);
+                Label cpf = Elementos.CriarLblRegular($"Cpf: {dado.CpfString}", 50, 150, 12);
+                Label data = Elementos.CriarLblRegular($"Data Nascimento: {dado.DataNascimentoString}", 50, 200, 12);
+                Label sexo = Elementos.CriarLblRegular($"Sexo: {dado.SexoString}", 50, 250, 12);
+                Label funcao = Elementos.CriarLblRegular($"Função: {dado.FuncaoString}", 50, 300, 12);
+
+                panelPerfil.Controls.AddRange(new Control[] {id, email, cpf, data, sexo, funcao });
             }
+
         }
 
         public static void CadastrarProdutos(Panel panelCadastrarProduto, List<Panel> panelList)
@@ -344,9 +334,9 @@ namespace TCC.app
             }
         }
 
-        public static void AddDados(string dado)
+        public static void AddUser(User dados)
         {
-            dados.Add(dado);
+            dadosUser.Add(dados);
         }
 
         public static void AddProdutos(Produtos produto)

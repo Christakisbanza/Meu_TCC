@@ -37,7 +37,7 @@ namespace TCC.dbConexion
 
 
 
-                    string query = "SELECT email, senha, cpf, data_nascimento, sexo, funcao" +
+                    string query = "SELECT id, email, senha, cpf, data_nascimento, sexo, funcao" +
                                     " FROM users";
 
                     try
@@ -52,12 +52,13 @@ namespace TCC.dbConexion
 
                         while (reader.Read())
                         {
-                            string email = reader.GetString(0);
-                            string senha = reader.GetString(1);
-                            string cpf = reader.GetString(2);
+                            int id = reader.GetInt32(0);
+                            string email = reader.GetString(1);
+                            string senha = reader.GetString(2);
+                            string cpf = reader.GetString(3);
                             DateTime data = reader.GetDateTime(reader.GetOrdinal("data_nascimento"));
-                            string sexo = reader.GetString(4);
-                            string funcao = reader.GetString(5);
+                            string sexo = reader.GetString(5);
+                            string funcao = reader.GetString(6);
 
                             if (txtEmail.Text.Trim() == email && txtSenha.Text.Trim() == senha)
                             {
@@ -69,10 +70,7 @@ namespace TCC.dbConexion
 
                                 validacao = true;
 
-                                TelaInicial.AddDados(cpf);
-                                TelaInicial.AddDados(data.ToString("yyyy/MM/dd"));
-                                TelaInicial.AddDados(sexo);
-                                TelaInicial.AddDados(funcao);
+                                TelaInicial.AddUser(new User(id, email, senha, cpf, data.ToString("yyyy/MM/dd"),sexo,funcao));
                                 TelaInicial.CriarTelaInicial(form);
                             }           
                         }
