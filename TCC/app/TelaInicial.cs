@@ -43,7 +43,9 @@ namespace TCC.app
             Panel panelDeFundo = Elementos.CriarPanelEntrar(form);
 
             Panel panelPerfil = Elementos.CriarPanelPrincipal(panelDeFundo);
-            panelPerfil.Size = new Size(500,400);
+            panelPerfil.Size = new Size(1200,400);
+            panelPerfil.BorderStyle = BorderStyle.Fixed3D;
+
             Panel panelCadastrarProduto = Elementos.CriarPanelPrincipal(panelDeFundo);
             Panel panelVerProdutos = Elementos.CriarPanelPrincipal(panelDeFundo);
             Panel panelFornecedores = Elementos.CriarPanelPrincipal(panelDeFundo);
@@ -51,7 +53,7 @@ namespace TCC.app
 
             Elementos.CriarImgPerfil(275, 50, panelDeFundo, () => ClicouNoPerfil(panelPerfil, [panelCadastrarProduto, panelVerProdutos,panelFornecedores,panelConfiguracao]));
 
-            Button btn1 = Elementos.CriarBtn("Cadastrar Produtos", 50, 50, 300, 80, 12, panelDeFundo, () => CadastrarProdutos(panelCadastrarProduto, [panelPerfil,panelVerProdutos, panelFornecedores,panelConfiguracao]));
+            Button btn1 = Elementos.CriarBtn("Início/Cadastrar Produtos", 50, 50, 300, 80, 12, panelDeFundo, () => CadastrarProdutos(panelCadastrarProduto, [panelPerfil,panelVerProdutos, panelFornecedores,panelConfiguracao]));
             Button btn2 = Elementos.CriarBtn("Ver Produtos", 50, 180, 300, 80, 12, panelDeFundo, () => VerProdutos(panelVerProdutos, [panelPerfil,panelCadastrarProduto,panelFornecedores,panelConfiguracao]));
             Button btn3 = Elementos.CriarBtn("Fornecedores", 50, 310, 300, 80, 12, panelDeFundo, () => Fornecedores(panelFornecedores, [panelPerfil,panelCadastrarProduto,panelVerProdutos,panelConfiguracao]));
             Button btn4 = Elementos.CriarBtn("Configurações", 50, 440, 300, 80, 12, panelDeFundo, () => Configurações(panelConfiguracao, [panelPerfil,panelCadastrarProduto, panelVerProdutos,panelFornecedores]));
@@ -70,23 +72,23 @@ namespace TCC.app
 
             foreach (var dado in dadosUser)
             {
-                Label idTxt = Elementos.CriarLbl("ID: ", 50, 50, 10);
-                Label id = Elementos.CriarLblRegular($"{dado.Id}", 90, 50, 12);
+                Label idTxt = Elementos.CriarLbl("USER ID: ", 25, 30, 9);
+                Label id = Elementos.CriarLblRegular($"{dado.Id}", 90, 30, 9);
 
-                Label emailTxt = Elementos.CriarLbl("Email: ", 50, 100, 10);
-                Label email = Elementos.CriarLblRegular($"{dado.EmailString}", 120, 100, 12);
+                Label emailTxt = Elementos.CriarLbl("Email: ", 50, 80, 12);
+                Label email = Elementos.CriarLblRegular($"{dado.EmailString}", 120, 80, 12);
 
-                Label cpfTxt = Elementos.CriarLbl("Cpf: ", 50, 150, 10);
-                Label cpf = Elementos.CriarLblRegular($"{dado.CpfString}", 100, 150, 12);
+                Label cpfTxt = Elementos.CriarLbl("Cpf: ", 50, 135, 12);
+                Label cpf = Elementos.CriarLblRegular($"{dado.CpfString}", 100, 135, 12);
 
-                Label dataTxt = Elementos.CriarLbl("Data de Nascimento: ", 50, 200, 10);
-                Label data = Elementos.CriarLblRegular($"{dado.DataNascimentoString}", 260, 200, 12);
+                Label dataTxt = Elementos.CriarLbl("Data de Nascimento: ", 50, 195, 12);
+                Label data = Elementos.CriarLblRegular($"{dado.DataNascimentoString}", 260, 195, 12);
 
-                Label sexoTxt = Elementos.CriarLbl("Sexo: ", 50, 250, 10);
-                Label sexo = Elementos.CriarLblRegular($"{dado.SexoString}", 110, 250, 12);
+                Label sexoTxt = Elementos.CriarLbl("Sexo: ", 50, 255, 12);
+                Label sexo = Elementos.CriarLblRegular($"{dado.SexoString}", 110, 255, 12);
 
-                Label funcaoTxt = Elementos.CriarLbl("Função: ", 50, 300, 10);
-                Label funcao = Elementos.CriarLblRegular($"{dado.FuncaoString}", 130, 300, 12);
+                Label funcaoTxt = Elementos.CriarLbl("Função: ", 50, 315, 12);
+                Label funcao = Elementos.CriarLblRegular($"{dado.FuncaoString}", 130, 315, 12);
 
                 panelPerfil.Controls.AddRange(new Control[] {id, email, cpf, data, sexo, funcao });
                 panelPerfil.Controls.AddRange(new Control[] { idTxt, emailTxt, cpfTxt, dataTxt, sexoTxt, funcaoTxt });
@@ -147,18 +149,22 @@ namespace TCC.app
             btnImg.BackColor = Color.Gray;
 
             btnCadastrar = Elementos.CriarBtn("Cadastrar", 500, 500, 170, 70, 10, pContainer, () => {
-                DBConexionProdutos.salvarProdutos(new Produtos(nome, preco, quantidade, categorioa, descricao, openFileDialog.FileName));
+                bool cadastroComSucesso = DBConexionProdutos.salvarProdutos(new Produtos(nome, preco, quantidade, categorioa, descricao, openFileDialog.FileName));
 
-                nome.Clear();
-                preco.Clear();
-                quantidade.Clear();
-                categorioa.Clear();
-                descricao.Clear();
+                if (cadastroComSucesso == true)
+                {
+                    nome.Clear();
+                    preco.Clear();
+                    quantidade.Clear();
+                    categorioa.Clear();
+                    descricao.Clear();
 
-                pContainer.Controls.Remove(pictureBox);
-                btnImg.Visible = true;
+                    pContainer.Controls.Remove(pictureBox);
+                    btnImg.Visible = true;
 
-                nome.Focus();
+                    nome.Focus();
+                }
+                
             });
             btnCadastrar.BackColor = Color.Green;
             panelCadastrarProduto.BackColor = Color.LightGray; 
@@ -192,19 +198,19 @@ namespace TCC.app
                 Label id = Elementos.CriarLblRegular($"{i.Id}", 65, 25, 10);
 
                 Label nomeTxt = Elementos.CriarLbl("Nome: ", 50, 100, 12);
-                Label nome = Elementos.CriarLblRegular($"{i.NomeT}", 140, 100, 12);
+                Label nome = Elementos.CriarLblRegular($"{i.NomeT}", 130, 100, 12);
 
                 Label precoTxt = Elementos.CriarLbl("Preço da Venda: ", 50, 170, 12);
-                Label preco = Elementos.CriarLblRegular($"R${i.PrecoT}", 250, 170, 12);
+                Label preco = Elementos.CriarLblRegular($"R${i.PrecoT}", 220, 170, 12);
 
                 Label quantidadeTxt = Elementos.CriarLbl("Quantidade: ", 50, 240, 12);
-                Label quantidade = Elementos.CriarLblRegular($"{i.QuantidadeT}", 205, 240, 12);
+                Label quantidade = Elementos.CriarLblRegular($"{i.QuantidadeT}", 185, 240, 12);
 
                 Label categoriaTxt = Elementos.CriarLbl("Categoria: ", 50, 310, 12);
-                Label categoria = Elementos.CriarLblRegular($"{i.CategoriaT}", 185, 310, 12);
+                Label categoria = Elementos.CriarLblRegular($"{i.CategoriaT}", 170, 310, 12);
 
                 Label descricaoTxt = Elementos.CriarLbl("Descrição: ", 50, 380, 12);
-                Label descricao = Elementos.CriarLblRegular($"{i.DescricaoT}", 185, 380, 12);
+                Label descricao = Elementos.CriarLblRegular($"{i.DescricaoT}", 170, 380, 12);
                 
                 PictureBox pictureBox = new PictureBox();
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;

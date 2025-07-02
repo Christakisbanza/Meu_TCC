@@ -14,7 +14,7 @@ namespace TCC.dbConexionProduto
     {
         private static string connectionString = "server=localhost;database=users_db;uid=root;pwd=;";
 
-        public static void salvarProdutos(Produtos produto)
+        public static bool salvarProdutos(Produtos produto)
         {
 
             try
@@ -28,7 +28,7 @@ namespace TCC.dbConexionProduto
                     catch (MySqlException ex)
                     {
                         MessageBox.Show("conectar ao banco de dados", ex.Message);
-                        return;
+                        return false;
                     }
 
                     string query = @"INSERT INTO produtos 
@@ -56,25 +56,30 @@ namespace TCC.dbConexionProduto
 
                         MessageBox.Show($"Cadastro realizado com sucesso!\nID: {newId}", "Sucesso",
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return true;
 
                     }
                     catch (PreecherCamposException ex)
                     {
                         MessageBox.Show("Error: " + ex.Message);
+                        return false;
                     }
                     catch (MySqlException ex)
                     {
                         MessageBox.Show("inserir os dados no banco", ex.Message);
+                        return false;
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("processar a operação", ex.Message);
+                        return false;
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("executar a operação", ex.Message);
+                return false;
             }
         }
 
@@ -96,7 +101,7 @@ namespace TCC.dbConexionProduto
 
         private static string ValidarPreco(TextBox txt)
         {
-            if (int.TryParse(txt.Text, out int n))
+            if (float.TryParse(txt.Text, out float n))
             {
                 return txt.Text.Trim();
             }
