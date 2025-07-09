@@ -149,12 +149,13 @@ namespace TCC.app
             btnImg.BackColor = Color.Gray;
 
             btnCadastrar = Elementos.CriarBtn("Cadastrar", 500, 500, 170, 70, 10, pContainer, () => {
-                bool cadastroComSucesso = DBConexionProdutos.salvarProdutos(new Produtos(nome, preco, quantidade, categorioa, descricao, openFileDialog.FileName));
+                bool cadastroComSucesso = DBConexionProdutos.salvarProdutos(new Produtos(nome, preco, precoCompra, quantidade, categorioa, descricao, openFileDialog.FileName));
 
                 if (cadastroComSucesso == true)
                 {
                     nome.Clear();
                     preco.Clear();
+                    precoCompra.Clear();    
                     quantidade.Clear();
                     categorioa.Clear();
                     descricao.Clear();
@@ -203,6 +204,9 @@ namespace TCC.app
                 Label precoTxt = Elementos.CriarLbl("Preço da Venda: ", 50, 170, 12);
                 Label preco = Elementos.CriarLblRegular($"R${i.PrecoT}", 220, 170, 12);
 
+                Label precoDaCompraTxt = Elementos.CriarLbl("Preço da Compra: ", 50, 200, 12);
+                Label precoDaCompra = Elementos.CriarLblRegular($"R${i.PrecoDaCompraString}", 230, 200, 12);
+
                 Label quantidadeTxt = Elementos.CriarLbl("Quantidade: ", 50, 240, 12);
                 Label quantidade = Elementos.CriarLblRegular($"{i.QuantidadeT}", 185, 240, 12);
 
@@ -219,8 +223,8 @@ namespace TCC.app
                 pictureBox.Image = Image.FromFile(i.Img);
 
                 Panel pContainer = Elementos.CriarPanelContainer(panelVerProdutos, xPanel, 50);
-                pContainer.Controls.AddRange(new Control[] {idTxt,nomeTxt, precoTxt, quantidadeTxt, categoriaTxt, descricaoTxt});
-                pContainer.Controls.AddRange(new Control[] {id,nome, preco, quantidade, categoria, descricao, pictureBox });
+                pContainer.Controls.AddRange(new Control[] {idTxt,nomeTxt, precoTxt, precoDaCompraTxt, quantidadeTxt, categoriaTxt, descricaoTxt});
+                pContainer.Controls.AddRange(new Control[] {id,nome, preco, precoDaCompra, quantidade, categoria, descricao, pictureBox });
        
 
                 Elementos.CriarImgDeletar(650, 10, pContainer, () => Deletar(i, pContainer, panelVerProdutos));

@@ -32,9 +32,9 @@ namespace TCC.dbConexionProduto
                     }
 
                     string query = @"INSERT INTO produtos 
-                                    (nome, preco, quantidade, categoria, descricao, img) 
+                                    (nome, preco, precoDaCompra, quantidade, categoria, descricao, img) 
                                     VALUES 
-                                    (@nome, @preco, @quantidade, @categoria, @descricao, @img);
+                                    (@nome, @preco, @precoDaCompra, @quantidade, @categoria, @descricao, @img);
                                     SELECT LAST_INSERT_ID();";
 
 
@@ -46,6 +46,7 @@ namespace TCC.dbConexionProduto
 
                         command.Parameters.AddWithValue("@nome", ValidarNome(produto.Nome));
                         command.Parameters.AddWithValue("@preco", ValidarPreco(produto.Preco));
+                        command.Parameters.AddWithValue("@precoDaCompra", ValidarPrecoDaCompra(produto.PrecoDaCompra));
                         command.Parameters.AddWithValue("@quantidade", ValidarQuantidade(produto.Quantidade));
                         command.Parameters.AddWithValue("@categoria", ValidarCategoria(produto.Categoria));
                         command.Parameters.AddWithValue("@descricao", ValidarDescricao(produto.Descricao));
@@ -66,7 +67,7 @@ namespace TCC.dbConexionProduto
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show("inserir os dados no banco", ex.Message);
+                        MessageBox.Show($"inserir os dados no banco {ex}", ex.Message);
                         return false;
                     }
                     catch (Exception ex)
@@ -96,7 +97,16 @@ namespace TCC.dbConexionProduto
                     throw new PreecherCamposException("Nome obrigatório ou já existente !");
                 }
             }
-            return textoFormatado;
+            
+
+            if (!string.IsNullOrWhiteSpace(txt.Text))
+            {
+                return textoFormatado;
+            }
+            else
+            {
+                throw new PreecherCamposException("Nome obrigatório !");
+            }
         }
 
         private static string ValidarPreco(TextBox txt)
@@ -109,6 +119,19 @@ namespace TCC.dbConexionProduto
             {
                 txt.Clear();
                 throw new PreecherCamposException("Somente numero no campo Preço !");
+            }
+        }
+
+        private static string ValidarPrecoDaCompra(TextBox txt)
+        {
+            if (float.TryParse(txt.Text, out float n))
+            {
+                return txt.Text.Trim();
+            }
+            else
+            {
+                txt.Clear();
+                throw new PreecherCamposException("Somente numero no campo Preço Da Compra !");
             }
         }
 
@@ -157,10 +180,18 @@ namespace TCC.dbConexionProduto
             {
                 if (string.IsNullOrWhiteSpace(txt) || i.Img.ToLower() == txt.ToLower())
                 {
-                    throw new PreecherCamposException("Imagem obrigatório ou já existente!");
+                    throw new PreecherCamposException("Imagem obrigatória ou já existente!");
                 }
             }
-            return txt.Trim();
+            
+            if (!string.IsNullOrWhiteSpace(txt))
+            {
+                return txt.Trim();
+            }
+            else
+            {
+                throw new PreecherCamposException("Imagem obrigatória !");
+            }
         }
     }
 }
