@@ -81,6 +81,22 @@ namespace TCC.elementos
             return btn;
         }
 
+        public static Button CriarBtn(string txt, int x, int y, int width, int height, int fontSize, Action eventoClick)
+        {
+            Button btn = new Button();
+            btn.Size = new Size(width, height);
+            btn.Location = new Point(x, y);
+            btn.Text = txt;
+            btn.ForeColor = Color.White;
+            btn.BackColor = Color.Black;
+            btn.Font = new Font(btn.Font.FontFamily, fontSize, FontStyle.Bold);
+            btn.Click += (s, e) =>
+            {
+                eventoClick();
+            };
+            return btn;
+        }
+
 
         public static Panel CriarPanelEntrar(Form1 form)
         {

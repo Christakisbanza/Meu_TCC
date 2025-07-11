@@ -121,6 +121,13 @@ namespace TCC
             ctrl.Location = new Point((this.ClientSize.Width - ctrl.Width) / 2, posY);
         }
 
+        public static void CentralizarPainel(Panel panelContainer, Panel panel)
+        {
+            panel.Left = (panelContainer.ClientSize.Width - panel.Width) / 2;
+            panel.Top = (panelContainer.ClientSize.Height - panel.Height) / 2;
+        }
+
+
 
 
     }

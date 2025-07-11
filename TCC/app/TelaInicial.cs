@@ -32,6 +32,10 @@ namespace TCC.app
         static ComboBox filtrarQuantidade;
         static PictureBox imgSearch;
 
+        private static Panel panelEditarProdutos;
+        private static Panel panelContainerEditar;
+        private static Panel panelContainerBtns;
+
         public static List<Produtos> produtos = new List<Produtos>();
         static List<User> dadosUser = new List<User>();
 
@@ -51,17 +55,19 @@ namespace TCC.app
             Panel panelFornecedores = Elementos.CriarPanelPrincipal(panelDeFundo);
             Panel panelConfiguracao = Elementos.CriarPanelPrincipal(panelDeFundo);
 
+
             Elementos.CriarImgPerfil(275, 50, panelDeFundo, () => ClicouNoPerfil(panelPerfil, [panelCadastrarProduto, panelVerProdutos,panelFornecedores,panelConfiguracao]));
 
-            Button btn1 = Elementos.CriarBtn("Início/Cadastrar Produtos", 50, 50, 300, 80, 12, panelDeFundo, () => CadastrarProdutos(panelCadastrarProduto, [panelPerfil,panelVerProdutos, panelFornecedores,panelConfiguracao]));
-            Button btn2 = Elementos.CriarBtn("Ver Produtos", 50, 180, 300, 80, 12, panelDeFundo, () => VerProdutos(panelVerProdutos, [panelPerfil,panelCadastrarProduto,panelFornecedores,panelConfiguracao]));
-            Button btn3 = Elementos.CriarBtn("Fornecedores", 50, 310, 300, 80, 12, panelDeFundo, () => Fornecedores(panelFornecedores, [panelPerfil,panelCadastrarProduto,panelVerProdutos,panelConfiguracao]));
-            Button btn4 = Elementos.CriarBtn("Configurações", 50, 440, 300, 80, 12, panelDeFundo, () => Configurações(panelConfiguracao, [panelPerfil,panelCadastrarProduto, panelVerProdutos,panelFornecedores]));
+            Button btn1 = Elementos.CriarBtn("Início/Cadastrar Produtos", 50, 50, 300, 80, 12, () => CadastrarProdutos(panelCadastrarProduto, [panelPerfil,panelVerProdutos, panelFornecedores,panelConfiguracao]));
+            Button btn2 = Elementos.CriarBtn("Ver Produtos", 50, 180, 300, 80, 12, () => VerProdutos(panelVerProdutos, [panelPerfil,panelCadastrarProduto,panelFornecedores,panelConfiguracao]));
+            Button btn3 = Elementos.CriarBtn("Fornecedores", 50, 310, 300, 80, 12, () => Fornecedores(panelFornecedores, [panelPerfil,panelCadastrarProduto,panelVerProdutos,panelConfiguracao]));
+            Button btn4 = Elementos.CriarBtn("Configurações", 50, 440, 300, 80, 12, () => Configurações(panelConfiguracao, [panelPerfil,panelCadastrarProduto, panelVerProdutos,panelFornecedores]));
             MudarCorBtns(btn1, btn2, btn3, btn4);
 
             ElementosDinamicosEmVerProdutos(panelDeFundo);
+            InstanciarElementosEditarProdutos(panelDeFundo);
 
-            Panel btns = Elementos.CriarPanelContainerBtnsIniciais(panelDeFundo, [btn1,btn2,btn3,btn4]);
+            panelContainerBtns = Elementos.CriarPanelContainerBtnsIniciais(panelDeFundo, [btn1,btn2,btn3,btn4]);
         }
 
         public static void ClicouNoPerfil(Panel panelPerfil, List<Panel> panelList)
@@ -201,20 +207,20 @@ namespace TCC.app
                 Label nomeTxt = Elementos.CriarLbl("Nome: ", 50, 100, 12);
                 Label nome = Elementos.CriarLblRegular($"{i.NomeT}", 130, 100, 12);
 
-                Label precoTxt = Elementos.CriarLbl("Preço da Venda: ", 50, 170, 12);
-                Label preco = Elementos.CriarLblRegular($"R${i.PrecoT}", 220, 170, 12);
+                Label precoTxt = Elementos.CriarLbl("Preço da Venda: ", 50, 150, 12);
+                Label preco = Elementos.CriarLblRegular($"R${i.PrecoT}", 220, 150, 12);
 
                 Label precoDaCompraTxt = Elementos.CriarLbl("Preço da Compra: ", 50, 200, 12);
                 Label precoDaCompra = Elementos.CriarLblRegular($"R${i.PrecoDaCompraString}", 230, 200, 12);
 
-                Label quantidadeTxt = Elementos.CriarLbl("Quantidade: ", 50, 240, 12);
-                Label quantidade = Elementos.CriarLblRegular($"{i.QuantidadeT}", 185, 240, 12);
+                Label quantidadeTxt = Elementos.CriarLbl("Quantidade: ", 50, 250, 12);
+                Label quantidade = Elementos.CriarLblRegular($"{i.QuantidadeT}", 185, 250, 12);
 
-                Label categoriaTxt = Elementos.CriarLbl("Categoria: ", 50, 310, 12);
-                Label categoria = Elementos.CriarLblRegular($"{i.CategoriaT}", 170, 310, 12);
+                Label categoriaTxt = Elementos.CriarLbl("Categoria: ", 50, 300, 12);
+                Label categoria = Elementos.CriarLblRegular($"{i.CategoriaT}", 170, 300, 12);
 
-                Label descricaoTxt = Elementos.CriarLbl("Descrição: ", 50, 380, 12);
-                Label descricao = Elementos.CriarLblRegular($"{i.DescricaoT}", 170, 380, 12);
+                Label descricaoTxt = Elementos.CriarLbl("Descrição: ", 50, 350, 12);
+                Label descricao = Elementos.CriarLblRegular($"{i.DescricaoT}", 170, 350, 12);
                 
                 PictureBox pictureBox = new PictureBox();
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -225,10 +231,10 @@ namespace TCC.app
                 Panel pContainer = Elementos.CriarPanelContainer(panelVerProdutos, xPanel, 50);
                 pContainer.Controls.AddRange(new Control[] {idTxt,nomeTxt, precoTxt, precoDaCompraTxt, quantidadeTxt, categoriaTxt, descricaoTxt});
                 pContainer.Controls.AddRange(new Control[] {id,nome, preco, precoDaCompra, quantidade, categoria, descricao, pictureBox });
-       
 
-                Elementos.CriarImgDeletar(650, 10, pContainer, () => Deletar(i, pContainer, panelVerProdutos));
-                Elementos.CriarImgEditar(580, 10, pContainer, () => MessageBox.Show("ok"));
+
+                Elementos.CriarImgDeletar(650, 10, pContainer, () => DeletarProduto(i, pContainer, panelVerProdutos));
+                Elementos.CriarImgEditar(580, 10, pContainer, () => EditarProdutos(panelVerProdutos));
                 
                 
                 if (!filtrarCategoria.Items.Contains(i.CategoriaT.ToUpper()))
@@ -347,7 +353,54 @@ namespace TCC.app
             panel.Visible = true;
         }
 
-        public static void Deletar(Produtos produto, Panel pContainer, Panel panel)
+        private static void InstanciarElementosEditarProdutos(Panel panelDeFundo)
+        {
+            panelContainerEditar = Elementos.CriarPanelContainer(panelDeFundo, 0, 0);
+            panelContainerEditar.Visible = false;
+            panelContainerEditar.BackColor = Color.LightGray;
+            panelContainerEditar.Dock = DockStyle.Fill;
+            panelDeFundo.Controls.SetChildIndex(panelContainerEditar, 0);
+
+            panelEditarProdutos = Elementos.CriarPanelContainer(panelContainerEditar, 0, 0, 700, 500);
+            panelEditarProdutos.Visible = false;
+
+            panelContainerEditar.Resize += (s, e) =>
+            {
+                Form1.CentralizarPainel(panelContainerEditar, panelEditarProdutos);
+            };
+        }
+
+        private static void EditarProdutos(Panel panelVerProdutos)
+        {
+            panelEditarProdutos.Visible = true;
+            panelContainerEditar.Visible = true;
+
+            filtrarCategoria.SendToBack();
+            filtrarQuantidade.SendToBack();
+            filtrarLbl.SendToBack();
+            filtrarNome.SendToBack();
+            imgSearch.SendToBack();
+            btnSaidaPorVenda.SendToBack();
+            btnOutrasSaidas.SendToBack();
+
+            panelContainerBtns.SendToBack();
+
+            panelContainerEditar.Click += (sender, e) =>
+            {
+                panelEditarProdutos.Visible = false;
+                panelContainerEditar.Visible = false;
+                filtrarCategoria.BringToFront();
+                filtrarQuantidade.BringToFront();
+                filtrarLbl.BringToFront();
+                filtrarNome.BringToFront();
+                imgSearch.BringToFront();
+                btnSaidaPorVenda.BringToFront();
+                btnOutrasSaidas.BringToFront();
+                panelContainerBtns.BringToFront();
+            };
+        }
+
+        public static void DeletarProduto(Produtos produto, Panel pContainer, Panel panel)
         {
             DialogResult res = MessageBox.Show("Deseja deletar ?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
