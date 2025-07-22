@@ -79,22 +79,22 @@ namespace TCC.app
             foreach (var dado in dadosUser)
             {
                 Label idTxt = Elementos.CriarLbl("USER ID: ", 25, 30, 9);
-                Label id = Elementos.CriarLblRegular($"{dado.Id}", 90, 30, 9);
+                Label id = Elementos.CriarLblRegular($"{dado.Id}", 110, 30, 9);
 
                 Label emailTxt = Elementos.CriarLbl("Email: ", 50, 80, 12);
-                Label email = Elementos.CriarLblRegular($"{dado.EmailString}", 120, 80, 12);
+                Label email = Elementos.CriarLblRegular($"{dado.EmailString}", 250, 80, 12);
 
                 Label cpfTxt = Elementos.CriarLbl("Cpf: ", 50, 135, 12);
-                Label cpf = Elementos.CriarLblRegular($"{dado.CpfString}", 100, 135, 12);
+                Label cpf = Elementos.CriarLblRegular($"{dado.CpfString}", 250, 135, 12);
 
-                Label dataTxt = Elementos.CriarLbl("Data de Nascimento: ", 50, 195, 12);
-                Label data = Elementos.CriarLblRegular($"{dado.DataNascimentoString}", 260, 195, 12);
+                Label dataTxt = Elementos.CriarLbl("Nascimento: ", 50, 195, 12);
+                Label data = Elementos.CriarLblRegular($"{dado.DataNascimentoString}", 250, 195, 12);
 
                 Label sexoTxt = Elementos.CriarLbl("Sexo: ", 50, 255, 12);
-                Label sexo = Elementos.CriarLblRegular($"{dado.SexoString}", 110, 255, 12);
+                Label sexo = Elementos.CriarLblRegular($"{dado.SexoString}", 250, 255, 12);
 
                 Label funcaoTxt = Elementos.CriarLbl("Função: ", 50, 315, 12);
-                Label funcao = Elementos.CriarLblRegular($"{dado.FuncaoString}", 130, 315, 12);
+                Label funcao = Elementos.CriarLblRegular($"{dado.FuncaoString}", 250, 315, 12);
 
                 panelPerfil.Controls.AddRange(new Control[] {id, email, cpf, data, sexo, funcao });
                 panelPerfil.Controls.AddRange(new Control[] { idTxt, emailTxt, cpfTxt, dataTxt, sexoTxt, funcaoTxt });
@@ -205,27 +205,27 @@ namespace TCC.app
                 Label id = Elementos.CriarLblRegular($"{i.Id}", 65, 25, 10);
 
                 Label nomeTxt = Elementos.CriarLbl("Nome: ", 50, 100, 12);
-                Label nome = Elementos.CriarLblRegular($"{i.NomeT}", 130, 100, 12);
+                Label nome = Elementos.CriarLblRegular($"{i.NomeT}", 300, 100, 12);
 
                 Label precoTxt = Elementos.CriarLbl("Preço da Venda: ", 50, 150, 12);
-                Label preco = Elementos.CriarLblRegular($"R${i.PrecoT}", 220, 150, 12);
+                Label preco = Elementos.CriarLblRegular($"R${i.PrecoT}", 300, 150, 12);
 
                 Label precoDaCompraTxt = Elementos.CriarLbl("Preço da Compra: ", 50, 200, 12);
-                Label precoDaCompra = Elementos.CriarLblRegular($"R${i.PrecoDaCompraString}", 230, 200, 12);
+                Label precoDaCompra = Elementos.CriarLblRegular($"R${i.PrecoDaCompraString}", 300, 200, 12);
 
                 Label quantidadeTxt = Elementos.CriarLbl("Quantidade: ", 50, 250, 12);
-                Label quantidade = Elementos.CriarLblRegular($"{i.QuantidadeT}", 185, 250, 12);
+                Label quantidade = Elementos.CriarLblRegular($"{i.QuantidadeT}", 300, 250, 12);
 
                 Label categoriaTxt = Elementos.CriarLbl("Categoria: ", 50, 300, 12);
-                Label categoria = Elementos.CriarLblRegular($"{i.CategoriaT}", 170, 300, 12);
+                Label categoria = Elementos.CriarLblRegular($"{i.CategoriaT}", 300, 300, 12);
 
                 Label descricaoTxt = Elementos.CriarLbl("Descrição: ", 50, 350, 12);
-                Label descricao = Elementos.CriarLblRegular($"{i.DescricaoT}", 170, 350, 12);
+                Label descricao = Elementos.CriarLblRegular($"{i.DescricaoT}", 300, 350, 12);
                 
                 PictureBox pictureBox = new PictureBox();
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox.Size = new Size(250, 225);
-                pictureBox.Location = new Point(400, 150);
+                pictureBox.Location = new Point(430, 150);
                 pictureBox.Image = Image.FromFile(i.Img);
 
                 Panel pContainer = Elementos.CriarPanelContainer(panelVerProdutos, xPanel, 50);
