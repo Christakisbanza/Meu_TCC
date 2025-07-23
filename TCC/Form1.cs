@@ -34,15 +34,16 @@ namespace TCC
             container = Elementos.CriarPanelContainer(this);
             container.Controls.Add(btnEntrar);
             container.Controls.Add(btnCriarConta);
-
+            container.Controls.Add(txtInicial);
 
             this.Resize += (s, e) =>
             {
                 CentralizarControle(panelFlutuante, 200);
-                CentralizarControle(txtInicial, 200);
-                btnEntrar.Location = new Point(120,300);
-                btnCriarConta.Location = new Point(550, 300);
-                CentralizarControle(container, 300);
+                btnEntrar.Location = new Point(120,400);
+                btnCriarConta.Location = new Point(550, 400);
+                txtInicial.Location = new Point(130,100);
+
+                CentralizarPainel(this,container);
 
             };
 
@@ -83,20 +84,29 @@ namespace TCC
 
             Elementos.CriarLbl("Crie sua conta", 155, 15, 17, panelFlutuante);
 
+            Elementos.CriarLbl("Email:", 70, 110, 10, panelFlutuante);
             emailCriar = Elementos.CriarTxtBoxLogin(150, 110, panelFlutuante);
+
+            Elementos.CriarLbl("Senha:", 70, 175, 10, panelFlutuante);
             senhaCriar = Elementos.CriarTxtBoxLogin(150, 175, panelFlutuante);
+
+            Elementos.CriarLbl("CPF:", 70, 245, 10, panelFlutuante);
             cpf = Elementos.CriarTxtBoxLogin(150, 245, panelFlutuante);
 
-            Elementos.CriarLbl("Data de Nascimento:", 145, 295, 9, panelFlutuante);
-            data = Elementos.CriarCalendario(150, 320, panelFlutuante);
+            Elementos.CriarLbl("Data de Nascimento:", 70, 320, 9, panelFlutuante);
+            data = Elementos.CriarCalendario(270, 320, panelFlutuante);
 
-            rbM = Elementos.CriarRadioBtn("Masculino", 150, 370, panelFlutuante);
-            rbF = Elementos.CriarRadioBtn("Feminino", 260, 370, panelFlutuante);
+            Elementos.CriarLbl("Sexo:", 70, 370, 10, panelFlutuante);
+            rbM = Elementos.CriarRadioBtn("M", 200, 370, panelFlutuante);
+            rbF = Elementos.CriarRadioBtn("F", 150, 370, panelFlutuante);
 
 
             checkAdm = Elementos.CriarCheckBox("Administrador", 150, 420, panelFlutuante);
 
+            Elementos.CriarLbl("Nome Empresa:", 70, 510, 10, panelFlutuante);
             nomeEmpresa = Elementos.CriarTxtBoxLogin(150, 510, panelFlutuante);
+
+            Elementos.CriarLbl("CNPJ:", 70, 570, 10, panelFlutuante);
             cnpj = Elementos.CriarTxtBoxLogin(150, 570, panelFlutuante);
 
 
@@ -127,6 +137,12 @@ namespace TCC
         {
             panel.Left = (panelContainer.ClientSize.Width - panel.Width) / 2;
             panel.Top = (panelContainer.ClientSize.Height - panel.Height) / 2;
+        }
+
+        public static void CentralizarPainel(Form1 form, Panel panel)
+        {
+            panel.Left = (form.ClientSize.Width - panel.Width) / 2;
+            panel.Top = (form.ClientSize.Height - panel.Height) / 2;
         }
 
 

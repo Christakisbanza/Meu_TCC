@@ -88,7 +88,8 @@ namespace TCC.elementos
         public static Panel CriarPanelContainer(Form1 form)
         {
             Panel meuPanel = new Panel();
-            meuPanel.Size = new Size(800, 400);
+            meuPanel.Size = new Size(800, 600);
+            meuPanel.BackColor= Color.LightBlue; 
             meuPanel.Visible = true;
             form.Controls.Add(meuPanel);
             meuPanel.BringToFront();
