@@ -61,9 +61,11 @@ namespace TCC
             pictureBox.Image = Properties.Resources.usuario;
             panelFlutuante.Controls.Add(pictureBox);
 
+            Elementos.CriarLbl("Email:", 145, 130, 10, panelFlutuante);
+            txtEmail = Elementos.CriarTxtBoxLogin(150, 160, panelFlutuante);
 
-            txtEmail = Elementos.CriarTxtBox("Digite seu e-mail", 150, 160, panelFlutuante);
-            txtSenha = Elementos.CriarTxtBox("Digite sua senha", 150, 230, panelFlutuante);
+            Elementos.CriarLbl("Senha:", 145, 200, 10, panelFlutuante);
+            txtSenha = Elementos.CriarTxtBoxLogin(150, 230, panelFlutuante);
 
             Elementos.CriarBtn("Entrar", 150, 310, 255, 50, 11, panelFlutuante, () => PegarDadosBD.BuscarDados(panelOverlay, panelFlutuante, txtEmail, txtSenha, this));
 
@@ -81,9 +83,9 @@ namespace TCC
 
             Elementos.CriarLbl("Crie sua conta", 155, 15, 17, panelFlutuante);
 
-            emailCriar = Elementos.CriarTxtBox("Digite seu E-mail", 150, 110, panelFlutuante);
-            senhaCriar = Elementos.CriarTxtBox("Crie sua Senha", 150, 175, panelFlutuante);
-            cpf = Elementos.CriarTxtBox("Digite seu CPF", 150, 245, panelFlutuante);
+            emailCriar = Elementos.CriarTxtBoxLogin(150, 110, panelFlutuante);
+            senhaCriar = Elementos.CriarTxtBoxLogin(150, 175, panelFlutuante);
+            cpf = Elementos.CriarTxtBoxLogin(150, 245, panelFlutuante);
 
             Elementos.CriarLbl("Data de Nascimento:", 145, 295, 9, panelFlutuante);
             data = Elementos.CriarCalendario(150, 320, panelFlutuante);
@@ -94,8 +96,8 @@ namespace TCC
 
             checkAdm = Elementos.CriarCheckBox("Administrador", 150, 420, panelFlutuante);
 
-            nomeEmpresa = Elementos.CriarTxtBox("Digite o Nome da Empresa", 150, 510, panelFlutuante);
-            cnpj = Elementos.CriarTxtBox("Digite o CNPJ da Empresa", 150, 570, panelFlutuante);
+            nomeEmpresa = Elementos.CriarTxtBoxLogin(150, 510, panelFlutuante);
+            cnpj = Elementos.CriarTxtBoxLogin(150, 570, panelFlutuante);
 
 
             Elementos.CriarBtn("Criar", 150, 650, 255, 50, 11, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados(panelOverlay, panelFlutuante,container, new User(emailCriar, senhaCriar, cpf, data, rbM, rbF, checkAdm), new Empresa(nomeEmpresa, cnpj)));

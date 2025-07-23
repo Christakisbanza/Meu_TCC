@@ -102,7 +102,7 @@ namespace TCC.dbConexion
 
         private static string ValidarEmail(TextBox txt)
         {
-            if (txt.Text != "Digite seu E-mail" && txt.Text.Contains('@'))
+            if (txt.Text.Contains('@') && txt.Text.Contains('.'))
             {
                 return txt.Text.Trim();
             }
@@ -128,7 +128,7 @@ namespace TCC.dbConexion
 
         private static string ValidarCpf(TextBox txt)
         {
-            if (txt.Text != "Digite seu CPF" && int.TryParse(txt.Text, out int n))
+            if (int.TryParse(txt.Text, out int n))
             {
                 return txt.Text.Trim();
             }
@@ -185,7 +185,7 @@ namespace TCC.dbConexion
 
         private static string ValidarCnpj(TextBox txt)
         {
-            if (txt.Text != "Digite o CNPJ da Empresa" && int.TryParse(txt.Text, out int n))
+            if (int.TryParse(txt.Text, out int n))
             {
                 return txt.Text.Trim();
             }
