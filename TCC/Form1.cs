@@ -22,7 +22,8 @@ namespace TCC
         RadioButton rbF;
 
         CheckBox checkAdm;
-
+        CheckBox checkBoxVisibilidadeSenhaCriarConta;
+        CheckBox checkBoxVisibilidadeEntrar;
         Panel container;
 
         public Form1()
@@ -71,6 +72,8 @@ namespace TCC
             Elementos.CriarLbl("Senha:", 250, 300, 10, panelFlutuante);
             txtSenha = Elementos.CriarTxtBoxLogin(255, 330, panelFlutuante);
 
+            VisibilidadeSenhaEntrar(550,335);
+
             Elementos.CriarBtn("Entrar", 270, 450, 255, 50, 11, panelFlutuante, () => PegarDadosBD.BuscarDados(panelOverlay, panelFlutuante, txtEmail, txtSenha, this));
 
 
@@ -94,6 +97,8 @@ namespace TCC
 
             Elementos.CriarLbl("Senha:", 150, 175, 10, panelFlutuante);
             senhaCriar = Elementos.CriarTxtBoxLogin(320, 175, panelFlutuante);
+
+            VisibilidadeSenhaCriarConta(610,180);
 
             Elementos.CriarLbl("CPF:", 150, 245, 10, panelFlutuante);
             cpf = Elementos.CriarTxtBoxLogin(320, 245, panelFlutuante);
@@ -119,6 +124,41 @@ namespace TCC
 
         }
 
+        private void VisibilidadeSenhaCriarConta(int x, int y)
+        {
+            checkBoxVisibilidadeSenhaCriarConta = Elementos.CriarCheckBox("", x, y, panelFlutuante);
+            senhaCriar.UseSystemPasswordChar = true;
+            checkBoxVisibilidadeSenhaCriarConta.MouseClick += (s, e) =>
+            {
+                if (checkBoxVisibilidadeSenhaCriarConta.Checked)
+                {
+                    senhaCriar.UseSystemPasswordChar = false;
+  
+                }
+                else
+                {
+                    senhaCriar.UseSystemPasswordChar = true;
+                }
+            };
+        }
+
+        private void VisibilidadeSenhaEntrar(int x, int y)
+        {
+            checkBoxVisibilidadeEntrar = Elementos.CriarCheckBox("", x, y, panelFlutuante);
+            txtSenha.UseSystemPasswordChar = true;
+            checkBoxVisibilidadeEntrar.MouseClick += (s, e) =>
+            {
+                if (checkBoxVisibilidadeEntrar.Checked)
+                {
+                    txtSenha.UseSystemPasswordChar = false;
+
+                }
+                else
+                {
+                    txtSenha.UseSystemPasswordChar = true;
+                }
+            };
+        }
 
 
         private void panelOverlay_MouseClick(object sender, MouseEventArgs e)
