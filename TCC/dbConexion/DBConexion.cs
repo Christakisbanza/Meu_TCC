@@ -115,20 +115,36 @@ namespace TCC.dbConexion
 
         private static string ValidarSenha(TextBox txt)
         {
-            if (txt.Text != "Crie sua Senha")
-            {
-                return txt.Text.Trim();
-            }
-            else
-            {
-                txt.Clear();
-                throw new PreecherCamposException("Senha inválida !");
-            }
+            if (string.IsNullOrWhiteSpace(txt.Text)) throw new PreecherCamposException("Senha inválida !");
+
+            if (txt.Text.Length < 8) throw new PreecherCamposException("Senha inválida !");
+            if (!txt.Text.Any(char.IsUpper)) throw new PreecherCamposException("Senha inválida !");
+            if (!txt.Text.Any(char.IsLower)) throw new PreecherCamposException("Senha inválida !");
+            if (!txt.Text.Any(char.IsDigit)) throw new PreecherCamposException("Senha inválida !");
+            if (!txt.Text.Any(c => "!@#$%^&*()_-+=<>?/{}[]|\\~`".Contains(c))) throw new PreecherCamposException("Senha inválida !");
+
+            return txt.Text.Trim();
         }
 
         private static string ValidarCpf(TextBox txt)
         {
-            if (int.TryParse(txt.Text, out int n))
+            if (string.IsNullOrWhiteSpace(txt.Text)) throw new PreecherCamposException("Cpf inválido !");
+            if (txt.Text.Length != 11) throw new PreecherCamposException("Cpf inválido !");
+            if (txt.Text.Distinct().Count() == 1) throw new PreecherCamposException("Cpf inválido !");
+            if (int.TryParse(txt.Text, out int n)) throw new PreecherCamposException("Cpf inválido !");
+            int soma = 0;
+            for (int i = 0; i < 9; i++) soma += (txt.Text[i] - '0') * (10 - i);
+
+            int digito1 = soma % 11;
+            digito1 = digito1 < 2 ? 0 : 11 - digito1;
+
+            soma = 0;
+            for (int i = 0; i < 10; i++) soma += (txt.Text[i] - '0') * (11 - i);
+
+            int digito2 = soma % 11;
+            digito2 = digito2 < 2 ? 0 : 11 - digito2;
+
+            if (txt.Text[9] - '0' == digito1 && txt.Text[10] - '0' == digito2)
             {
                 return txt.Text.Trim();
             }
