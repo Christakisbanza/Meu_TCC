@@ -15,7 +15,7 @@ namespace TCC.elementos
         public static TextBox CriarTxtBoxLogin( int x, int y, Panel panelFlutuante)
         {
             TextBox textBox = new TextBox();
-            textBox.Size = new Size(250, 0);
+            textBox.Size = new Size(280, 0);
             textBox.Location = new Point(x, y);
             textBox.BorderStyle = BorderStyle.FixedSingle;
             textBox.ForeColor = Color.Gray;
@@ -90,6 +90,7 @@ namespace TCC.elementos
             Panel meuPanel = new Panel();
             meuPanel.Size = new Size(800, 600);
             meuPanel.BackColor= Color.LightBlue; 
+            meuPanel.BorderStyle = BorderStyle.FixedSingle;
             meuPanel.Visible = true;
             form.Controls.Add(meuPanel);
             meuPanel.BringToFront();

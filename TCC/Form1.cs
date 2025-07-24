@@ -29,7 +29,8 @@ namespace TCC
         {
             InitializeComponent();
             panelFlutuante.AutoScroll = true;
-            panelFlutuante.BorderStyle = BorderStyle.Fixed3D; 
+            panelFlutuante.BorderStyle = BorderStyle.Fixed3D;
+            panelFlutuante.Size = new Size(800, 600);
 
             container = Elementos.CriarPanelContainer(this);
             container.Controls.Add(btnEntrar);
@@ -38,13 +39,15 @@ namespace TCC
 
             this.Resize += (s, e) =>
             {
-                CentralizarControle(panelFlutuante, 200);
                 btnEntrar.Location = new Point(120,400);
                 btnCriarConta.Location = new Point(550, 400);
                 txtInicial.Location = new Point(130,100);
 
                 CentralizarPainel(this,container);
-
+            };
+            panelOverlay.Resize += (s, e) =>
+            {
+                CentralizarPainel(panelOverlay, panelFlutuante);
             };
 
         }
@@ -58,17 +61,17 @@ namespace TCC
             PictureBox pictureBox = new PictureBox();
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Size = new Size(100, 100);
-            pictureBox.Location = new Point(225, 15);
+            pictureBox.Location = new Point(350, 15);
             pictureBox.Image = Properties.Resources.usuario;
             panelFlutuante.Controls.Add(pictureBox);
 
-            Elementos.CriarLbl("Email:", 145, 130, 10, panelFlutuante);
-            txtEmail = Elementos.CriarTxtBoxLogin(150, 160, panelFlutuante);
+            Elementos.CriarLbl("Email:", 250, 200, 10, panelFlutuante);
+            txtEmail = Elementos.CriarTxtBoxLogin(255, 230, panelFlutuante);
 
-            Elementos.CriarLbl("Senha:", 145, 200, 10, panelFlutuante);
-            txtSenha = Elementos.CriarTxtBoxLogin(150, 230, panelFlutuante);
+            Elementos.CriarLbl("Senha:", 250, 300, 10, panelFlutuante);
+            txtSenha = Elementos.CriarTxtBoxLogin(255, 330, panelFlutuante);
 
-            Elementos.CriarBtn("Entrar", 150, 310, 255, 50, 11, panelFlutuante, () => PegarDadosBD.BuscarDados(panelOverlay, panelFlutuante, txtEmail, txtSenha, this));
+            Elementos.CriarBtn("Entrar", 270, 450, 255, 50, 11, panelFlutuante, () => PegarDadosBD.BuscarDados(panelOverlay, panelFlutuante, txtEmail, txtSenha, this));
 
 
             panelFlutuante.BringToFront();
@@ -82,35 +85,37 @@ namespace TCC
             panelFlutuante.Visible = true;
             container.Visible = false;
 
-            Elementos.CriarLbl("Crie sua conta", 155, 15, 17, panelFlutuante);
+           
+            Elementos.CriarLbl("Crie sua conta", 270, 15, 17, panelFlutuante);
+           
+ 
+            Elementos.CriarLbl("Email:", 150, 110, 10, panelFlutuante);
+            emailCriar = Elementos.CriarTxtBoxLogin(320, 110, panelFlutuante);
 
-            Elementos.CriarLbl("Email:", 70, 110, 10, panelFlutuante);
-            emailCriar = Elementos.CriarTxtBoxLogin(150, 110, panelFlutuante);
+            Elementos.CriarLbl("Senha:", 150, 175, 10, panelFlutuante);
+            senhaCriar = Elementos.CriarTxtBoxLogin(320, 175, panelFlutuante);
 
-            Elementos.CriarLbl("Senha:", 70, 175, 10, panelFlutuante);
-            senhaCriar = Elementos.CriarTxtBoxLogin(150, 175, panelFlutuante);
+            Elementos.CriarLbl("CPF:", 150, 245, 10, panelFlutuante);
+            cpf = Elementos.CriarTxtBoxLogin(320, 245, panelFlutuante);
 
-            Elementos.CriarLbl("CPF:", 70, 245, 10, panelFlutuante);
-            cpf = Elementos.CriarTxtBoxLogin(150, 245, panelFlutuante);
+            Elementos.CriarLbl("Data de Nascimento:", 150, 320, 9, panelFlutuante);
+            data = Elementos.CriarCalendario(350, 320, panelFlutuante);
 
-            Elementos.CriarLbl("Data de Nascimento:", 70, 320, 9, panelFlutuante);
-            data = Elementos.CriarCalendario(270, 320, panelFlutuante);
-
-            Elementos.CriarLbl("Sexo:", 70, 370, 10, panelFlutuante);
-            rbM = Elementos.CriarRadioBtn("M", 200, 370, panelFlutuante);
-            rbF = Elementos.CriarRadioBtn("F", 150, 370, panelFlutuante);
+            Elementos.CriarLbl("Sexo:", 150, 370, 10, panelFlutuante);
+            rbM = Elementos.CriarRadioBtn("M", 280, 370, panelFlutuante);
+            rbF = Elementos.CriarRadioBtn("F", 230, 370, panelFlutuante);
 
 
             checkAdm = Elementos.CriarCheckBox("Administrador", 150, 420, panelFlutuante);
 
-            Elementos.CriarLbl("Nome Empresa:", 70, 510, 10, panelFlutuante);
-            nomeEmpresa = Elementos.CriarTxtBoxLogin(150, 510, panelFlutuante);
+            Elementos.CriarLbl("Nome Empresa:", 150, 510, 10, panelFlutuante);
+            nomeEmpresa = Elementos.CriarTxtBoxLogin(320, 510, panelFlutuante);
 
-            Elementos.CriarLbl("CNPJ:", 70, 570, 10, panelFlutuante);
-            cnpj = Elementos.CriarTxtBoxLogin(150, 570, panelFlutuante);
+            Elementos.CriarLbl("CNPJ:", 150, 570, 10, panelFlutuante);
+            cnpj = Elementos.CriarTxtBoxLogin(320, 570, panelFlutuante);
 
 
-            Elementos.CriarBtn("Criar", 150, 650, 255, 50, 11, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados(panelOverlay, panelFlutuante,container, new User(emailCriar, senhaCriar, cpf, data, rbM, rbF, checkAdm), new Empresa(nomeEmpresa, cnpj)));
+            Elementos.CriarBtn("Criar", 270, 650, 255, 50, 11, panelFlutuante, () => DBConexion.salvarDadosNoBancoDeDados(panelOverlay, panelFlutuante,container, new User(emailCriar, senhaCriar, cpf, data, rbM, rbF, checkAdm), new Empresa(nomeEmpresa, cnpj)));
 
         }
 
@@ -126,11 +131,6 @@ namespace TCC
                 container.Visible = true;
                 panelFlutuante.Controls.Clear();
             }
-        }
-
-        private void CentralizarControle(Control ctrl, int posY)
-        {
-            ctrl.Location = new Point((this.ClientSize.Width - ctrl.Width) / 2, posY);
         }
 
         public static void CentralizarPainel(Panel panelContainer, Panel panel)
