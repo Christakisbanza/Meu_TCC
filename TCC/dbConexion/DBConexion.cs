@@ -57,7 +57,7 @@ namespace TCC.dbConexion
                         command.Parameters.AddWithValue("@email", ValidarEmail(user.Email));
                         command.Parameters.AddWithValue("@senha", ValidarSenha(user.Senha));
                         command.Parameters.AddWithValue("@cpf", ValidarCpf(user.Cpf));
-                        command.Parameters.AddWithValue("@data_nascimento", user.DataNascimento);
+                        command.Parameters.AddWithValue("@data_nascimento", ValidarDataDeNascimento(user.DataNascimento));
                         command.Parameters.AddWithValue("@sexo", ValidarSexo(user.SexoM, user.SexoF));
                         command.Parameters.AddWithValue("@funcao", ValidarFuncao(user.Funcao));
                         int newId = Convert.ToInt32(command.ExecuteScalar());
@@ -129,7 +129,7 @@ namespace TCC.dbConexion
         private static string ValidarCpf(TextBox txt)
         {
             if (string.IsNullOrWhiteSpace(txt.Text)) throw new PreecherCamposException("Cpf inválido! Não deve ser vazio ou com espaço");
-            if (txt.Text.Length != 11) throw new PreecherCamposException("Cpf inválido! Deve conter pelo menos 11 dígitos");
+            if (txt.Text.Length != 11) throw new PreecherCamposException("Cpf inválido! Deve conter 11 dígitos");
             if (!txt.Text.All(char.IsDigit)) throw new PreecherCamposException("Cpf inválido! Somente dígitos");
             
             return txt.Text.Trim();
@@ -198,28 +198,18 @@ namespace TCC.dbConexion
 
         private static string ValidarNomeEmpresa(TextBox txt)
         {
-            if (txt.Text != "Digite o Nome da Empresa")
-            {
-                return txt.Text.Trim();
-            }
-            else
-            {
-                txt.Clear();
-                throw new PreecherCamposException("Nome da empresa obrigatório !");
-            }
+            if (string.IsNullOrWhiteSpace(txt.Text)) throw new PreecherCamposException("Nome da emoresa obrigatório");
+            
+            return txt.Text.Trim();
         }
 
         private static string ValidarCnpj(TextBox txt)
         {
-            if (int.TryParse(txt.Text, out int n))
-            {
-                return txt.Text.Trim();
-            }
-            else
-            {
-                txt.Clear();
-                throw new PreecherCamposException("Cnpj inválido !");
-            }
+            if (string.IsNullOrWhiteSpace(txt.Text)) throw new PreecherCamposException("Cnpj inválido! Não deve ser vazio ou com espaço");
+            if (txt.Text.Length != 11) throw new PreecherCamposException("Cnpj inválido! Deve conter 14 dígitos");
+            if (!txt.Text.All(char.IsDigit)) throw new PreecherCamposException("Cnpj inválido! Somente dígitos");
+            
+            return txt.Text.Trim();
         }
     }
 }
