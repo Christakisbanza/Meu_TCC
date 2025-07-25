@@ -56,7 +56,7 @@ namespace TCC.dbConexion
                             string email = reader.GetString(1);
                             string senha = reader.GetString(2);
                             string cpf = reader.GetString(3);
-                            DateTime data = reader.GetDateTime(reader.GetOrdinal("data_nascimento"));
+                            string data = reader.GetString(4);
                             string sexo = reader.GetString(5);
                             string funcao = reader.GetString(6);
 
@@ -70,7 +70,7 @@ namespace TCC.dbConexion
 
                                 validacao = true;
 
-                                TelaInicial.AddUser(new User(id, email, senha, cpf, data.ToString("yyyy/MM/dd"),sexo,funcao));
+                                TelaInicial.AddUser(new User(id, email, senha, cpf, data,sexo,funcao));
                                 TelaInicial.CriarTelaInicial(form);
                             }           
                         }
