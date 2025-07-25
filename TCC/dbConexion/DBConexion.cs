@@ -57,7 +57,7 @@ namespace TCC.dbConexion
                         command.Parameters.AddWithValue("@email", ValidarEmail(user.Email));
                         command.Parameters.AddWithValue("@senha", ValidarSenha(user.Senha));
                         command.Parameters.AddWithValue("@cpf", ValidarCpf(user.Cpf));
-                        command.Parameters.AddWithValue("@data_nascimento", user.DataNascimento.Value.ToString("dd/MM/yyyy"));
+                        command.Parameters.AddWithValue("@data_nascimento", user.DataNascimento);
                         command.Parameters.AddWithValue("@sexo", ValidarSexo(user.SexoM, user.SexoF));
                         command.Parameters.AddWithValue("@funcao", ValidarFuncao(user.Funcao));
                         int newId = Convert.ToInt32(command.ExecuteScalar());
@@ -133,6 +133,35 @@ namespace TCC.dbConexion
             if (!txt.Text.All(char.IsDigit)) throw new PreecherCamposException("Cpf inválido! Somente dígitos");
             
             return txt.Text.Trim();
+            
+        }
+
+        private static string ValidarDataDeNascimento(DateTimePicker data)
+        {
+            string dataString = data.Value.ToString("dd/MM/yyyy");
+
+            if (DateTime.TryParse(dataString, out DateTime dataNascimento))
+            {
+                DateTime hoje = DateTime.Today;
+                int idade = hoje.Year - dataNascimento.Year;
+
+                if (dataNascimento > hoje)
+                {
+                    throw new PreecherCamposException("Data de nascimento não pode ser no futuro.");
+                }
+                else if (idade < 0 || idade > 130)
+                {
+                    throw new PreecherCamposException("Idade fora do intervalo aceitável.");
+                }
+                else
+                {
+                    return data.Value.ToString("dd/MM/yyyy");
+                }
+            }
+            else
+            {
+                throw new PreecherCamposException("Data inválida");
+            }
             
         }
 
