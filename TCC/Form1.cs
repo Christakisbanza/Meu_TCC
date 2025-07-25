@@ -50,7 +50,6 @@ namespace TCC
             {
                 CentralizarPainel(panelOverlay, panelFlutuante);
             };
-
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
@@ -66,13 +65,15 @@ namespace TCC
             pictureBox.Image = Properties.Resources.usuario;
             panelFlutuante.Controls.Add(pictureBox);
 
-            Elementos.CriarLbl("Email:", 250, 200, 10, panelFlutuante);
-            txtEmail = Elementos.CriarTxtBoxLogin(255, 230, panelFlutuante);
+            Elementos.CriarLbl("Email:", 250, 150, 10, panelFlutuante);
+            txtEmail = Elementos.CriarTxtBoxLogin(255, 180, panelFlutuante);
 
-            Elementos.CriarLbl("Senha:", 250, 300, 10, panelFlutuante);
-            txtSenha = Elementos.CriarTxtBoxLogin(255, 330, panelFlutuante);
+            Elementos.CriarLbl("Senha:", 250, 240, 10, panelFlutuante);
+            txtSenha = Elementos.CriarTxtBoxLogin(255, 270, panelFlutuante);
 
-            VisibilidadeSenhaEntrar(550,335);
+            VisibilidadeSenhaEntrar(550,275);
+
+            RedefinirSenhaOuEmail(panelFlutuante);
 
             Elementos.CriarBtn("Entrar", 270, 450, 255, 50, 11, panelFlutuante, () => PegarDadosBD.BuscarDados(panelOverlay, panelFlutuante, txtEmail, txtSenha, this));
 
@@ -160,6 +161,16 @@ namespace TCC
             };
         }
 
+        private void RedefinirSenhaOuEmail(Panel panelFlutuante)
+        {
+            Label lbl = Elementos.CriarLblRegular("Esqueceu a Senha ou Email ?",250,340,9);
+            panelFlutuante.Controls.Add(lbl);
+
+            lbl.MouseClick += (s, e) =>
+            {
+                MessageBox.Show("ok");
+            };
+        }
 
         private void panelOverlay_MouseClick(object sender, MouseEventArgs e)
         {
